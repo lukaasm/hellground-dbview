@@ -23,8 +23,15 @@
 
 SearchWidget::SearchWidget(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent)
 {
-    Wt::WLineEdit* w = new Wt::WLineEdit("What u wanna search?", this);
-    w->setStyleClass("search-bar");
+    new Wt::WBreak(this);
+
+    Wt::WContainerWidget* c = new Wt::WContainerWidget(this);
+    c->setContentAlignment(Wt::AlignMiddle);
+    c->setStyleClass("search-div");
+
+    Wt::WLineEdit* l = new Wt::WLineEdit("What u wanna search for?", c);
+    l->setStyleClass("search-bar");
+    // bind on-enter event
 
     new Wt::WBreak(this);
 
