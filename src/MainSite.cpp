@@ -16,6 +16,11 @@
 
 #include "MainSite.h"
 
+#include <Wt/WContainerWidget>
+#include <Wt/WStackedWidget>
+
+#include "SearchWidget.h"
+
 int main(int argc, char* argv[])
 {
     return Wt::WRun(argc, argv, &MainSite::Create);
@@ -28,5 +33,10 @@ Wt::WApplication* MainSite::Create(const Wt::WEnvironment& e)
 
 MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
 {
+    setTitle("HellGround Database");
+    useStyleSheet("css/style.css");
 
+    Wt::WStackedWidget* body = new Wt::WStackedWidget(root());
+    body->setContentAlignment(Wt::AlignCenter);
+    body->addWidget(new SearchWidget());
 }
