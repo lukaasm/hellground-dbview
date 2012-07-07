@@ -23,31 +23,28 @@
 
 SearchWidget::SearchWidget(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent)
 {
-    new Wt::WBreak(this);
+    addWidget(new Wt::WBreak());
 
-    Wt::WContainerWidget* c = new Wt::WContainerWidget(this);
+    Wt::WContainerWidget* c = new Wt::WContainerWidget();
     c->setContentAlignment(Wt::AlignMiddle);
-    c->setStyleClass("search-div");
+
+    addWidget(c);
 
     Wt::WLineEdit* l = new Wt::WLineEdit("What u wanna search for?", c);
-    l->setStyleClass("search-bar");
+    l->setStyleClass("search");
     // bind on-enter event
 
-    new Wt::WBreak(this);
+    addWidget(new Wt::WBreak());
 
-    Wt::WPushButton* b = new Wt::WPushButton("Creature", this);
-    b->setStyleClass("search-button");
-    // bind click event
+    addWidget(new Wt::WPushButton("Creature"));
+    addWidget(new Wt::WPushButton("Object"));
+    addWidget(new Wt::WPushButton("Quest"));
+    addWidget(new Wt::WPushButton("Spell"));
+    addWidget(new Wt::WPushButton("Item"));
+}
 
-    b = new Wt::WPushButton("Object", this);
-    b->setStyleClass("search-button");
-    // bind click event
-
-    b = new Wt::WPushButton("Quest", this);
-    b->setStyleClass("search-button");
-    // bind click event
-
-    b = new Wt::WPushButton("Spell", this);
-    b->setStyleClass("search-button");
-    // bind click event
+void SearchWidget::addWidget(Wt::WWidget* w)
+{
+    w->setStyleClass("search");
+    Wt::WContainerWidget::addWidget(w);
 }

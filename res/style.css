@@ -1,0 +1,60 @@
+﻿body
+{
+    margin: 0px;
+    background-image: url('background.png');
+    background-repeat: no-repeat;
+}
+
+div.search
+{
+    width: 100%;
+    background-color: #f2f2f2;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 15px 0px 15px 0px;
+}
+
+input.search
+{
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 370px;
+    height: 35px;
+    color: gray;
+    border: 1px solid #e5e5e5;
+    padding-left: 10px;
+    background-image: url('lupe.png');
+    background-position: 95% 50%;
+    background-repeat: no-repeat;
+}
+
+input.search:hover
+{
+    border: 1px solid #b9b9b9;
+}
+
+input.search:focus
+{
+    border: 1px solid #4d90fe;
+}
+
+button.search
+{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 100px;
+    height: 35px;
+    color: #f7ffff;
+    font-weight: bold;
+    background-color: #da4837;
+    background-image: url('button_grad.png');
+    border: 1px solid #b0281a;
+    margin-left: 2px;
+}
+
+button.search:hover
+{
+    background-color: #c7594b;
+}
