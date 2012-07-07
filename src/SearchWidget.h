@@ -23,6 +23,8 @@ class SearchWidget : public Wt::WContainerWidget
 {
     public:
         SearchWidget(Wt::WContainerWidget* = NULL);
+
+        void addWidget(Wt::WWidget*);
 };
 
 #endif
