@@ -21,6 +21,8 @@
 #include <Wt/WPushButton>
 #include <Wt/WText>
 
+#include "Language.h"
+
 SearchWidget::SearchWidget(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent)
 {
     addWidget(new Wt::WBreak());
@@ -30,17 +32,17 @@ SearchWidget::SearchWidget(Wt::WContainerWidget* parent) : Wt::WContainerWidget(
 
     addWidget(c);
 
-    Wt::WLineEdit* l = new Wt::WLineEdit("What u wanna search for?", c);
+    Wt::WLineEdit* l = new Wt::WLineEdit(LANG_SEARCHBAR_TEXT, c);
     l->setStyleClass("search");
     // bind on-enter event
 
     addWidget(new Wt::WBreak());
 
-    addWidget(new Wt::WPushButton("Creature"));
-    addWidget(new Wt::WPushButton("Object"));
-    addWidget(new Wt::WPushButton("Quest"));
-    addWidget(new Wt::WPushButton("Spell"));
-    addWidget(new Wt::WPushButton("Item"));
+    addWidget(new Wt::WPushButton(LANG_CREATURE));
+    addWidget(new Wt::WPushButton(LANG_OBJECT));
+    addWidget(new Wt::WPushButton(LANG_QUEST));
+    addWidget(new Wt::WPushButton(LANG_SPELL));
+    addWidget(new Wt::WPushButton(LANG_ITEM));
 }
 
 void SearchWidget::addWidget(Wt::WWidget* w)
