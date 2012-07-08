@@ -26,6 +26,8 @@
 #define LANG_LOGIN_BUT_OK     "Ok"
 #define LANG_LOGIN_BUT_CANCEL "Cancel"
 
+#define LANG_FORGOTTEN_PASSWORD "forgotten password?"
+
 #define LANG_CREATURE "Creature"
 #define LANG_OBJECT   "Object"
 #define LANG_QUEST    "Quest"

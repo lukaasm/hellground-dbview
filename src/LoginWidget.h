@@ -29,7 +29,7 @@ class LoginWidget : public Wt::WDialog
         template<class T>
         T* addWidget(Wt::WContainerWidget* c, T* w)
         {
-            w->setStyleClass("search");
+            w->setStyleClass("login-box");
             c->addWidget(w);
             return w;
         }

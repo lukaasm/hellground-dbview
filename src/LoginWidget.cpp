@@ -16,6 +16,7 @@
 
 #include "LoginWidget.h"
 
+#include <Wt/WAnchor>
 #include <Wt/WBreak>
 #include <Wt/WLineEdit>
 #include <Wt/WPushButton>
@@ -40,19 +41,18 @@ LoginWidget::LoginWidget() : Wt::WDialog()
 
     Wt::WContainerWidget* body = addWidget(contents(), new Wt::WContainerWidget());
 
-    addWidget(body, new Wt::WLineEdit(LANG_LOGIN_TEXT));
+    addWidget(body, new Wt::WLineEdit())->setEmptyText(LANG_LOGIN_TEXT);
     addWidget(body, new Wt::WBreak);
-    addWidget(body, new Wt::WLineEdit(LANG_PASSWORD_TEXT));
+    Wt::WLineEdit* l = addWidget(body, new Wt::WLineEdit());
+    l->setEmptyText(LANG_PASSWORD_TEXT);
+    l->setEchoMode(Wt::WLineEdit::Password);
 
-    //addWidget(contents(), new Wt::WAnchor( ... /*forgotten password*/));
+    addWidget(contents(), new Wt::WAnchor("http://panel.hellground.pl/panel.wt/password",LANG_FORGOTTEN_PASSWORD));
 
     Wt::WContainerWidget* footer = addWidget(contents(), new Wt::WContainerWidget());
 
-    Wt::WPushButton* b = addWidget(footer, new Wt::WPushButton(LANG_LOGIN_BUT_OK));
-    b->clicked().connect(SLOT(this, LoginWidget::done));
-
-    b = addWidget(footer, new Wt::WPushButton(LANG_LOGIN_BUT_CANCEL));
-    b->clicked().connect(SLOT(this, LoginWidget::done));
+    addWidget(footer, new Wt::WPushButton(LANG_LOGIN_BUT_OK))->clicked().connect(SLOT(this, LoginWidget::done));
+    addWidget(footer, new Wt::WPushButton(LANG_LOGIN_BUT_CANCEL))->clicked().connect(SLOT(this, LoginWidget::done));
 }
 
 void LoginWidget::done()
