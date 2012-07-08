@@ -25,28 +25,19 @@
 
 SearchWidget::SearchWidget(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent)
 {
-    addWidget(new Wt::WBreak());
+    addWidget(this, new Wt::WBreak());
 
-    Wt::WContainerWidget* c = new Wt::WContainerWidget();
+    Wt::WContainerWidget* c = addWidget(this, new Wt::WContainerWidget());
     c->setContentAlignment(Wt::AlignMiddle);
 
-    addWidget(c);
-
-    Wt::WLineEdit* l = new Wt::WLineEdit(LANG_SEARCHBAR_TEXT, c);
-    l->setStyleClass("search");
+    Wt::WLineEdit* l = addWidget(c, new Wt::WLineEdit(LANG_SEARCHBAR_TEXT));
     // bind on-enter event
 
-    addWidget(new Wt::WBreak());
+    addWidget(this, new Wt::WBreak());
 
-    addWidget(new Wt::WPushButton(LANG_CREATURE));
-    addWidget(new Wt::WPushButton(LANG_OBJECT));
-    addWidget(new Wt::WPushButton(LANG_QUEST));
-    addWidget(new Wt::WPushButton(LANG_SPELL));
-    addWidget(new Wt::WPushButton(LANG_ITEM));
-}
-
-void SearchWidget::addWidget(Wt::WWidget* w)
-{
-    w->setStyleClass("search");
-    Wt::WContainerWidget::addWidget(w);
+    addWidget(this, new Wt::WPushButton(LANG_CREATURE));
+    addWidget(this, new Wt::WPushButton(LANG_OBJECT));
+    addWidget(this, new Wt::WPushButton(LANG_QUEST));
+    addWidget(this, new Wt::WPushButton(LANG_SPELL));
+    addWidget(this, new Wt::WPushButton(LANG_ITEM));
 }
