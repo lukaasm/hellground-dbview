@@ -19,6 +19,7 @@
 #include <Wt/WContainerWidget>
 #include <Wt/WPushButton>
 #include <Wt/WStackedWidget>
+#include <Wt/WString>
 
 #include "Language.h"
 #include "LoginWidget.h"
@@ -41,18 +42,20 @@ void MainSite::CreateLoginDialog()
 
 MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
 {
-    setTitle(LANG_SITE_TITLE);
+    messageResourceBundle().use("res/lang/general");
     useStyleSheet("res/style.css");
+
+    setTitle(Wt::WWidget::LANG_SITE_TITLE);
 
     Wt::WContainerWidget* header = new Wt::WContainerWidget(root());
     header->setId("header");
     header->setContentAlignment(Wt::AlignRight);
 
-    Wt::WPushButton* b = new Wt::WPushButton("Sign In", header);
+    Wt::WPushButton* b = new Wt::WPushButton(Wt::WWidget::LANG_SIGNIN, header);
     b->setStyleClass("header");
     b->clicked().connect(SLOT(this, MainSite::CreateLoginDialog));
 
-    b = new Wt::WPushButton("Register", header);
+    b = new Wt::WPushButton(Wt::WWidget::LANG_REGISTER, header);
     b->setStyleClass("header");
 
     Wt::WStackedWidget* body = new Wt::WStackedWidget(root());
