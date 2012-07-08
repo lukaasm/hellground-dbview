@@ -22,9 +22,10 @@
 class LoginWidget : public Wt::WDialog
 {
     public:
-        LoginWidget(const Wt::WString&);
+        LoginWidget();
 
         void done();
+        void addWidget(Wt::WContainerWidget*, Wt::WWidget*);
 
         static LoginWidget* Create();
 };

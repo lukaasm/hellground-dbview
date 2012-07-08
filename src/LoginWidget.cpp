@@ -16,6 +16,8 @@
 
 #include "LoginWidget.h"
 
+#include <Wt/WBreak>
+#include <Wt/WLineEdit>
 #include <Wt/WPushButton>
 #include <Wt/WText>
 
@@ -24,22 +26,46 @@
 LoginWidget* LoginWidget::Create()
 {
     // it will be removed in done method
-    return new LoginWidget(LANG_LOGINWIDGET_TITLE);
+    return new LoginWidget();
 }
 
-LoginWidget::LoginWidget(const Wt::WString& title) : Wt::WDialog(title)
+LoginWidget::LoginWidget() : Wt::WDialog()
 {
-    setModal(false);
+    setTitleBarEnabled(false);
+
+    setModal(true);
     setClosable(true);
 
-    new Wt::WText("Test", contents());
+    contents()->setId("login-box");
 
-    Wt::WPushButton* b = new Wt::WPushButton("Ok", contents());
+    Wt::WContainerWidget* body = new Wt::WContainerWidget();
+
+    addWidget(body, new Wt::WLineEdit(LANG_LOGIN_TEXT));
+    addWidget(body, new Wt::WBreak);
+    addWidget(body, new Wt::WLineEdit(LANG_PASSWORD_TEXT));
+
+    Wt::WContainerWidget* footer = new Wt::WContainerWidget();
+
+    Wt::WPushButton* b;
+    addWidget(footer, b = new Wt::WPushButton(LANG_LOGIN_BUT_OK));
     b->clicked().connect(SLOT(this, LoginWidget::done));
+
+    addWidget(footer, b = new Wt::WPushButton(LANG_LOGIN_BUT_CANCEL));
+    b->clicked().connect(SLOT(this, LoginWidget::done));
+
+    addWidget(contents(), body);
+    //addWidget(contents(), new Wt::WAnchor( ... /*forgotten password*/));
+    addWidget(contents(), footer);
 }
 
 void LoginWidget::done()
 {
     setHidden(true);
     delete this;
+}
+
+void LoginWidget::addWidget(Wt::WContainerWidget* container, Wt::WWidget* widget)
+{
+    widget->setStyleClass("login-box");
+    container->addWidget(widget);
 }
