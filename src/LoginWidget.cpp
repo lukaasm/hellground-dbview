@@ -38,34 +38,25 @@ LoginWidget::LoginWidget() : Wt::WDialog()
 
     contents()->setId("login-box");
 
-    Wt::WContainerWidget* body = new Wt::WContainerWidget();
+    Wt::WContainerWidget* body = addWidget(contents(), new Wt::WContainerWidget());
 
     addWidget(body, new Wt::WLineEdit(LANG_LOGIN_TEXT));
     addWidget(body, new Wt::WBreak);
     addWidget(body, new Wt::WLineEdit(LANG_PASSWORD_TEXT));
 
-    Wt::WContainerWidget* footer = new Wt::WContainerWidget();
-
-    Wt::WPushButton* b;
-    addWidget(footer, b = new Wt::WPushButton(LANG_LOGIN_BUT_OK));
-    b->clicked().connect(SLOT(this, LoginWidget::done));
-
-    addWidget(footer, b = new Wt::WPushButton(LANG_LOGIN_BUT_CANCEL));
-    b->clicked().connect(SLOT(this, LoginWidget::done));
-
-    addWidget(contents(), body);
     //addWidget(contents(), new Wt::WAnchor( ... /*forgotten password*/));
-    addWidget(contents(), footer);
+
+    Wt::WContainerWidget* footer = addWidget(contents(), new Wt::WContainerWidget());
+
+    Wt::WPushButton* b = addWidget(footer, new Wt::WPushButton(LANG_LOGIN_BUT_OK));
+    b->clicked().connect(SLOT(this, LoginWidget::done));
+
+    b = addWidget(footer, new Wt::WPushButton(LANG_LOGIN_BUT_CANCEL));
+    b->clicked().connect(SLOT(this, LoginWidget::done));
 }
 
 void LoginWidget::done()
 {
     setHidden(true);
     delete this;
-}
-
-void LoginWidget::addWidget(Wt::WContainerWidget* container, Wt::WWidget* widget)
-{
-    widget->setStyleClass("login-box");
-    container->addWidget(widget);
 }

@@ -25,7 +25,14 @@ class LoginWidget : public Wt::WDialog
         LoginWidget();
 
         void done();
-        void addWidget(Wt::WContainerWidget*, Wt::WWidget*);
+
+        template<class T>
+        T* addWidget(Wt::WContainerWidget* c, T* w)
+        {
+            w->setStyleClass("search");
+            c->addWidget(w);
+            return w;
+        }
 
         static LoginWidget* Create();
 };

@@ -24,7 +24,13 @@ class SearchWidget : public Wt::WContainerWidget
     public:
         SearchWidget(Wt::WContainerWidget* = NULL);
 
-        void addWidget(Wt::WWidget*);
+        template<class T>
+        T* addWidget(Wt::WContainerWidget* c, T* w)
+        {
+            w->setStyleClass("search");
+            c->addWidget(w);
+            return w;
+        }
 };
 
 #endif
