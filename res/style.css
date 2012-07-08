@@ -1,8 +1,18 @@
 ﻿body
 {
-    margin: 0px;
+    margin: 5px;
+    padding: 0px;
     background-image: url('background.png');
     background-repeat: no-repeat;
+}
+
+#header
+{
+    height: 13px;
+}
+
+#content
+{
 }
 
 div.search
@@ -39,22 +49,32 @@ input.search:focus
     border: 1px solid #4d90fe;
 }
 
-button.search
+button
 {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    width: 100px;
-    height: 35px;
+    margin: 1px;
     color: #f7ffff;
     font-weight: bold;
     background-color: #da4837;
     background-image: url('button_grad.png');
     border: 1px solid #b0281a;
-    margin-left: 2px;
 }
 
-button.search:hover
+button:hover
 {
     background-color: #c7594b;
+}
+
+button.search
+{
+    width: 100px;
+    height: 35px;
+}
+
+button.header
+{
+    width: 100px;
+    height: 25px;
 }
