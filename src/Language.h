@@ -21,6 +21,8 @@
 
 #define LANG_SEARCHBAR_TEXT "What u wanna search for?"
 
+#define LANG_LOGINWIDGET_TITLE "Sign In"
+
 #define LANG_CREATURE "Creature"
 #define LANG_OBJECT   "Object"
 #define LANG_QUEST    "Quest"

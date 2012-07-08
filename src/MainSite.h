@@ -19,12 +19,17 @@
 
 #include <Wt/WApplication>
 
+class LoginWidget;
+
 class MainSite : public Wt::WApplication
 {
     public:
         MainSite(const Wt::WEnvironment&);
 
         static Wt::WApplication* Create(const Wt::WEnvironment&);
+
+    private:
+        void CreateLoginDialog();
 };
 
 #endif

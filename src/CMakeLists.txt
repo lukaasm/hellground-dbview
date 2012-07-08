@@ -21,6 +21,5 @@ add_executable(dbview.wt ${DBVIEW_SRCS})
 
 target_link_libraries(dbview.wt
     ${Wt_LIBRARY}
-    ${Wt_EXT_LIBRARY}
     ${Wt_FCGI_LIBRARY}
 )

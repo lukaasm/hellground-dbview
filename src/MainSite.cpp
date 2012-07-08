@@ -21,6 +21,7 @@
 #include <Wt/WStackedWidget>
 
 #include "Language.h"
+#include "LoginWidget.h"
 #include "SearchWidget.h"
 
 int main(int argc, char* argv[])
@@ -31,6 +32,11 @@ int main(int argc, char* argv[])
 Wt::WApplication* MainSite::Create(const Wt::WEnvironment& e)
 {
     return new MainSite(e);
+}
+
+void MainSite::CreateLoginDialog()
+{
+    LoginWidget::Create()->show();
 }
 
 MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
@@ -44,6 +50,7 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
 
     Wt::WPushButton* b = new Wt::WPushButton("Sign In", header);
     b->setStyleClass("header");
+    b->clicked().connect(SLOT(this, MainSite::CreateLoginDialog));
 
     b = new Wt::WPushButton("Register", header);
     b->setStyleClass("header");
