@@ -23,12 +23,26 @@
     width: 300px;
     background-color: #ffffff;
     border: 1px solid #e5e5e5;
+    text-align: right;
+    padding: 10px;
+}
+
+a
+{
+    color: gray;
+    font-size: 11px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: #b9b9b9;
 }
 
 div.login-box
 {
     float: right;
-    padding: 10px;
 }
 
 div.search
@@ -108,7 +122,7 @@ button.header
 
 button.login-box
 {
+    margin-top: 5px;
     width: 100px;
-    height: 35px;
-    margin-bottom: 10px;
+    height: 30px;
 }

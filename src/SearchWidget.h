@@ -19,6 +19,8 @@
 
 #include <Wt/WContainerWidget>
 
+class Wt::WLineEdit;
+
 class SearchWidget : public Wt::WContainerWidget
 {
     public:
@@ -31,6 +33,9 @@ class SearchWidget : public Wt::WContainerWidget
             c->addWidget(w);
             return w;
         }
+
+    private:
+        Wt::WLineEdit *_searchBar;
 };
 
 #endif
