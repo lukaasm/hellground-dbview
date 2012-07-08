@@ -41,18 +41,18 @@ LoginWidget::LoginWidget() : Wt::WDialog()
 
     Wt::WContainerWidget* body = addWidget(contents(), new Wt::WContainerWidget());
 
-    addWidget(body, new Wt::WLineEdit())->setEmptyText(LANG_LOGIN_TEXT);
+    addWidget(body, new Wt::WLineEdit())->setEmptyText(LANG_LOGIN);
     addWidget(body, new Wt::WBreak);
     Wt::WLineEdit* l = addWidget(body, new Wt::WLineEdit());
-    l->setEmptyText(LANG_PASSWORD_TEXT);
+    l->setEmptyText(LANG_PASSWORD);
     l->setEchoMode(Wt::WLineEdit::Password);
 
     addWidget(contents(), new Wt::WAnchor("http://panel.hellground.pl/panel.wt/password",LANG_FORGOTTEN_PASSWORD));
 
     Wt::WContainerWidget* footer = addWidget(contents(), new Wt::WContainerWidget());
 
-    addWidget(footer, new Wt::WPushButton(LANG_LOGIN_BUT_OK))->clicked().connect(SLOT(this, LoginWidget::done));
-    addWidget(footer, new Wt::WPushButton(LANG_LOGIN_BUT_CANCEL))->clicked().connect(SLOT(this, LoginWidget::done));
+    addWidget(footer, new Wt::WPushButton(LANG_OK))->clicked().connect(SLOT(this, LoginWidget::done));
+    addWidget(footer, new Wt::WPushButton(LANG_CANCEL))->clicked().connect(SLOT(this, LoginWidget::done));
 }
 
 void LoginWidget::done()

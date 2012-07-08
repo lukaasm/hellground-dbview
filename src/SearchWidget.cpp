@@ -31,7 +31,7 @@ SearchWidget::SearchWidget(Wt::WContainerWidget* parent) : Wt::WContainerWidget(
     c->setContentAlignment(Wt::AlignMiddle);
 
     _searchBar = addWidget(c, new Wt::WLineEdit());
-    _searchBar->setEmptyText(LANG_SEARCHBAR_TEXT);
+    _searchBar->setEmptyText(LANG_SEARCHEMPTYTEXT);
     // bind on-enter event
 
     addWidget(this, new Wt::WBreak());

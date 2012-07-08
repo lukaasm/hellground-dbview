@@ -17,21 +17,21 @@
 #ifndef H_Language
 #define H_Language
 
-#define LANG_SITE_TITLE "HellGround Database"
+#define LANG_SITE_TITLE tr("site-title")
 
-#define LANG_SEARCHBAR_TEXT "What u wanna search for?"
+#define LANG_LOGIN      tr("general-login")
+#define LANG_PASSWORD   tr("general-password")
+#define LANG_OK         tr("general-ok")
+#define LANG_CANCEL     tr("general-cancel")
+#define LANG_CREATURE   tr("general-creature")
+#define LANG_OBJECT     tr("general-object")
+#define LANG_QUEST      tr("general-quest")
+#define LANG_SPELL      tr("general-spell")
+#define LANG_ITEM       tr("general-item")
 
-#define LANG_LOGIN_TEXT       "Login"
-#define LANG_PASSWORD_TEXT    "Password"
-#define LANG_LOGIN_BUT_OK     "Ok"
-#define LANG_LOGIN_BUT_CANCEL "Cancel"
-
-#define LANG_FORGOTTEN_PASSWORD "forgotten password?"
-
-#define LANG_CREATURE "Creature"
-#define LANG_OBJECT   "Object"
-#define LANG_QUEST    "Quest"
-#define LANG_SPELL    "Spell"
-#define LANG_ITEM     "Item"
+#define LANG_SEARCHEMPTYTEXT    tr("search-inputtext")
+#define LANG_FORGOTTEN_PASSWORD tr("login-forgotpass")
+#define LANG_SIGNIN             tr("login-signin")
+#define LANG_REGISTER           tr("login-register")
 
 #endif
