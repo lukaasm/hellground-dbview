@@ -17,6 +17,7 @@
 #include "MainSite.h"
 
 #include <Wt/WContainerWidget>
+#include <Wt/WPushButton>
 #include <Wt/WStackedWidget>
 
 #include "Language.h"
@@ -37,7 +38,19 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
     setTitle(LANG_SITE_TITLE);
     useStyleSheet("res/style.css");
 
+    Wt::WContainerWidget* header = new Wt::WContainerWidget(root());
+    header->setId("header");
+    header->setContentAlignment(Wt::AlignRight);
+
+    Wt::WPushButton* b = new Wt::WPushButton("Sign In", header);
+    b->setStyleClass("header");
+
+    b = new Wt::WPushButton("Register", header);
+    b->setStyleClass("header");
+
     Wt::WStackedWidget* body = new Wt::WStackedWidget(root());
+    body->setId("content");
+
     body->setContentAlignment(Wt::AlignCenter);
     body->addWidget(new SearchWidget());
 }
