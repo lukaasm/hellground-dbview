@@ -21,7 +21,10 @@
 
 #define LANG_SEARCHBAR_TEXT "What u wanna search for?"
 
-#define LANG_LOGINWIDGET_TITLE "Sign In"
+#define LANG_LOGIN_TEXT       "Login"
+#define LANG_PASSWORD_TEXT    "Password"
+#define LANG_LOGIN_BUT_OK     "Ok"
+#define LANG_LOGIN_BUT_CANCEL "Cancel"
 
 #define LANG_CREATURE "Creature"
 #define LANG_OBJECT   "Object"
