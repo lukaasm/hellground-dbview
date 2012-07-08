@@ -1,2 +1,3 @@
 glob:bin/*
 glob:visualstudio/*
+glob:codeblocks/*

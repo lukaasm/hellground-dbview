@@ -19,9 +19,14 @@ cmake_minimum_required(VERSION 2.6)
 
 project("HellGround DBView")
 
-add_subdirectory(src)
+set(CMAKE_MODULE_PATH
+  ${CMAKE_MODULE_PATH}
+  ${CMAKE_SOURCE_DIR}/cmake
+)
 
 find_package(Wt REQUIRED)
+
+add_subdirectory(src)
 
 include_directories(
     ${CMAKE_SOURCE_DIR}/src

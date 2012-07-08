@@ -17,6 +17,11 @@
 
 file(GLOB_RECURSE DBVIEW_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.h)
 
+include_directories(
+    ${CMAKE_SOURCE_DIR}/src
+    ${Wt_INCLUDE_DIR}
+)
+
 add_executable(dbview.wt ${DBVIEW_SRCS})
 
 target_link_libraries(dbview.wt
