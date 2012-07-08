@@ -16,8 +16,30 @@
 
 #include "LoginWidget.h"
 
-LoginWidget::LoginWidget(const Wt::WString& title) : Wt::Ext::Dialog(title)
-{
+#include <Wt/WPushButton>
+#include <Wt/WText>
 
+#include "Language.h"
+
+LoginWidget* LoginWidget::Create()
+{
+    // it will be removed in done method
+    return new LoginWidget(LANG_LOGINWIDGET_TITLE);
 }
 
+LoginWidget::LoginWidget(const Wt::WString& title) : Wt::WDialog(title)
+{
+    setModal(false);
+    setClosable(true);
+
+    new Wt::WText("Test", contents());
+
+    Wt::WPushButton* b = new Wt::WPushButton("Ok", contents());
+    b->clicked().connect(SLOT(this, LoginWidget::done));
+}
+
+void LoginWidget::done()
+{
+    setHidden(true);
+    delete this;
+}

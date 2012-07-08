@@ -17,14 +17,16 @@
 #ifndef H_LoginWidget
 #define H_LoginWidget
 
-#include <Wt/Ext/Dialog>
+#include <Wt/WDialog>
 
-class LoginWidget : public Wt::Ext::Dialog
+class LoginWidget : public Wt::WDialog
 {
     public:
         LoginWidget(const Wt::WString&);
 
+        void done();
 
+        static LoginWidget* Create();
 };
 
 #endif
