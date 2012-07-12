@@ -25,6 +25,8 @@
 
 SearchWidget::SearchWidget(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent)
 {
+    setContentAlignment(Wt::AlignCenter);
+
     addWidget(this, new Wt::WBreak());
 
     Wt::WContainerWidget* c = addWidget(this, new Wt::WContainerWidget());

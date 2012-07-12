@@ -58,9 +58,8 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
     b = new Wt::WPushButton(Wt::WWidget::LANG_REGISTER, header);
     b->setStyleClass("header");
 
+    root()->addWidget(new SearchWidget());
+
     Wt::WStackedWidget* body = new Wt::WStackedWidget(root());
     body->setId("content");
-
-    body->setContentAlignment(Wt::AlignCenter);
-    body->addWidget(new SearchWidget());
 }
