@@ -25,6 +25,5 @@ include_directories(
 add_executable(dbview.wt ${DBVIEW_SRCS})
 
 target_link_libraries(dbview.wt
-    ${Wt_LIBRARY}
-    ${Wt_FCGI_LIBRARY}
+    ${Wt_LIBRARIES}
 )
