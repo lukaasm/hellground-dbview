@@ -39,3 +39,9 @@ endif(UNIX)
 target_link_libraries(dbview.wt
     ${Wt_LIBRARIES}
 )
+
+install(TARGETS dbview.wt
+    RUNTIME DESTINATION ${INSTALL_DIR}
+    PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
+                GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ
+)

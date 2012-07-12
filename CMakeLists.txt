@@ -14,9 +14,21 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8)
 
 project("DBView")
+
+message(
+"\nThis scripts builds DBView site
+You can use following options for customization:
+    INSTALL_DIR: Path where the server should be installed to (default - current dir)
+
+For example: cmake -DINSTALL_DIR=/var/www ..\n\n"
+)
+
+if (NOT INSTALL_DIR)
+    set(INSTALL_DIR ${CMAKE_SOURCE_DIR}/bin)
+endif (NOT INSTALL_DIR)
 
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
@@ -41,3 +53,10 @@ message(STATUS "BOOST include dir: ${Boost_INCLUDE_DIR}")
 message(STATUS "BOOST libraries dir: ${Boost_LIBRARY_DIRS}")
 
 add_subdirectory(src)
+
+install(DIRECTORY res DESTINATION ${INSTALL_DIR}
+    FILE_PERMISSIONS OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ
+    DIRECTORY_PERMISSIONS OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ
+)
+
+message("\nInstall directory: ${INSTALL_DIR}\n\n")
