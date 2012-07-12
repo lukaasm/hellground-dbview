@@ -26,10 +26,22 @@ set(CMAKE_MODULE_PATH
 option(USE_FCGI_CONNECTOR FALSE)
 
 find_package(Wt REQUIRED)
+message(STATUS "Wt include dir: ${Wt_INCLUDE_DIR}")
+
+if(WIN32)
+    if(MSVC)
+        SET(BUILD_PARALLEL "/MP" CACHE STRING "MSVC option for parallel builds (/MP or /MPx)")
+    endif(MSVC)
+endif(WIN32)
+
+if (NOT USE_FCGI_CONNECTOR)
+    set(BOOST_PREFIX $ENV{BOOST_ROOT} CACHE PATH "The Boost Directory Path")
+    set(Boost_USE_STATIC_LIBS ON)
+    set(Boost_USE_MULTITHREADED ON)
+
+    find_package(Boost REQUIRED)
+    message(STATUS "BOOST include dir: ${Boost_INCLUDE_DIR}")
+    message(STATUS "BOOST libraries dir: ${Boost_LIBRARY_DIRS}")
+endif(NOT USE_FCGI_CONNECTOR)
 
 add_subdirectory(src)
-
-include_directories(
-    ${CMAKE_SOURCE_DIR}/src
-    ${Wt_INCLUDE_DIR}
-)

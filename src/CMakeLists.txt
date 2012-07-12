@@ -20,9 +20,21 @@ file(GLOB_RECURSE DBVIEW_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.h)
 include_directories(
     ${CMAKE_SOURCE_DIR}/src
     ${Wt_INCLUDE_DIR}
+    if (NOT USE_FCGI_CONNECTOR)
+        ${Boost_INCLUDE_DIR}
+    endif (NOT USE_FCGI_CONNECTOR)
 )
 
+
+if (NOT USE_FCGI_CONNECTOR)
+    link_directories(${Boost_LIBRARY_DIRS})
+endif (NOT USE_FCGI_CONNECTOR)
+
 add_executable(dbview.wt ${DBVIEW_SRCS})
+
+IF(MSVC)
+  SET_TARGET_PROPERTIES(dbview.wt PROPERTIES COMPILE_FLAGS "${BUILD_PARALLEL} /wd4251 /wd4275 /wd4355 /wd4800 /wd4996 /wd4101 /wd4267")
+ENDIF(MSVC)
 
 target_link_libraries(dbview.wt
     ${Wt_LIBRARIES}
