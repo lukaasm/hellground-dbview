@@ -14,15 +14,16 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-
 cmake_minimum_required(VERSION 2.6)
 
-project("HellGround DBView")
+project("DBView")
 
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
   ${CMAKE_SOURCE_DIR}/cmake
 )
+
+option(USE_FCGI_CONNECTOR FALSE)
 
 find_package(Wt REQUIRED)
 
