@@ -24,17 +24,17 @@ include_directories(
         ${Boost_INCLUDE_DIR}
     endif (NOT USE_FCGI_CONNECTOR)
 )
-
-
-if (NOT USE_FCGI_CONNECTOR)
-    link_directories(${Boost_LIBRARY_DIRS})
-endif (NOT USE_FCGI_CONNECTOR)
+link_directories(${Boost_LIBRARY_DIRS})
 
 add_executable(dbview.wt ${DBVIEW_SRCS})
 
-IF(MSVC)
-  SET_TARGET_PROPERTIES(dbview.wt PROPERTIES COMPILE_FLAGS "${BUILD_PARALLEL} /wd4251 /wd4275 /wd4355 /wd4800 /wd4996 /wd4101 /wd4267")
-ENDIF(MSVC)
+if(WIN32 AND MSVC)
+    set_target_properties(dbview.wt PROPERTIES COMPILE_FLAGS "${BUILD_PARALLEL} /wd4251 /wd4275 /wd4355 /wd4800 /wd4996 /wd4101 /wd4267")
+endif(WIN32 AND MSVC)
+
+if (UNIX)
+    set(Wt_LIBRARIES ${Wt_LIBRARIES} ${Boost_SIGNALS_LIBRARY})
+endif(UNIX)
 
 target_link_libraries(dbview.wt
     ${Wt_LIBRARIES}
