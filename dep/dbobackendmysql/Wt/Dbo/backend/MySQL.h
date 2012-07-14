@@ -14,7 +14,7 @@
 #include <Wt/Dbo/backend/WDboMySQLDllDefs.h>
 
 #ifdef WIN32
-#include <windows.h>
+#include <winsock.h>
 #include <mysql.h>
 #else
 #include <mysql/mysql.h>

@@ -5,8 +5,8 @@
  *
  * Contributed by: Paul Harrison
  */
-#include "Wt/Dbo/backend/MySQL.h"
-#include "Wt/Dbo/Exception"
+#include <Wt/Dbo/backend/MySQL.h>
+#include <Wt/Dbo/Exception>
 
 #include <boost/lexical_cast.hpp>
 #include <iostream>

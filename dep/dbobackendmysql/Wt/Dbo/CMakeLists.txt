@@ -1,1 +1,1 @@
-SUBDIRS(backend)
+add_subdirectory(backend)

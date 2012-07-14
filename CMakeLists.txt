@@ -21,21 +21,17 @@ project("DBView")
 message(
 "\nThis scripts builds DBView site
 You can use following options for customization:
-    INSTALL_DIR: Path where the server should be installed to (default - current dir)
+    INSTALL_DIR: Path where the server should be installed to (default - ${CMAKE_INSTALL_PREFIX})
 
-For example: cmake -DINSTALL_DIR=/var/www ..\n\n"
+For example: cmake -DCMAKE_INSTALL_PREFIX=\"${CMAKE_INSTALL_PREFIX}\" ..\n"
 )
-
-if (NOT INSTALL_DIR)
-    set(INSTALL_DIR ${CMAKE_SOURCE_DIR}/bin)
-endif (NOT INSTALL_DIR)
 
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
   ${CMAKE_SOURCE_DIR}/cmake
 )
 
-option(USE_FCGI_CONNECTOR FALSE)
+option(USE_FCGI_CONNECTOR OFF)
 
 find_package(Wt REQUIRED)
 message(STATUS "Wt include dir: ${Wt_INCLUDE_DIR}")
@@ -56,12 +52,31 @@ find_package(Boost COMPONENTS signals date_time unit_test_framework test_exec_mo
 message(STATUS "BOOST include dir: ${Boost_INCLUDE_DIR}")
 message(STATUS "BOOST libraries dir: ${Boost_LIBRARY_DIRS}")
 
-install(DIRECTORY res DESTINATION ${INSTALL_DIR}
+IF(Boost_USE_MULTITHREADED)
+    ADD_DEFINITIONS(-DWT_THREADED -D_REENTRANT -DBOOST_SPIRIT_THREADSAFE)
+    MESSAGE("** Enabling multi threading.")
+ELSE(Boost_USE_MULTITHREADED)
+    MESSAGE("** Disabling multi threading.")
+    ADD_DEFINITIONS(-DBOOST_DISABLE_THREADS -DSQLITE_THREADSAFE=0)
+ENDIF(Boost_USE_MULTITHREADED)
+
+# project data
+include_directories(
+    ${CMAKE_SOURCE_DIR}/dep/dbobackendmysql
+    ${MYSQL_INCLUDE_DIR}
+    ${Wt_INCLUDE_DIR}
+    ${Boost_INCLUDE_DIR}
+)
+
+link_directories(${Boost_LIBRARY_DIRS})
+link_libraries(${MYSQL_LIBRARY} ${Boost_LIBRARIES})
+
+# Dbo::backend::MySQL project
+add_subdirectory(dep)
+add_subdirectory(src)
+
+message("** Install directory: ${CMAKE_INSTALL_PREFIX}\n")
+install(DIRECTORY res DESTINATION .
     FILE_PERMISSIONS OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ
     DIRECTORY_PERMISSIONS OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ
 )
-
-message("\nInstall directory: ${INSTALL_DIR}\n\n")
-
-add_subdirectory(dep)
-add_subdirectory(src)

@@ -41,22 +41,22 @@
 # Redistribution and use is allowed according to the terms of the BSD license.
 # For details see the accompanying COPYING-CMAKE-SCRIPTS file.
 
-FIND_PATH( Wt_INCLUDE_DIR NAMES Wt/WObject PATHS ENV PATH PATH_SUFFIXES include wt )
+FIND_PATH( Wt_INCLUDE_DIR NAMES Wt/WObject PATHS ENV WT_ROOT PATH PATH_SUFFIXES include wt )
 
 SET(Wt_FIND_COMPONENTS Release Debug)
 
 IF(Wt_INCLUDE_DIR)
-    FIND_LIBRARY(Wt_LIBRARY NAMES wt PATHS PATH PATH_SUFFIXES lib lib-release lib_release)
-    FIND_LIBRARY(Wt_DEBUG_LIBRARY NAMES wtd wt PATHS PATH PATH_SUFFIXES lib libd lib-debug lib_debug HINTS /usr/lib/debug/usr/lib)
-    FIND_LIBRARY(Wt_DBO_LIBRARY NAMES wtdbo PATHS PATH PATH_SUFFIXES lib lib-release lib_release)
-    FIND_LIBRARY(Wt_DBO_DEBUG_LIBRARY NAMES wtdbod wtdbo PATHS PATH PATH_SUFFIXES lib lib-debug lib_debug HINTS /usr/lib/debug/usr/lib)
+    FIND_LIBRARY(Wt_LIBRARY NAMES wt PATHS ENV WT_ROOT PATH PATH_SUFFIXES lib lib-release lib_release)
+    FIND_LIBRARY(Wt_DEBUG_LIBRARY NAMES wtd wt PATHS ENV WT_ROOT PATH PATH_SUFFIXES lib libd lib-debug lib_debug HINTS /usr/lib/debug/usr/lib)
+    FIND_LIBRARY(Wt_DBO_LIBRARY NAMES wtdbo PATHS ENV WT_ROOT PATH PATH_SUFFIXES lib lib-release lib_release)
+    FIND_LIBRARY(Wt_DBO_DEBUG_LIBRARY NAMES wtdbod wtdbo PATHS ENV WT_ROOT PATH PATH_SUFFIXES lib lib-debug lib_debug HINTS /usr/lib/debug/usr/lib)
     
     if (NOT USE_FCGI_CONNECTOR)
-        FIND_LIBRARY(Wt_HTTP_LIBRARY NAMES wthttp PATHS PATH PATH_SUFFIXES lib lib-release lib_release)
-        FIND_LIBRARY(Wt_HTTP_DEBUG_LIBRARY NAMES wthttpd wthttp PATHS PATH PATH_SUFFIXES lib libd lib-debug lib_debug HINTS /usr/lib/debug/usr/lib)
+        FIND_LIBRARY(Wt_HTTP_LIBRARY NAMES wthttp PATHS ENV WT_ROOT PATH PATH_SUFFIXES lib lib-release lib_release)
+        FIND_LIBRARY(Wt_HTTP_DEBUG_LIBRARY NAMES wthttpd wthttp PATHS ENV WT_ROOT PATH PATH_SUFFIXES lib libd lib-debug lib_debug HINTS /usr/lib/debug/usr/lib)
     else (NOT USE_FCGI_CONNECTOR FALSE)
-        FIND_LIBRARY(Wt_FCGI_LIBRARY NAMES wtfcgi PATHS PATH PATH_SUFFIXES lib lib-release lib_release)
-        FIND_LIBRARY(Wt_FCGI_DEBUG_LIBRARY NAMES wtfcgid wtfcgi PATHS PATH PATH_SUFFIXES lib libd lib-debug lib_debug HINTS /usr/lib/debug/usr/lib)
+        FIND_LIBRARY(Wt_FCGI_LIBRARY NAMES wtfcgi PATHS ENV WT_ROOT PATH PATH_SUFFIXES lib lib-release lib_release)
+        FIND_LIBRARY(Wt_FCGI_DEBUG_LIBRARY NAMES wtfcgid wtfcgi PATHS ENV WT_ROOT PATH PATH_SUFFIXES lib libd lib-debug lib_debug HINTS /usr/lib/debug/usr/lib)
     endif (NOT USE_FCGI_CONNECTOR)
         
     IF (Wt_LIBRARY)
@@ -64,10 +64,6 @@ IF(Wt_INCLUDE_DIR)
 		SET(Wt_FIND_REQUIRED_Release TRUE)
         SET(Wt_LIBRARIES ${Wt_LIBRARY})
     ENDIF(Wt_LIBRARY)
-
-    IF (Wt_DBO_LIBRARY)
-		SET( Wt_LIBRARIES ${Wt_LIBRARIES} ${Wt_DBO_LIBRARY})
-    ENDIF (Wt_DBO_LIBRARY)
 
 	IF (USE_FCGI_CONNECTOR AND Wt_FCGI_LIBRARY)
         SET(Wt_LIBRARIES ${Wt_LIBRARIES} ${Wt_FCGI_LIBRARY})
@@ -90,10 +86,6 @@ IF(Wt_INCLUDE_DIR)
 		SET(Wt_FIND_REQUIRED_Debug TRUE)
         SET(Wt_DEBUG_LIBRARIES ${Wt_DEBUG_LIBRARY})
     ENDIF(Wt_DEBUG_LIBRARY)
-
-    IF (Wt_DBO_DEBUG_LIBRARY)
-		SET(Wt_DEBUG_LIBRARIES ${Wt_DEBUG_LIBRARIES} ${Wt_DBO_DEBUG_LIBRARY})
-    ENDIF (Wt_DBO_DEBUG_LIBRARY)
 
 	IF (USE_FCGI_CONNECTOR AND Wt_FCGI_DEBUG_LIBRARY)
         SET(Wt_DEBUG_LIBRARIES ${Wt_DEBUG_LIBRARIES} ${Wt_FCGI_DEBUG_LIBRARY})
