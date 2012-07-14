@@ -42,17 +42,19 @@ message(STATUS "Wt include dir: ${Wt_INCLUDE_DIR}")
 
 if(WIN32 AND MSVC)
     set(BUILD_PARALLEL "/MP" CACHE STRING "MSVC option for parallel builds (/MP or /MPx)")
+    find_package(OpenSSL)
 endif(WIN32 AND MSVC)
+
+set(MYSQL_DIR $ENV{MYSQL_DIR} CACHE PATH "The MySQL Directory Path")
+find_package(MySQL)
 
 set(BOOST_PREFIX $ENV{BOOST_ROOT} CACHE PATH "The Boost Directory Path")
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 
-find_package(Boost COMPONENTS signals date_time REQUIRED)
+find_package(Boost COMPONENTS signals date_time unit_test_framework test_exec_monitor REQUIRED)
 message(STATUS "BOOST include dir: ${Boost_INCLUDE_DIR}")
 message(STATUS "BOOST libraries dir: ${Boost_LIBRARY_DIRS}")
-
-add_subdirectory(src)
 
 install(DIRECTORY res DESTINATION ${INSTALL_DIR}
     FILE_PERMISSIONS OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ
@@ -60,3 +62,6 @@ install(DIRECTORY res DESTINATION ${INSTALL_DIR}
 )
 
 message("\nInstall directory: ${INSTALL_DIR}\n\n")
+
+add_subdirectory(dep)
+add_subdirectory(src)
