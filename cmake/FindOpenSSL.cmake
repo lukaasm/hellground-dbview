@@ -83,28 +83,28 @@ IF(WIN32 AND NOT CYGWIN)
       NAMES
         libeay32MDd libeay32
       PATHS
-        ${OPENSSL_ROOT_DIR}/lib/VC
+        ${OPENSSL_ROOT_DIR}/lib/VC/static
     )
 
     FIND_LIBRARY(LIB_EAY_RELEASE
       NAMES
         libeay32MD libeay32
       PATHS
-        ${OPENSSL_ROOT_DIR}/lib/VC
+        ${OPENSSL_ROOT_DIR}/lib/VC/static
     )
 
     FIND_LIBRARY(SSL_EAY_DEBUG
       NAMES
         ssleay32MDd ssleay32 ssl
       PATHS
-        ${OPENSSL_ROOT_DIR}/lib/VC
+        ${OPENSSL_ROOT_DIR}/lib/VC/static
     )
 
     FIND_LIBRARY(SSL_EAY_RELEASE
       NAMES
         ssleay32MD ssleay32 ssl
       PATHS
-        ${OPENSSL_ROOT_DIR}/lib/VC
+        ${OPENSSL_ROOT_DIR}/lib/VC/static
     )
 
     if( CMAKE_CONFIGURATION_TYPES OR CMAKE_BUILD_TYPE )
@@ -150,7 +150,7 @@ IF(WIN32 AND NOT CYGWIN)
         libeay32
       PATHS
         ${OPENSSL_ROOT_DIR}/lib
-        ${OPENSSL_ROOT_DIR}/lib/VC
+        ${OPENSSL_ROOT_DIR}/lib/VC/static
     )
 
     FIND_LIBRARY(SSL_EAY
@@ -158,7 +158,7 @@ IF(WIN32 AND NOT CYGWIN)
         ssleay32
       PATHS
         ${OPENSSL_ROOT_DIR}/lib
-        ${OPENSSL_ROOT_DIR}/lib/VC
+        ${OPENSSL_ROOT_DIR}/lib/VC/static
     )
     MARK_AS_ADVANCED(SSL_EAY LIB_EAY)
 
