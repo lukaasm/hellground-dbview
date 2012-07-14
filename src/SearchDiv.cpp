@@ -14,7 +14,7 @@
 *    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "SearchWidget.h"
+#include "SearchDiv.h"
 
 #include <Wt/WBreak>
 #include <Wt/WLineEdit>
@@ -23,7 +23,7 @@
 
 #include "Language.h"
 
-SearchWidget::SearchWidget(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent)
+SearchDiv::SearchDiv(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent)
 {
     setContentAlignment(Wt::AlignCenter);
 

@@ -22,10 +22,10 @@
 #include <Wt/WString>
 
 #include "Language.h"
-#include "LoginWidget.h"
-#include "SearchWidget.h"
+#include "LoginDialog.h"
+#include "SearchDiv.h"
 
-#include <Wt/Dbo/backend/MySQL.h>
+#include <Wt/Dbo/Session>
 
 int main(int argc, char* argv[])
 {
@@ -39,7 +39,7 @@ Wt::WApplication* MainSite::Create(const Wt::WEnvironment& e)
 
 void MainSite::CreateLoginDialog()
 {
-    LoginWidget::Create()->show();
+    LoginDialog::Create()->show();
 }
 
 MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
@@ -49,7 +49,6 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
 
     setTitle(Wt::WWidget::LANG_SITE_TITLE);
 
-    Wt::Dbo::backend::MySQL session("world", "root", "root");
     Wt::WContainerWidget* header = new Wt::WContainerWidget(root());
     header->setId("header");
     header->setContentAlignment(Wt::AlignRight);
@@ -61,7 +60,7 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
     b = new Wt::WPushButton(Wt::WWidget::LANG_REGISTER, header);
     b->setStyleClass("header");
 
-    root()->addWidget(new SearchWidget());
+    root()->addWidget(new SearchDiv());
 
     Wt::WStackedWidget* body = new Wt::WStackedWidget(root());
     body->setId("content");

@@ -14,7 +14,7 @@
 *    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "LoginWidget.h"
+#include "LoginDialog.h"
 
 #include <Wt/WAnchor>
 #include <Wt/WBreak>
@@ -24,13 +24,13 @@
 
 #include "Language.h"
 
-LoginWidget* LoginWidget::Create()
+LoginDialog* LoginDialog::Create()
 {
     // it will be removed in done method
-    return new LoginWidget();
+    return new LoginDialog();
 }
 
-LoginWidget::LoginWidget() : Wt::WDialog()
+LoginDialog::LoginDialog() : Wt::WDialog()
 {
     setTitleBarEnabled(false);
 
@@ -51,11 +51,11 @@ LoginWidget::LoginWidget() : Wt::WDialog()
 
     Wt::WContainerWidget* footer = addWidget(contents(), new Wt::WContainerWidget());
 
-    addWidget(footer, new Wt::WPushButton(LANG_OK))->clicked().connect(SLOT(this, LoginWidget::done));
-    addWidget(footer, new Wt::WPushButton(LANG_CANCEL))->clicked().connect(SLOT(this, LoginWidget::done));
+    addWidget(footer, new Wt::WPushButton(LANG_OK))->clicked().connect(SLOT(this, LoginDialog::done));
+    addWidget(footer, new Wt::WPushButton(LANG_CANCEL))->clicked().connect(SLOT(this, LoginDialog::done));
 }
 
-void LoginWidget::done()
+void LoginDialog::done()
 {
     setHidden(true);
     delete this;
