@@ -17,39 +17,30 @@
 
 file(GLOB_RECURSE DBVIEW_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.h)
 
-include_directories(
-    ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_SOURCE_DIR}/dep/dbobackendmysql
-    ${MYSQL_INCLUDE_DIR}
-    ${Wt_INCLUDE_DIR}
-    if (NOT USE_FCGI_CONNECTOR)
-        ${Boost_INCLUDE_DIR}
-    endif (NOT USE_FCGI_CONNECTOR)
-)
-link_directories(${Boost_LIBRARY_DIRS})
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 add_executable(dbview.wt ${DBVIEW_SRCS})
 
-if(WIN32 AND MSVC)
+if (WIN32 AND MSVC)
     set_target_properties(dbview.wt PROPERTIES COMPILE_FLAGS "${BUILD_PARALLEL} /wd4251 /wd4275 /wd4355 /wd4800 /wd4996 /wd4101 /wd4267")
-endif(WIN32 AND MSVC)
+endif (WIN32 AND MSVC)
 
 if (UNIX)
-    set(Wt_LIBRARIES ${Wt_LIBRARIES} ${Boost_SIGNALS_LIBRARY})
+    set(ADDITIONAL_LIBRARIES ${Boost_SIGNALS_LIBRARY})
 else (UNIX)
-    set(Wt_LIBRARIES ${Wt_LIBRARIES} ${OPENSSL_LIBRARIES})
+    set(ADDITIONAL_LIBRARIES ${OPENSSL_LIBRARIES})
 endif(UNIX)
 
-add_dependencies(dbview.wt wtdbomysql)
+#add_dependencies(dbview.wt )
 
 target_link_libraries(dbview.wt
     ${Wt_LIBRARIES}
     wtdbomysql
-    ${MYSQL_LIBRARY}
+    ${ADDITIONAL_LIBRARIES}
 )
 
 install(TARGETS dbview.wt
-    RUNTIME DESTINATION ${INSTALL_DIR}
+    RUNTIME DESTINATION .
     PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
                 GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ
 )

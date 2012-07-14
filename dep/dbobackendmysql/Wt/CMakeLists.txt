@@ -1,1 +1,1 @@
-SUBDIRS(Dbo)
+add_subdirectory(Dbo)

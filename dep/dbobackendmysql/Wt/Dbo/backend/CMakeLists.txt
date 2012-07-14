@@ -1,31 +1,7 @@
+message("** Wt::Dbo: building MySQL backend.")
 
-IF(MYSQL_FOUND)
-  MESSAGE("** Wt::Dbo: building MySQL backend.")
-  ADD_LIBRARY(wtdbomysql
-    MySQL.C
-    )
-  IF (Wt_DBO_LIBRARY)
-    TARGET_LINK_LIBRARIES(wtdbomysql ${Wt_DBO_LIBRARY} ${MYSQL_LIBRARY} ${Boost_LIBRARIES})
-  ELSE (Wt_DBO_LIBRARY)
-    TARGET_LINK_LIBRARIES(wtdbomysql ${Wt_DBO_DEBUG_LIBRARY} ${MYSQL_LIBRARY} ${Boost_LIBRARIES})
-  ENDIF (Wt_DBO_LIBRARY)
+SET(WTDBOMYSQL_STATIC true)
 
-  INCLUDE_DIRECTORIES(${MYSQL_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
+add_library(wtdbomysql STATIC MySQL.C)
 
-  INSTALL(TARGETS wtdbomysql
-    RUNTIME DESTINATION bin	
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib)
-
-  SET_TARGET_PROPERTIES(
-    wtdbomysql
-  PROPERTIES
-    VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
-    SOVERSION ${WTDBOMYSQL_SOVERSION}
-    DEBUG_POSTFIX "d"
-  )
-
-ELSE(MYSQL_FOUND)
-  MESSAGE("** Wt::Dbo: could not find mysqlclient development files, not building MySQL backend.")
-ENDIF(MYSQL_FOUND)
-
+target_link_libraries(wtdbomysql ${Wt_DBO_LIBRARY} ${Boost_LIBRARIES})
