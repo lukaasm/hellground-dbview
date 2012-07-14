@@ -11,22 +11,29 @@
 *    GNU Affero General Public License for more details.
 *
 *    You should have received a copy of the GNU Affero General Public License
-*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef H_MainSite
-#define H_MainSite
+#ifndef H_HeaderDiv
+#define H_HeaderDiv
 
-#include <Wt/WApplication>
+#include <Wt/WStackedWidget>
 
-class LoginDialog;
-
-class MainSite : public Wt::WApplication
+class HeaderDiv : public Wt::WStackedWidget
 {
     public:
-        MainSite(const Wt::WEnvironment&);
+        HeaderDiv(Wt::WContainerWidget* = NULL);
 
-        static Wt::WApplication* Create(const Wt::WEnvironment&);
+        template<class T>
+        T* addWidget(Wt::WContainerWidget* c, T* w)
+        {
+            w->setStyleClass("header");
+            c->addWidget(w);
+            return w;
+        }
+
+    private:
+        void CreateLoginDialog();
 };
 
 #endif

@@ -17,13 +17,12 @@
 #include "MainSite.h"
 
 #include <Wt/WContainerWidget>
-#include <Wt/WPushButton>
 #include <Wt/WStackedWidget>
 #include <Wt/WString>
 
 #include "Language.h"
-#include "LoginDialog.h"
 #include "SearchDiv.h"
+#include "HeaderDiv.h"
 
 #include <Wt/Dbo/Session>
 
@@ -37,11 +36,6 @@ Wt::WApplication* MainSite::Create(const Wt::WEnvironment& e)
     return new MainSite(e);
 }
 
-void MainSite::CreateLoginDialog()
-{
-    LoginDialog::Create()->show();
-}
-
 MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
 {
     messageResourceBundle().use("res/lang/general");
@@ -49,17 +43,7 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
 
     setTitle(Wt::WWidget::LANG_SITE_TITLE);
 
-    Wt::WContainerWidget* header = new Wt::WContainerWidget(root());
-    header->setId("header");
-    header->setContentAlignment(Wt::AlignRight);
-
-    Wt::WPushButton* b = new Wt::WPushButton(Wt::WWidget::LANG_SIGNIN, header);
-    b->setStyleClass("header");
-    b->clicked().connect(SLOT(this, MainSite::CreateLoginDialog));
-
-    b = new Wt::WPushButton(Wt::WWidget::LANG_REGISTER, header);
-    b->setStyleClass("header");
-
+    root()->addWidget(new HeaderDiv());
     root()->addWidget(new SearchDiv());
 
     Wt::WStackedWidget* body = new Wt::WStackedWidget(root());
