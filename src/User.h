@@ -14,28 +14,25 @@
 *    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef H_SearchWidget
-#define H_SearchWidget
+#ifndef H_User
+#define H_User
 
-#include <Wt/WContainerWidget>
+#include <Wt/Dbo/Dbo>
+#include <string>
 
-class Wt::WLineEdit;
+namespace dbo = Wt::Dbo;
 
-class SearchWidget : public Wt::WContainerWidget
+class User
 {
-    public:
-        SearchWidget(Wt::WContainerWidget* = NULL);
+    std::string username;
+    std::string sha1pass;
 
-        template<class T>
-        T* addWidget(Wt::WContainerWidget* c, T* w)
-        {
-            w->setStyleClass("search");
-            c->addWidget(w);
-            return w;
-        }
-
-    private:
-        Wt::WLineEdit *_searchBar;
+    template<class Action>
+    void persist(Action& a)
+    {
+        dbo::field(a, username, "username");
+        dbo::field(a, sha1pass, "sha_pass_hash");
+    }
 };
 
 #endif

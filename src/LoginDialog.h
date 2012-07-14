@@ -14,15 +14,15 @@
 *    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef H_LoginWidget
-#define H_LoginWidget
+#ifndef H_LoginDialog
+#define H_LoginDialog
 
 #include <Wt/WDialog>
 
-class LoginWidget : public Wt::WDialog
+class LoginDialog : public Wt::WDialog
 {
     public:
-        LoginWidget();
+        LoginDialog();
 
         void done();
 
@@ -34,7 +34,7 @@ class LoginWidget : public Wt::WDialog
             return w;
         }
 
-        static LoginWidget* Create();
+        static LoginDialog* Create();
 };
 
 #endif

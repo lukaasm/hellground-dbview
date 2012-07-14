@@ -11,24 +11,31 @@
 *    GNU Affero General Public License for more details.
 *
 *    You should have received a copy of the GNU Affero General Public License
-*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef H_MainSite
-#define H_MainSite
+#ifndef H_SearchDiv
+#define H_SearchDiv
 
-#include <Wt/WApplication>
+#include <Wt/WContainerWidget>
 
-class LoginDialog;
+class Wt::WLineEdit;
 
-class MainSite : public Wt::WApplication
+class SearchDiv : public Wt::WContainerWidget
 {
     public:
-        MainSite(const Wt::WEnvironment&);
+        SearchDiv(Wt::WContainerWidget* = NULL);
 
-        static Wt::WApplication* Create(const Wt::WEnvironment&);
+        template<class T>
+        T* addWidget(Wt::WContainerWidget* c, T* w)
+        {
+            w->setStyleClass("search");
+            c->addWidget(w);
+            return w;
+        }
+
     private:
-        void CreateLoginDialog();
+        Wt::WLineEdit *_searchBar;
 };
 
 #endif
