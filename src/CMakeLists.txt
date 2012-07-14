@@ -45,7 +45,7 @@ add_dependencies(dbview.wt wtdbomysql)
 target_link_libraries(dbview.wt
     ${Wt_LIBRARIES}
     wtdbomysql
-    ${MYSQL_LIBRARIES}
+    ${MYSQL_LIBRARY}
 )
 
 install(TARGETS dbview.wt
