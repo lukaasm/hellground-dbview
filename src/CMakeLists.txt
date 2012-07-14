@@ -19,6 +19,8 @@ file(GLOB_RECURSE DBVIEW_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.h)
 
 include_directories(
     ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_SOURCE_DIR}/dep/dbobackendmysql
+    ${MYSQL_INCLUDE_DIR}
     ${Wt_INCLUDE_DIR}
     if (NOT USE_FCGI_CONNECTOR)
         ${Boost_INCLUDE_DIR}
@@ -34,10 +36,16 @@ endif(WIN32 AND MSVC)
 
 if (UNIX)
     set(Wt_LIBRARIES ${Wt_LIBRARIES} ${Boost_SIGNALS_LIBRARY})
+else (UNIX)
+    set(Wt_LIBRARIES ${Wt_LIBRARIES} ${OPENSSL_LIBRARIES})
 endif(UNIX)
+
+add_dependencies(dbview.wt wtdbomysql)
 
 target_link_libraries(dbview.wt
     ${Wt_LIBRARIES}
+    wtdbomysql
+    ${MYSQL_LIBRARIES}
 )
 
 install(TARGETS dbview.wt

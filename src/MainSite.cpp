@@ -25,6 +25,8 @@
 #include "LoginWidget.h"
 #include "SearchWidget.h"
 
+#include <Wt/Dbo/backend/MySQL.h>
+
 int main(int argc, char* argv[])
 {
     return Wt::WRun(argc, argv, &MainSite::Create);
@@ -47,6 +49,7 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
 
     setTitle(Wt::WWidget::LANG_SITE_TITLE);
 
+    Wt::Dbo::backend::MySQL session("world", "root", "root");
     Wt::WContainerWidget* header = new Wt::WContainerWidget(root());
     header->setId("header");
     header->setContentAlignment(Wt::AlignRight);
