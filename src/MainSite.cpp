@@ -24,8 +24,6 @@
 #include "SearchDiv.h"
 #include "HeaderDiv.h"
 
-#include <Wt/Dbo/Session>
-
 int main(int argc, char* argv[])
 {
     return Wt::WRun(argc, argv, &MainSite::Create);

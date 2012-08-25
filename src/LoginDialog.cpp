@@ -47,7 +47,7 @@ LoginDialog::LoginDialog() : Wt::WDialog()
     l->setEmptyText(LANG_PASSWORD);
     l->setEchoMode(Wt::WLineEdit::Password);
 
-    addWidget(contents(), new Wt::WAnchor("http://panel.hellground.pl/panel.wt/password",LANG_FORGOTTEN_PASSWORD));
+    addWidget(contents(), new Wt::WAnchor("http://panel.hellground.pl/panel.wt/recover",LANG_FORGOTTEN_PASSWORD));
 
     Wt::WContainerWidget* footer = addWidget(contents(), new Wt::WContainerWidget());
 
