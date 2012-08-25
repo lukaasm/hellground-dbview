@@ -19,7 +19,7 @@
 
 #include <Wt/WContainerWidget>
 
-class Wt::WLineEdit;
+#include "DboClasses.h"
 
 class SearchDiv : public Wt::WContainerWidget
 {
@@ -36,6 +36,9 @@ class SearchDiv : public Wt::WContainerWidget
 
     private:
         Wt::WLineEdit *_searchBar;
+
+        void BindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers searcher);
+        void Search(Searchers searcher);
 };
 
 #endif
