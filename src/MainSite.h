@@ -20,6 +20,8 @@
 #include <Wt/WApplication>
 
 class LoginDialog;
+class SearchDiv;
+class ResultDiv;
 
 class MainSite : public Wt::WApplication
 {
@@ -27,6 +29,12 @@ class MainSite : public Wt::WApplication
         MainSite(const Wt::WEnvironment&);
 
         static Wt::WApplication* Create(const Wt::WEnvironment&);
+
+    private:
+        SearchDiv * _searchDiv;
+        ResultDiv * _resultDiv;
+
+        void handleInternalPath();
 };
 
 #endif

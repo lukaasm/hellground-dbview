@@ -17,12 +17,14 @@
 #include "MainSite.h"
 
 #include <Wt/WContainerWidget>
+#include <Wt/WMessageBox>
 #include <Wt/WStackedWidget>
 #include <Wt/WString>
 
 #include "Language.h"
-#include "SearchDiv.h"
 #include "HeaderDiv.h"
+#include "SearchDiv.h"
+#include "ResultDiv.h"
 
 int main(int argc, char* argv[])
 {
@@ -42,8 +44,54 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
     setTitle(Wt::WWidget::LANG_SITE_TITLE);
 
     root()->addWidget(new HeaderDiv());
-    root()->addWidget(new SearchDiv());
 
-    Wt::WStackedWidget* body = new Wt::WStackedWidget(root());
-    body->setId("content");
+    _searchDiv = new SearchDiv(root());
+    _resultDiv = new ResultDiv(root());
+
+    _searchDiv->SetResultDiv(_resultDiv);
+
+    handleInternalPath();
+}
+
+void MainSite::handleInternalPath()
+{
+    if (internalPath().empty() || internalPath() == "/")
+        return;
+
+    // what should we display/search for
+    std::string internal1Part = internalPathNextPart("/");
+
+    bool searching = false;
+
+    if (internal1Part == "search")
+    {
+        searching = true;
+        internal1Part = internalPathNextPart("/" + internal1Part + "/");
+    }
+
+    // entry/text
+    Wt::WString internal2Part = internalPathNextPart((searching ? "/search/" : "/") + internal1Part + "/");
+
+    // detect searcher
+    Searchers searcher = SEARCH_NONE;
+
+    for (int i = 0; i < SEARCH_MAX; ++i)
+    {
+        if (internal1Part == SearcherInternalPaths[i])
+        {
+            searcher = Searchers(i);
+            break;
+        }
+    }
+
+    if (searcher == SEARCH_NONE)
+    {
+        Wt::WMessageBox::show("Error !", Wt::WString::LANG_ERROR_WRONG_SEARCHER, Wt::Ok);
+        return;
+    }
+
+    if (searching)
+        _searchDiv->Search(internal2Part, searcher);
+    else
+        _resultDiv->CreateDetailedView(internal2Part, searcher);
 }

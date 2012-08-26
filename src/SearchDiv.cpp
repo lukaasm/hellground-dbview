@@ -17,12 +17,14 @@
 #include "SearchDiv.h"
 
 #include <Wt/Dbo/backend/MySQL.h>
+#include <Wt/WApplication>
 #include <Wt/WBreak>
 #include <Wt/WLineEdit>
 #include <Wt/WPushButton>
 #include <Wt/WText>
 
 #include "Language.h"
+#include "ResultDiv.h"
 
 SearchDiv::SearchDiv(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent)
 {
@@ -46,18 +48,19 @@ SearchDiv::SearchDiv(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent
     bindSearch(addWidget(this, new Wt::WPushButton(LANG_ITEM))->clicked(), SEARCH_ITEM);
 }
 
+void SearchDiv::SetResultDiv(ResultDiv * resultDiv)
+{
+    _resultDiv = resultDiv;
+}
+
 void SearchDiv::bindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers searcher)
 {
     signal.connect(boost::bind(&SearchDiv::search, this, searcher));
 }
 
-void SearchDiv::search(Searchers searcher)
+void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
 {
-    Wt::WString searchFor = _searchBar->text();
-
-    if (searchFor.empty())
-        return;
-
+    //printf("\nSearch for %s\n", searchFor.toUTF8().c_str());
     searchFor = "%" + searchFor + "%";
 
     Wt::Dbo::backend::MySQL db("dbname", "login", "pass", "host");
@@ -71,6 +74,20 @@ void SearchDiv::search(Searchers searcher)
     SearchResults results = session.find<SearchResult>().where("name LIKE ?").bind(searchFor.toUTF8().c_str());
     transaction.commit();
 
-    // dummy for now - just omit whole result
-    for (SearchResults::const_iterator itr = results.begin(); itr != results.end(); ++itr);
+    _resultDiv->CreateResultsView(results, searcher);
+}
+
+void SearchDiv::search(Searchers searcher)
+{
+    Wt::WString searchFor = _searchBar->text();
+
+    if (searchFor.empty() || searcher == SEARCH_NONE)
+        return;
+
+    Wt::WString intPath = "/search/";
+    intPath += SearcherInternalPaths[searcher];
+    intPath += "/" + searchFor;
+    wApp->setInternalPath(intPath.toUTF8(), false);
+
+    Search(searchFor, searcher);
 }

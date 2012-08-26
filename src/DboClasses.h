@@ -21,22 +21,36 @@
 
 #include <Wt/Dbo/Dbo>
 
+typedef uint32_t uint32;
+
 enum Searchers
 {
+    SEARCH_NONE         = -1,
     SEARCH_CREATURE     = 0,
     SEARCH_GAMEOBJECT   = 1,
     SEARCH_QUEST        = 2,
     SEARCH_SPELL        = 3,
-    SEARCH_ITEM         = 4
+    SEARCH_ITEM         = 4,
+
+    SEARCH_MAX
 };
 
-static const char * SearcherTableNames [5] =
+static const char * SearcherTableNames[] =
 {
     "creature_template",
     "gameobject_template",
     "quest_template",
-    "spell_info",
+    "spell_template",
     "item_template"
+};
+
+static const char * SearcherInternalPaths[] =
+{
+    "npc",
+    "object",
+    "quest",
+    "spell",
+    "item"
 };
 
 struct SearchResult
