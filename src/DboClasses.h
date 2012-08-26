@@ -55,6 +55,10 @@ static const char * SearcherInternalPaths[] =
 
 struct SearchResult
 {
+    SearchResult() : entry(0), name("") {}
+    SearchResult(long ent, std::string & nm) : entry(ent), name(nm) {}
+    SearchResult(const long & ent, const std::string & nm) : entry(ent), name(nm) {}
+
     long entry;
     std::string name;
 

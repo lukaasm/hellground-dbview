@@ -23,6 +23,7 @@
 #include <Wt/WPushButton>
 #include <Wt/WText>
 
+#include "config.h"
 #include "Language.h"
 #include "ResultDiv.h"
 
@@ -63,17 +64,22 @@ void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
     //printf("\nSearch for %s\n", searchFor.toUTF8().c_str());
     searchFor = "%" + searchFor + "%";
 
-    Wt::Dbo::backend::MySQL db("dbname", "login", "pass", "host");
+    Wt::Dbo::backend::MySQL db(DB_NAME, DB_LOGIN, DB_PASS, DB_HOST);
 
     Wt::Dbo::Session session;
     session.setConnection(db);
 
+    std::vector<SearchResult> results;
+
     session.mapClass<SearchResult>(SearcherTableNames[searcher]);
 
     Wt::Dbo::Transaction transaction(session);
-    SearchResults results = session.find<SearchResult>().where("name LIKE ?").bind(searchFor.toUTF8().c_str());
-    transaction.commit();
+    SearchResults tmpResults = session.find<SearchResult>().where("name LIKE ?").bind(searchFor.toUTF8().c_str());
 
+    for (SearchResults::const_iterator itr = tmpResults.begin(); itr != tmpResults.end(); ++itr)
+        results.push_back(SearchResult((*itr)->entry, (*itr)->name));
+
+    transaction.commit();
     _resultDiv->CreateResultsView(results, searcher);
 }
 
