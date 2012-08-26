@@ -8,23 +8,23 @@
    <message id='search-inputtext'>
      What u wanna search for?
    </message>
-   
+
    <message id='general-login'>
      Login
    </message>
-   
+
    <message id='general-password'>
      Password
    </message>
-   
+
    <message id='general-ok'>
      Ok
    </message>
-   
+
    <message id='general-creature'>
      Creature
    </message>
-   
+
    <message id='general-object'>
      Object
    </message>
@@ -32,28 +32,32 @@
    <message id='general-quest'>
      Quest
    </message>
-   
+
    <message id='general-spell'>
      Spell
    </message>
-   
+
    <message id='general-item'>
      Item
    </message>
    <message id='general-cancel'>
      Cancel
    </message>
-   
+
    <message id='login-forgotpass'>
      forgotten password?
    </message>
-   
+
    <message id='login-signin'>
      Sign In
    </message>
-   
+
    <message id='login-register'>
      Register
+   </message>
+
+   <message id='error-wrongsearcher'>
+     You tried to use not existing searcher !
    </message>
 
  </messages>

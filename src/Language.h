@@ -34,4 +34,6 @@
 #define LANG_SIGNIN             tr("login-signin")
 #define LANG_REGISTER           tr("login-register")
 
+#define LANG_ERROR_WRONG_SEARCHER   tr("error-wrongsearcher")
+
 #endif

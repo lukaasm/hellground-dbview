@@ -1,5 +1,5 @@
 /*
-*    Copyright (C) 2012 lukaasm <lukaasm.pl>
+*    Copyright (C) 2012 Siof, lukaasm <lukaasm.pl>
 *
 *    This program is free software: you can redistribute it and/or modify
 *    it under the terms of the GNU Affero General Public License version 3 as
@@ -14,37 +14,32 @@
 *    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef H_SearchDiv
-#define H_SearchDiv
+#ifndef H_ResultDiv
+#define H_ResultDiv
 
 #include <Wt/WContainerWidget>
 
 #include "DboClasses.h"
 
-class ResultDiv;
-
-class SearchDiv : public Wt::WContainerWidget
+class ResultDiv : public Wt::WContainerWidget
 {
     public:
-        SearchDiv(Wt::WContainerWidget* parent = NULL);
+        ResultDiv(Wt::WContainerWidget* = NULL) : Wt::WContainerWidget(), searcherUsed(SEARCH_NONE) {}
 
         template<class T>
-        T* addWidget(Wt::WContainerWidget* c, T* w)
+        T* addWidget(Wt::WContainerWidget* c, T* w, const char * style = "results")
         {
-            w->setStyleClass("search");
+            w->setStyleClass(style);
             c->addWidget(w);
             return w;
         }
 
-        void SetResultDiv(ResultDiv * resultDiv);
-        void Search(Wt::WString & searchFor, Searchers searcher);
+        void CreateResultsView(SearchResults & results, Searchers searcher);
+        void CreateDetailedView(uint32 entry, Searchers searcher);
+        void CreateDetailedView(Wt::WString & entry, Searchers searcher);
 
     private:
-        Wt::WLineEdit *_searchBar;
-        ResultDiv * _resultDiv;
-
-        void bindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers searcher);
-        void search(Searchers searcher);
+        Searchers searcherUsed;     // searcher used for showing results view
 };
 
-#endif
+#endif // H_ResultDiv
