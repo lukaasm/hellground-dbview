@@ -39,30 +39,19 @@ SearchDiv::SearchDiv(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent
 
     addWidget(this, new Wt::WBreak());
 
-    Wt::WPushButton * tmpBtn;
-
-    tmpBtn = addWidget(this, new Wt::WPushButton(LANG_CREATURE));
-    BindSearch(tmpBtn->clicked(), SEARCH_CREATURE);
-
-    tmpBtn = addWidget(this, new Wt::WPushButton(LANG_OBJECT));
-    BindSearch(tmpBtn->clicked(), SEARCH_GAMEOBJECT);
-
-    tmpBtn = addWidget(this, new Wt::WPushButton(LANG_QUEST));
-    BindSearch(tmpBtn->clicked(), SEARCH_QUEST);
-
-    tmpBtn = addWidget(this, new Wt::WPushButton(LANG_SPELL));
-    BindSearch(tmpBtn->clicked(), SEARCH_SPELL);
-
-    tmpBtn = addWidget(this, new Wt::WPushButton(LANG_ITEM));
-    BindSearch(tmpBtn->clicked(), SEARCH_ITEM);
+    bindSearch(addWidget(this, new Wt::WPushButton(LANG_CREATURE))->clicked(), SEARCH_CREATURE);
+    bindSearch(addWidget(this, new Wt::WPushButton(LANG_OBJECT))->clicked(), SEARCH_GAMEOBJECT);
+    bindSearch(addWidget(this, new Wt::WPushButton(LANG_QUEST))->clicked(), SEARCH_QUEST);
+    bindSearch(addWidget(this, new Wt::WPushButton(LANG_SPELL))->clicked(), SEARCH_SPELL);
+    bindSearch(addWidget(this, new Wt::WPushButton(LANG_ITEM))->clicked(), SEARCH_ITEM);
 }
 
-void SearchDiv::BindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers searcher)
+void SearchDiv::bindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers searcher)
 {
-    signal.connect(boost::bind(&SearchDiv::Search, this, searcher));
+    signal.connect(boost::bind(&SearchDiv::search, this, searcher));
 }
 
-void SearchDiv::Search(Searchers searcher)
+void SearchDiv::search(Searchers searcher)
 {
     Wt::WString searchFor = _searchBar->text();
 
@@ -82,6 +71,6 @@ void SearchDiv::Search(Searchers searcher)
     SearchResults results = session.find<SearchResult>().where("name LIKE ?").bind(searchFor.toUTF8().c_str());
     transaction.commit();
 
-    // dummy for now - just ommit whole result
+    // dummy for now - just omit whole result
     for (SearchResults::const_iterator itr = results.begin(); itr != results.end(); ++itr);
 }
