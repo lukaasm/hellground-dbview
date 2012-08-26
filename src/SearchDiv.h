@@ -37,8 +37,8 @@ class SearchDiv : public Wt::WContainerWidget
     private:
         Wt::WLineEdit *_searchBar;
 
-        void BindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers searcher);
-        void Search(Searchers searcher);
+        void bindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers searcher);
+        void search(Searchers searcher);
 };
 
 #endif
