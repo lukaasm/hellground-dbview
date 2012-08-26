@@ -1,0 +1,10 @@
+#ifndef CONFIG_H_INCLUDED
+#define CONFIG_H_INCLUDED
+
+#define DB_NAME     "dbname"
+#define DB_LOGIN    "login"
+#define DB_PASS     "pass"
+#define DB_HOST     "host"
+
+
+#endif // CONFIG_H_INCLUDED

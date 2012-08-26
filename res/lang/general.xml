@@ -40,8 +40,25 @@
    <message id='general-item'>
      Item
    </message>
+
    <message id='general-cancel'>
      Cancel
+   </message>
+
+   <message id='general-entry'>
+     Entry
+   </message>
+
+   <message id='general-name'>
+     Name
+   </message>
+
+   <message id='general-close'>
+     Close
+   </message>
+
+   <message id='format-any'>
+     {1}
    </message>
 
    <message id='login-forgotpass'>
@@ -54,6 +71,10 @@
 
    <message id='login-register'>
      Register
+   </message>
+
+   <message id='result-detailtitle'>
+     Detailed informations for {1} {2} (entry {3})
    </message>
 
    <message id='error-wrongsearcher'>

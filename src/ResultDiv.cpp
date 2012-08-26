@@ -16,22 +16,97 @@
 
 #include "ResultDiv.h"
 
-void ResultDiv::CreateResultsView(SearchResults & results, Searchers searcher)
-{
-    // dummy
-    for (SearchResults::const_iterator itr = results.begin(); itr != results.end(); ++itr);
+#include <boost/lexical_cast.hpp>
 
+#include <Wt/Dbo/backend/MySQL.h>
+#include <Wt/WAnchor>
+#include <Wt/WDialog>
+#include <Wt/WPushButton>
+#include <Wt/WTable>
+#include <Wt/WText>
+
+#include "Language.h"
+
+Wt::WAnchor * ResultDiv::createAnchor(const std::string & text, const long & entry)
+{
+    // create dummy anchor
+    Wt::WAnchor * tmpAnchor = new Wt::WAnchor();
+    tmpAnchor->setText(Wt::WString::fromUTF8(text));
+    tmpAnchor->setLink(Wt::WLink());
+
+    // adn bind him with on click function
+    bindShowDetailedInfo(tmpAnchor->clicked(), entry);
+
+    return tmpAnchor;
+}
+
+void ResultDiv::CreateResultsView(std::vector<SearchResult> & results, Searchers searcher)
+{
+    _searcherUsed = searcher;
+
+    clear();
+    Wt::WTable * tmpTable = new Wt::WTable(this);
+    tmpTable->setStyleClass("results");
+
+    tmpTable->setHeaderCount(1);
+    tmpTable->elementAt(0, 0)->addWidget(new Wt::WText(LANG_ENTRY));
+    tmpTable->elementAt(0, 1)->addWidget(new Wt::WText(LANG_NAME));
+
+    int i = 1;
+    std::string tmpStr;
+
+    for (std::vector<SearchResult>::const_iterator itr = results.begin(); itr != results.end(); ++itr, ++i)
+    {
+        const SearchResult & tmpResult = *itr;
+
+        tmpStr = boost::lexical_cast<std::string>(tmpResult.entry);
+        tmpTable->elementAt(i, 0)->addWidget(createAnchor(tmpStr, tmpResult.entry));
+        tmpTable->elementAt(i, 1)->addWidget(createAnchor(tmpResult.name, tmpResult.entry));
+    }
 }
 
 void ResultDiv::CreateDetailedView(Wt::WString & entry, Searchers searcher)
 {
     //printf("\nCreate detailed view for entry %s\n", entry.toUTF8().c_str());
+    addWidget(this, new Wt::WText(entry));
+    addWidget(this, new Wt::WText(entry));
+    addWidget(this, new Wt::WText(entry));
+    addWidget(this, new Wt::WText(entry));
+    addWidget(this, new Wt::WText(entry));
+    addWidget(this, new Wt::WText(entry));
+    addWidget(this, new Wt::WText(entry));
 }
 
-void ResultDiv::CreateDetailedView(uint32 entry, Searchers searcher)
+void ResultDiv::CreateDetailedView(long entry, Searchers searcher)
 {
-    Wt::WString entryStr("?");
-    entryStr.arg(int64_t(entry));
+    Wt::WString entryStr = boost::lexical_cast<std::string>(entry);
 
     CreateDetailedView(entryStr, searcher);
+}
+
+void ResultDiv::bindShowDetailedInfo(Wt::EventSignal<Wt::WMouseEvent>& signal, long entry)
+{
+    signal.connect(boost::bind(&ResultDiv::showDetailedInfo, this, entry));
+}
+
+void ResultDiv::showDetailedInfo(long entry)
+{
+    ResultDiv * newResDiv = new ResultDiv();
+
+    newResDiv->CreateDetailedView(entry, _searcherUsed);
+
+    Wt::WDialog * detailedInfo = new Wt::WDialog();
+
+    detailedInfo->setWindowTitle(Wt::WString::LANG_RESULT_TITLE.arg(SearcherInternalPaths[_searcherUsed]).arg(_detailedName).arg(entry));
+    detailedInfo->setTitleBarEnabled(true);
+    detailedInfo->setModal(true);
+    detailedInfo->setClosable(true);
+    detailedInfo->rejectWhenEscapePressed();
+
+    detailedInfo->contents()->setId("result-detailbox");
+    detailedInfo->contents()->addWidget(newResDiv);
+
+    detailedInfo->exec(Wt::WAnimation(Wt::WAnimation::Fade, Wt::WAnimation::Linear, 500));
+
+    delete detailedInfo;
 }

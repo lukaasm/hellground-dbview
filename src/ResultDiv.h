@@ -24,7 +24,7 @@
 class ResultDiv : public Wt::WContainerWidget
 {
     public:
-        ResultDiv(Wt::WContainerWidget* = NULL) : Wt::WContainerWidget(), searcherUsed(SEARCH_NONE) {}
+        ResultDiv(Wt::WContainerWidget* parent = NULL) : Wt::WContainerWidget(parent), _searcherUsed(SEARCH_NONE) {}
 
         template<class T>
         T* addWidget(Wt::WContainerWidget* c, T* w, const char * style = "results")
@@ -34,12 +34,18 @@ class ResultDiv : public Wt::WContainerWidget
             return w;
         }
 
-        void CreateResultsView(SearchResults & results, Searchers searcher);
-        void CreateDetailedView(uint32 entry, Searchers searcher);
+        void CreateResultsView(std::vector<SearchResult> & results, Searchers searcher);
+        void CreateDetailedView(long entry, Searchers searcher);
         void CreateDetailedView(Wt::WString & entry, Searchers searcher);
 
     private:
-        Searchers searcherUsed;     // searcher used for showing results view
+        Searchers _searcherUsed;    // searcher used for showing results view
+        Wt::WString _detailedName;  // name of detailed view entry object
+
+        Wt::WAnchor* createAnchor(const std::string & text, const long & entry);
+
+        void bindShowDetailedInfo(Wt::EventSignal<Wt::WMouseEvent>& signal, long entry);
+        void showDetailedInfo(long entry);
 };
 
 #endif // H_ResultDiv

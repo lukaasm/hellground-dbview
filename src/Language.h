@@ -28,11 +28,18 @@
 #define LANG_QUEST      tr("general-quest")
 #define LANG_SPELL      tr("general-spell")
 #define LANG_ITEM       tr("general-item")
+#define LANG_ENTRY      tr("general-entry")
+#define LANG_NAME       tr("general-name")
+#define LANG_CLOSE      tr("general-close")
+
+#define ANY_FORMAT      tr("format-any")
 
 #define LANG_SEARCHEMPTYTEXT    tr("search-inputtext")
 #define LANG_FORGOTTEN_PASSWORD tr("login-forgotpass")
 #define LANG_SIGNIN             tr("login-signin")
 #define LANG_REGISTER           tr("login-register")
+
+#define LANG_RESULT_TITLE       tr("result-detailtitle")
 
 #define LANG_ERROR_WRONG_SEARCHER   tr("error-wrongsearcher")
 
