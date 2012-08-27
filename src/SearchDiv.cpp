@@ -76,7 +76,7 @@ void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
     session.mapClass<SearchResult>(SearcherTableNames[searcher]);
 
     Wt::Dbo::Transaction transaction(session);
-    SearchResults tmpResults = session.find<SearchResult>().where("name LIKE ?").bind(searchFor.toUTF8().c_str());
+    SearchResults tmpResults = session.find<SearchResult>().where("name LIKE ?").bind(searchFor.toUTF8().c_str()).limit(30);
 
     for (SearchResults::const_iterator itr = tmpResults.begin(); itr != tmpResults.end(); ++itr)
         results.push_back(SearchResult((*itr)->entry, (*itr)->name));
