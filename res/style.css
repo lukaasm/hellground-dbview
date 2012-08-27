@@ -27,7 +27,12 @@
     padding: 10px;
 }
 
-a
+#result-detailbox
+{
+    width: 1000px;
+}
+
+a 
 {
     color: gray;
     font-size: 11px;
@@ -125,4 +130,36 @@ button.login-box
     margin-top: 5px;
     width: 100px;
     height: 30px;
+}
+
+div.results
+{
+    text-align: center;
+}
+
+table.results
+{
+    margin: 25px auto 25px auto;
+    width: 800px;
+    border-width: 1px;
+    border-style: dashed;
+} 
+
+tr:hover
+{
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+td
+{
+    height: 25px;
+    border-width: 1px;
+    border-style: dashed;
+    padding: 1px 0 1px 10px;
+}
+
+td.entry
+{
+    width: 100px;
 }

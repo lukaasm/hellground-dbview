@@ -31,6 +31,7 @@
 #define LANG_ENTRY      tr("general-entry")
 #define LANG_NAME       tr("general-name")
 #define LANG_CLOSE      tr("general-close")
+#define LANG_LOADING    tr("general-loading")
 
 #define ANY_FORMAT      tr("format-any")
 
