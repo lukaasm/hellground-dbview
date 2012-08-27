@@ -18,6 +18,7 @@
 
 #include <Wt/WContainerWidget>
 #include <Wt/WMessageBox>
+#include <Wt/WOverlayLoadingIndicator>
 #include <Wt/WStackedWidget>
 #include <Wt/WString>
 
@@ -42,6 +43,7 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
     useStyleSheet("res/style.css");
 
     setTitle(Wt::WWidget::LANG_SITE_TITLE);
+    setLoadingIndicator(new Wt::WOverlayLoadingIndicator(Wt::WString::LANG_LOADING));
 
     root()->addWidget(new HeaderDiv());
 

@@ -17,7 +17,6 @@
 #include "ResultDiv.h"
 
 #include <boost/lexical_cast.hpp>
-
 #include <Wt/Dbo/backend/MySQL.h>
 #include <Wt/WAnchor>
 #include <Wt/WDialog>
@@ -25,17 +24,26 @@
 #include <Wt/WTable>
 #include <Wt/WText>
 
+#include "config.h"
 #include "Language.h"
 
-Wt::WAnchor * ResultDiv::createAnchor(const std::string & text, const long & entry)
+ResultDiv::ResultDiv(Wt::WContainerWidget * parent)
+ : Wt::WContainerWidget(parent), _searcherUsed(SEARCH_NONE)
 {
-    // create dummy anchor
-    Wt::WAnchor * tmpAnchor = new Wt::WAnchor();
-    tmpAnchor->setText(Wt::WString::fromUTF8(text));
-    tmpAnchor->setLink(Wt::WLink());
+    setStyleClass("results");
+}
 
-    // adn bind him with on click function
-    bindShowDetailedInfo(tmpAnchor->clicked(), entry);
+Wt::WAnchor * ResultDiv::createAnchor(const std::string & text, const std::string & entry)
+{
+    Wt::WAnchor * tmpAnchor = new Wt::WAnchor();
+
+    std::string tmpStr = ADDRESS;
+    tmpStr += SearcherInternalPaths[_searcherUsed];
+    tmpStr += "/" + entry;
+
+    tmpAnchor->setText(text);
+    tmpAnchor->setLink(Wt::WLink(tmpStr));
+    tmpAnchor->setTarget(Wt::TargetNewWindow);
 
     return tmpAnchor;
 }
@@ -60,8 +68,14 @@ void ResultDiv::CreateResultsView(std::vector<SearchResult> & results, Searchers
         const SearchResult & tmpResult = *itr;
 
         tmpStr = boost::lexical_cast<std::string>(tmpResult.entry);
-        tmpTable->elementAt(i, 0)->addWidget(createAnchor(tmpStr, tmpResult.entry));
-        tmpTable->elementAt(i, 1)->addWidget(createAnchor(tmpResult.name, tmpResult.entry));
+
+        tmpTable->elementAt(i, 0)->addWidget(createAnchor(tmpStr, tmpStr));
+        tmpTable->elementAt(i, 0)->setStyleClass("entry");
+        tmpTable->elementAt(i, 1)->addWidget(createAnchor(tmpResult.name, tmpStr));
+        tmpTable->elementAt(i, 1)->setStyleClass("name");
+
+        bindShowDetailedInfo(tmpTable->elementAt(i, 0)->clicked(), tmpResult.entry);
+        bindShowDetailedInfo(tmpTable->elementAt(i, 1)->clicked(), tmpResult.entry);
     }
 }
 

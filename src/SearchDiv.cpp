@@ -62,6 +62,8 @@ void SearchDiv::bindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers s
 void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
 {
     //printf("\nSearch for %s\n", searchFor.toUTF8().c_str());
+    _searchBar->setText(searchFor);     // in case of internal path searching
+
     searchFor = "%" + searchFor + "%";
 
     Wt::Dbo::backend::MySQL db(DB_NAME, DB_LOGIN, DB_PASS, DB_HOST);
