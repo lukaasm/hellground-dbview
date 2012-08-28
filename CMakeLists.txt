@@ -22,6 +22,7 @@ message(
 "\nThis scripts builds DBView site
 You can use following options for customization:
     INSTALL_DIR: Path where the server should be installed to (default - ${CMAKE_INSTALL_PREFIX})
+    DYNAMIC_BOOST: Set to true if Boost should use dynamic libraries instead of static one (default - FALSE)
 
 For example: cmake -DCMAKE_INSTALL_PREFIX=\"${CMAKE_INSTALL_PREFIX}\" ..\n"
 )
@@ -45,7 +46,11 @@ set(MYSQL_DIR $ENV{MYSQL_DIR} CACHE PATH "The MySQL Directory Path")
 find_package(MySQL)
 
 set(BOOST_PREFIX $ENV{BOOST_ROOT} CACHE PATH "The Boost Directory Path")
-set(Boost_USE_STATIC_LIBS ON)
+if (DYNAMIC_BOOST)
+    set(Boost_USE_STATIC_LIBS OFF)
+else (DYNAMIC_BOOST)
+    set(Boost_USE_STATIC_LIBS ON)
+endif (DYNAMIC_BOOST)
 set(Boost_USE_MULTITHREADED ON)
 
 find_package(Boost COMPONENTS signals date_time unit_test_framework test_exec_monitor REQUIRED)
