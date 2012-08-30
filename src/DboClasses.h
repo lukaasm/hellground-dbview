@@ -21,8 +21,6 @@
 
 #include <Wt/Dbo/Dbo>
 
-typedef uint32_t uint32;
-
 enum Searchers
 {
     SEARCH_NONE         = -1,
@@ -53,24 +51,30 @@ static const char * SearcherInternalPaths[] =
     "item"
 };
 
-struct SearchResult
+class TemplateInfo
 {
-    SearchResult() : entry(0), name("") {}
-    SearchResult(long ent, std::string & nm) : entry(ent), name(nm) {}
-    SearchResult(const long & ent, const std::string & nm) : entry(ent), name(nm) {}
+    public:
+        TemplateInfo() : _entry(0), _name("") {}
+        TemplateInfo(long entry, std::string & name) : _entry(entry), _name(name) {}
+        TemplateInfo(const long & entry, const std::string & name) : _entry(entry), _name(name) {}
 
-    long entry;
-    std::string name;
+        template<class Action>
+        void persist(Action& a)
+        {
+            Wt::Dbo::id(a, _entry, "entry");
+            Wt::Dbo::field(a, _name, "name");
+        }
 
-    template<class Action>
-    void persist(Action& a)
-    {
-        Wt::Dbo::id(a, entry, "entry");
-        Wt::Dbo::field(a, name, "name");
-    }
+        const long & GetEntry() const { return _entry; }
+        const std::string & GetName() const { return _name; }
+
+    private:
+        long _entry;
+        std::string _name;
+
 };
 
-typedef Wt::Dbo::collection<Wt::Dbo::ptr<SearchResult> > SearchResults;
+typedef Wt::Dbo::collection<Wt::Dbo::ptr<TemplateInfo> > SearchResults;
 
 // disable default version and id fields for SearchResult class
 namespace Wt
@@ -78,11 +82,11 @@ namespace Wt
     namespace Dbo
     {
         template<>
-        struct dbo_traits<SearchResult> : public dbo_default_traits
+        struct dbo_traits<TemplateInfo> : public dbo_default_traits
         {
             static long invalidId()
             {
-                return long(0);
+                return 0;
             }
 
             static const char *surrogateIdField()

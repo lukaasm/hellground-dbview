@@ -48,7 +48,7 @@ Wt::WAnchor * ResultDiv::createAnchor(const std::string & text, const std::strin
     return tmpAnchor;
 }
 
-void ResultDiv::CreateResultsView(std::vector<SearchResult> & results, Searchers searcher)
+void ResultDiv::CreateResultsView(std::list<TemplateInfo> & results, Searchers searcher)
 {
     _searcherUsed = searcher;
 
@@ -63,19 +63,19 @@ void ResultDiv::CreateResultsView(std::vector<SearchResult> & results, Searchers
     int i = 1;
     std::string tmpStr;
 
-    for (std::vector<SearchResult>::const_iterator itr = results.begin(); itr != results.end(); ++itr, ++i)
+    for (std::list<TemplateInfo>::const_iterator itr = results.begin(); itr != results.end(); ++itr, ++i)
     {
-        const SearchResult & tmpResult = *itr;
+        const TemplateInfo & tmpResult = *itr;
 
-        tmpStr = boost::lexical_cast<std::string>(tmpResult.entry);
+        tmpStr = boost::lexical_cast<std::string>(tmpResult.GetEntry());
 
         tmpTable->elementAt(i, 0)->addWidget(createAnchor(tmpStr, tmpStr));
         tmpTable->elementAt(i, 0)->setStyleClass("entry");
-        tmpTable->elementAt(i, 1)->addWidget(createAnchor(tmpResult.name, tmpStr));
+        tmpTable->elementAt(i, 1)->addWidget(createAnchor(tmpResult.GetName(), tmpStr));
         tmpTable->elementAt(i, 1)->setStyleClass("name");
 
-        bindShowDetailedInfo(tmpTable->elementAt(i, 0)->clicked(), tmpResult.entry);
-        bindShowDetailedInfo(tmpTable->elementAt(i, 1)->clicked(), tmpResult.entry);
+        bindShowDetailedInfo(tmpTable->elementAt(i, 0)->clicked(), tmpResult.GetEntry());
+        bindShowDetailedInfo(tmpTable->elementAt(i, 1)->clicked(), tmpResult.GetEntry());
     }
 }
 
@@ -111,7 +111,7 @@ void ResultDiv::showDetailedInfo(long entry)
 
     Wt::WDialog * detailedInfo = new Wt::WDialog();
 
-    detailedInfo->setWindowTitle(Wt::WString::LANG_RESULT_TITLE.arg(SearcherInternalPaths[_searcherUsed]).arg(_detailedName).arg(entry));
+    detailedInfo->setWindowTitle(Wt::WString::LANG_RESULT_TITLE.arg(SearcherInternalPaths[_searcherUsed]).arg(_detailedName).arg(int64_t(entry)));
     detailedInfo->setTitleBarEnabled(true);
     detailedInfo->setModal(true);
     detailedInfo->setClosable(true);
@@ -120,7 +120,7 @@ void ResultDiv::showDetailedInfo(long entry)
     detailedInfo->contents()->setId("result-detailbox");
     detailedInfo->contents()->addWidget(newResDiv);
 
-    detailedInfo->exec(Wt::WAnimation(Wt::WAnimation::Fade, Wt::WAnimation::Linear, 500));
+    detailedInfo->exec(Wt::WAnimation(Wt::WAnimation::Fade, Wt::WAnimation::Linear, 1000));
 
     delete detailedInfo;
 }

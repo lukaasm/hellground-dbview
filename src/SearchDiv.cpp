@@ -71,15 +71,15 @@ void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
     Wt::Dbo::Session session;
     session.setConnection(db);
 
-    std::vector<SearchResult> results;
+    std::list<TemplateInfo> results;
 
-    session.mapClass<SearchResult>(SearcherTableNames[searcher]);
+    session.mapClass<TemplateInfo>(SearcherTableNames[searcher]);
 
     Wt::Dbo::Transaction transaction(session);
-    SearchResults tmpResults = session.find<SearchResult>().where("name LIKE ?").bind(searchFor.toUTF8().c_str()).limit(30);
+    SearchResults tmpResults = session.find<TemplateInfo>().where("name LIKE ?").bind(searchFor.toUTF8().c_str()).limit(30);
 
     for (SearchResults::const_iterator itr = tmpResults.begin(); itr != tmpResults.end(); ++itr)
-        results.push_back(SearchResult((*itr)->entry, (*itr)->name));
+        results.push_back(TemplateInfo((*itr)->GetEntry(), (*itr)->GetName()));
 
     transaction.commit();
     _resultDiv->CreateResultsView(results, searcher);
