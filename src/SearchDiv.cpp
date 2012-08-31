@@ -20,7 +20,9 @@
 #include <Wt/WApplication>
 #include <Wt/WBreak>
 #include <Wt/WLineEdit>
+#include <Wt/WMessageBox>
 #include <Wt/WPushButton>
+#include <Wt/WRegExpValidator>
 #include <Wt/WText>
 
 #include "config.h"
@@ -62,6 +64,15 @@ void SearchDiv::bindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers s
 void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
 {
     //printf("\nSearch for %s\n", searchFor.toUTF8().c_str());
+
+    Wt::WRegExpValidator tmpValid("[a-zA-Z]{3,}"); // minimum 3 characters
+    tmpValid.setMandatory(true);
+    if (tmpValid.validate(searchFor).state() != Wt::WValidator::Valid)
+    {
+        Wt::WMessageBox::show(Wt::WString::LANG_ERROR, Wt::WString::LANG_ERROR_SEARCH_VALIDATION, Wt::Ok);
+        return;
+    }
+
     _searchBar->setText(searchFor);     // in case of internal path searching
 
     searchFor = "%" + searchFor + "%";

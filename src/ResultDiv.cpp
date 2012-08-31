@@ -20,7 +20,9 @@
 #include <Wt/Dbo/backend/MySQL.h>
 #include <Wt/WAnchor>
 #include <Wt/WDialog>
+#include <Wt/WMessageBox>
 #include <Wt/WPushButton>
+#include <Wt/WRegExpValidator>
 #include <Wt/WTable>
 #include <Wt/WText>
 
@@ -82,6 +84,14 @@ void ResultDiv::CreateResultsView(std::list<SearchInfo> & results, Searchers sea
 void ResultDiv::CreateDetailedView(Wt::WString & entry, Searchers searcher)
 {
     //printf("\nCreate detailed view for entry %s\n", entry.toUTF8().c_str());
+
+    Wt::WRegExpValidator tmpValid("[0-9]+");    // minumim 1 number
+    tmpValid.setMandatory(true);
+    if (tmpValid.validate(entry).state() != Wt::WValidator::Valid)
+    {
+        Wt::WMessageBox::show(Wt::WString::LANG_ERROR, Wt::WString::LANG_ERROR_DETAIL_VALIDATION, Wt::Ok);
+        return;
+    }
 
     Wt::Dbo::backend::MySQL db(DB_NAME, DB_LOGIN, DB_PASS, DB_HOST);
 
