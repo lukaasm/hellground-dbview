@@ -48,7 +48,7 @@ Wt::WAnchor * ResultDiv::createAnchor(const std::string & text, const std::strin
     return tmpAnchor;
 }
 
-void ResultDiv::CreateResultsView(std::list<TemplateInfo> & results, Searchers searcher)
+void ResultDiv::CreateResultsView(std::list<SearchInfo> & results, Searchers searcher)
 {
     _searcherUsed = searcher;
 
@@ -63,9 +63,9 @@ void ResultDiv::CreateResultsView(std::list<TemplateInfo> & results, Searchers s
     int i = 1;
     std::string tmpStr;
 
-    for (std::list<TemplateInfo>::const_iterator itr = results.begin(); itr != results.end(); ++itr, ++i)
+    for (std::list<SearchInfo>::const_iterator itr = results.begin(); itr != results.end(); ++itr, ++i)
     {
-        const TemplateInfo & tmpResult = *itr;
+        const SearchInfo & tmpResult = *itr;
 
         tmpStr = boost::lexical_cast<std::string>(tmpResult.GetEntry());
 
@@ -82,13 +82,29 @@ void ResultDiv::CreateResultsView(std::list<TemplateInfo> & results, Searchers s
 void ResultDiv::CreateDetailedView(Wt::WString & entry, Searchers searcher)
 {
     //printf("\nCreate detailed view for entry %s\n", entry.toUTF8().c_str());
-    addWidget(this, new Wt::WText(entry));
-    addWidget(this, new Wt::WText(entry));
-    addWidget(this, new Wt::WText(entry));
-    addWidget(this, new Wt::WText(entry));
-    addWidget(this, new Wt::WText(entry));
-    addWidget(this, new Wt::WText(entry));
-    addWidget(this, new Wt::WText(entry));
+
+    Wt::Dbo::backend::MySQL db(DB_NAME, DB_LOGIN, DB_PASS, DB_HOST);
+
+    Wt::Dbo::Session session;
+    session.setConnection(db);
+
+    session.mapClass<CreatureTemplateInfo>(SearcherTableNames[SEARCH_CREATURE]);
+
+    Wt::Dbo::Transaction transaction(session);
+
+    switch (searcher)
+    {
+        case SEARCH_CREATURE:
+        {
+            Wt::Dbo::ptr<CreatureTemplateInfo> result = session.find<CreatureTemplateInfo>().where("entry = ?").bind(entry.toUTF8().c_str());
+            addWidget(this, result->CreateContainer());
+            break;
+        }
+        default:
+            break;
+    }
+
+    transaction.commit();
 }
 
 void ResultDiv::CreateDetailedView(long entry, Searchers searcher)
