@@ -81,4 +81,152 @@
      You tried to use not existing searcher !
    </message>
 
+   <message id='detail-title'>
+     {1} {2} - id: {3}
+   </message>
+
+   <message id='detail-heroic-entry'>
+     Heroic entry
+   </message>
+
+   <message id='detail-kill-credit'>
+     Kill credit
+   </message>
+
+   <message id='detail-rank'>
+     Rank
+   </message>
+
+   <message id='detail-sub-name'>
+     Sub name
+   </message>
+
+   <message id='detail-ai-name'>
+     AI name
+   </message>
+
+   <message id='detail-script-name'>
+     Script name
+   </message>
+
+   <message id='detail-model-id-a'>
+     Alliance model
+   </message>
+
+   <message id='detail-model-id-h'>
+     Horde model
+   </message>
+
+   <message id='detail-faction-a'>
+     Alliance faction
+   </message>
+
+   <message id='detail-faction-h'>
+     Horde faction
+   </message>
+
+   <message id='detail-min-level'>
+     Min level
+   </message>
+
+   <message id='detail-max-level'>
+     Max level
+   </message>
+
+   <message id='detail-min-health'>
+     Min health
+   </message>
+
+   <message id='detail-max-health'>
+     Max health
+   </message>
+
+   <message id='detail-min-mana'>
+     Min mana
+   </message>
+
+   <message id='detail-max-mana'>
+     Max mana
+   </message>
+
+   <message id='detail-race'>
+     Race
+   </message>
+
+   <message id='detail-class'>
+     Class
+   </message>
+
+   <message id='detail-family'>
+     Family
+   </message>
+
+   <message id='detail-type'>
+     Type
+   </message>
+
+   <message id='detail-armor'>
+     Armor
+   </message>
+
+   <message id='detail-speed'>
+     Speed
+   </message>
+
+   <message id='detail-scale'>
+     Scale
+   </message>
+
+   <message id='detail-equipment-id'>
+     Equipment id
+   </message>
+
+   <message id='detail-min-dmg'>
+     Min dmg
+   </message>
+
+   <message id='detail-max-dmg'>
+     Max dmg
+   </message>
+
+   <message id='detail-attack-power'>
+     AP
+   </message>
+
+   <message id='detail-attack-time'>
+     Attack speed
+   </message>
+
+   <message id='detail-ranged-min-dmg'>
+     Ranged min dmg
+   </message>
+
+   <message id='detail-ranged-max-dmg'>
+     Ranged max dmg
+   </message>
+
+   <message id='detail-ranged-attack-power'>
+     Ranged AP
+   </message>
+
+   <message id='detail-ranged-attack-time'>
+     Ranged speed
+   </message>
+
+   <message id='detail-dmg-school'>
+     Dmg school
+   </message>
+
+   <message id='detail-min-gold'>
+     Min gold
+   </message>
+
+   <message id='detail-max-gold'>
+     Max gold
+   </message>
+
+   <message id='detail-racial-leader'>
+     Racial leader
+   </message>
+
  </messages>

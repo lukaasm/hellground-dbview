@@ -34,7 +34,7 @@ class ResultDiv : public Wt::WContainerWidget
             return w;
         }
 
-        void CreateResultsView(std::list<TemplateInfo> & results, Searchers searcher);
+        void CreateResultsView(std::list<SearchInfo> & results, Searchers searcher);
         void CreateDetailedView(long entry, Searchers searcher);
         void CreateDetailedView(Wt::WString & entry, Searchers searcher);
 
