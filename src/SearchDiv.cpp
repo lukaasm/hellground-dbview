@@ -65,7 +65,7 @@ void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
 {
     //printf("\nSearch for %s\n", searchFor.toUTF8().c_str());
 
-    Wt::WRegExpValidator tmpValid("[a-zA-Z]{3,}"); // minimum 3 characters
+    Wt::WRegExpValidator tmpValid("[a-zA-Z']{3,}"); // minimum 3 characters
     tmpValid.setMandatory(true);
     if (tmpValid.validate(searchFor).state() != Wt::WValidator::Valid)
     {
