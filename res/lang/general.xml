@@ -57,6 +57,10 @@
      Close
    </message>
 
+   <message id='general-error'>
+     Error
+   </message>
+
    <message id='format-any'>
      {1}
    </message>
@@ -79,6 +83,14 @@
 
    <message id='error-wrongsearcher'>
      You tried to use not existing searcher !
+   </message>
+
+   <message id='error-search-validation'>
+     You must enter minimum 3 characters to search !
+   </message>
+
+   <message id='error-detail-validation'>
+     Detailed informations needs entry as number !
    </message>
 
    <message id='detail-title'>

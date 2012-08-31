@@ -32,6 +32,7 @@
 #define LANG_NAME       tr("general-name")
 #define LANG_CLOSE      tr("general-close")
 #define LANG_LOADING    tr("general-loading")
+#define LANG_ERROR      tr("general-error")
 
 #define ANY_FORMAT      tr("format-any")
 
@@ -42,8 +43,9 @@
 
 #define LANG_RESULT_TITLE       tr("result-detailtitle")
 
-#define LANG_ERROR_WRONG_SEARCHER   tr("error-wrongsearcher")
-
+#define LANG_ERROR_WRONG_SEARCHER       tr("error-wrongsearcher")
+#define LANG_ERROR_SEARCH_VALIDATION    tr("error-search-validation")
+#define LANG_ERROR_DETAIL_VALIDATION    tr("error-detail-validation")
 
 #define LANG_DETAIL_TITLE               tr("detail-title")
 #define LANG_DETAIL_HEROIC_ENTRY        tr("detail-heroic-entry")
