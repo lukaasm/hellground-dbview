@@ -42,6 +42,8 @@ Wt::WText* TemplateInfo::addWText(Wt::WTableCell * cont, Wt::WString text) const
     return addWText((Wt::WContainerWidget*)cont, text);
 }
 
+// Creature Template Info
+
 CreatureTemplateInfo::CreatureTemplateInfo()
     : TemplateInfo(), _heroicEntry(0), _killCredit(0), _subName(""), _iconName(""), _minLevel(0),
     _maxLevel(0), _minHealth(0), _maxHealth(0), _minMana(0), _maxMana(0), _armor(0), _factionA(0),
@@ -258,3 +260,80 @@ Wt::WContainerWidget * CreatureTemplateInfo::CreateContainer() const
 */
     return cInfoCont;
 }
+
+// Gameobject Template Info
+
+GameObjectTemplateInfo::GameObjectTemplateInfo()
+    : TemplateInfo()
+{
+
+}
+
+GameObjectTemplateInfo::GameObjectTemplateInfo(const GameObjectTemplateInfo & gti)
+    : TemplateInfo(gti.GetEntry(), gti.GetName())
+{
+
+}
+
+Wt::WContainerWidget * GameObjectTemplateInfo::CreateContainer() const
+{
+    return NULL;
+}
+
+// Quest Template Info
+
+QuestTemplateInfo::QuestTemplateInfo()
+    : TemplateInfo()
+{
+
+}
+
+QuestTemplateInfo::QuestTemplateInfo(const QuestTemplateInfo & qti)
+    : TemplateInfo(qti.GetEntry(), qti.GetName())
+{
+
+}
+
+Wt::WContainerWidget * QuestTemplateInfo::CreateContainer() const
+{
+    return NULL;
+}
+
+// Spell Template Info
+
+SpellTemplateInfo::SpellTemplateInfo()
+    : TemplateInfo()
+{
+
+}
+
+SpellTemplateInfo::SpellTemplateInfo(const SpellTemplateInfo & sti)
+    : TemplateInfo(sti.GetEntry(), sti.GetName())
+{
+
+}
+
+Wt::WContainerWidget * SpellTemplateInfo::CreateContainer() const
+{
+    return NULL;
+}
+
+// Item Template Info
+
+ItemTemplateInfo::ItemTemplateInfo()
+    : TemplateInfo()
+{
+
+}
+
+ItemTemplateInfo::ItemTemplateInfo(const ItemTemplateInfo & gti)
+    : TemplateInfo(gti.GetEntry(), gti.GetName())
+{
+
+}
+
+Wt::WContainerWidget * ItemTemplateInfo::CreateContainer() const
+{
+    return NULL;
+}
+
