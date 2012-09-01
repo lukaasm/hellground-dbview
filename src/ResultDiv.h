@@ -41,11 +41,13 @@ class ResultDiv : public Wt::WContainerWidget
     private:
         Searchers _searcherUsed;    // searcher used for showing results view
         Wt::WString _detailedName;  // name of detailed view entry object
+        Wt::WDialog * _detailedInfo;
 
         Wt::WAnchor* createAnchor(const std::string & text, const std::string & entry);
 
         void bindShowDetailedInfo(Wt::EventSignal<Wt::WMouseEvent>& signal, long entry);
         void showDetailedInfo(long entry);
+        void detailedInfoFinished();
 };
 
 #endif // H_ResultDiv
