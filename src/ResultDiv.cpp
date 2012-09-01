@@ -51,7 +51,7 @@ Wt::WAnchor * ResultDiv::createAnchor(const std::string & text, const std::strin
     return tmpAnchor;
 }
 
-void ResultDiv::CreateResultsView(std::list<SearchInfo> & results, Searchers searcher)
+void ResultDiv::CreateResultsView(std::list<TemplateInfo> & results, Searchers searcher)
 {
     _searcherUsed = searcher;
 
@@ -66,9 +66,9 @@ void ResultDiv::CreateResultsView(std::list<SearchInfo> & results, Searchers sea
     int i = 1;
     std::string tmpStr;
 
-    for (std::list<SearchInfo>::const_iterator itr = results.begin(); itr != results.end(); ++itr, ++i)
+    for (std::list<TemplateInfo>::const_iterator itr = results.begin(); itr != results.end(); ++itr, ++i)
     {
-        const SearchInfo & tmpResult = *itr;
+        const TemplateInfo & tmpResult = *itr;
 
         tmpStr = boost::lexical_cast<std::string>(tmpResult.GetEntry());
 

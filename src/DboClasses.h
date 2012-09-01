@@ -89,17 +89,7 @@ class TemplateInfo
         std::string _name;
 };
 
-class SearchInfo : public TemplateInfo
-{
-    public:
-        SearchInfo() : TemplateInfo() {}
-        SearchInfo(long entry, std::string & name) : TemplateInfo(entry, name) {}
-        SearchInfo(const long & entry, const std::string & name) : TemplateInfo(entry, name) {}
-
-    private:
-};
-
-typedef Wt::Dbo::collection<Wt::Dbo::ptr<SearchInfo> > SearchResults;
+typedef Wt::Dbo::collection<Wt::Dbo::ptr<TemplateInfo> > SearchResults;
 
 class CreatureTemplateInfo : protected TemplateInfo
 {
@@ -299,7 +289,7 @@ namespace Wt
     namespace Dbo
     {
         template<>
-        struct dbo_traits<SearchInfo> : public dbo_default_traits
+        struct dbo_traits<TemplateInfo> : public dbo_default_traits
         {
             static long invalidId()
             {
