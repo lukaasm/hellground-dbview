@@ -40,7 +40,10 @@ SearchDiv::SearchDiv(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent
 
     _searchBar = addWidget(c, new Wt::WLineEdit());
     _searchBar->setEmptyText(LANG_SEARCHEMPTYTEXT);
-    // bind on-enter event
+
+    Wt::WRegExpValidator * tmpValid = new Wt::WRegExpValidator("[a-zA-Z']{3,}"); // minimum 3 characters
+    tmpValid->setMandatory(true);
+    _searchBar->setValidator(tmpValid);
 
     addWidget(this, new Wt::WBreak());
 
@@ -64,6 +67,12 @@ void SearchDiv::bindSearch(Wt::EventSignal<Wt::WMouseEvent>& signal, Searchers s
 void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
 {
     //printf("\nSearch for %s\n", searchFor.toUTF8().c_str());
+
+    if (!_searchBar->text().empty() && _searchBar->validate() != Wt::WValidator::Valid)
+    {
+        Wt::WMessageBox::show(Wt::WString::LANG_ERROR, Wt::WString::LANG_ERROR_SEARCH_VALIDATION, Wt::Ok);
+        return;
+    }
 
     Wt::WRegExpValidator tmpValid("[a-zA-Z']{3,}"); // minimum 3 characters
     tmpValid.setMandatory(true);
@@ -93,6 +102,7 @@ void SearchDiv::Search(Wt::WString & searchFor, Searchers searcher)
         results.push_back(SearchInfo((*itr)->GetEntry(), (*itr)->GetName()));
 
     transaction.commit();
+
     _resultDiv->CreateResultsView(results, searcher);
 }
 
@@ -103,10 +113,11 @@ void SearchDiv::search(Searchers searcher)
     if (searchFor.empty() || searcher == SEARCH_NONE)
         return;
 
-    Wt::WString intPath = "/search/";
+    std::string intPath = "/search/";
     intPath += SearcherInternalPaths[searcher];
-    intPath += "/" + searchFor;
-    wApp->setInternalPath(intPath.toUTF8(), false);
+    intPath += "/" + searchFor.toUTF8();
+
+    wApp->setInternalPath(intPath, false);
 
     Search(searchFor, searcher);
 }

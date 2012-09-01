@@ -33,6 +33,7 @@ ResultDiv::ResultDiv(Wt::WContainerWidget * parent)
  : Wt::WContainerWidget(parent), _searcherUsed(SEARCH_NONE)
 {
     setStyleClass("results");
+    _detailedInfo = NULL;
 }
 
 Wt::WAnchor * ResultDiv::createAnchor(const std::string & text, const std::string & entry)
@@ -135,18 +136,28 @@ void ResultDiv::showDetailedInfo(long entry)
 
     newResDiv->CreateDetailedView(entry, _searcherUsed);
 
-    Wt::WDialog * detailedInfo = new Wt::WDialog();
+    if (_detailedInfo)
+        delete _detailedInfo;
 
-    detailedInfo->setWindowTitle(Wt::WString::LANG_RESULT_TITLE.arg(SearcherInternalPaths[_searcherUsed]).arg(_detailedName).arg(int64_t(entry)));
-    detailedInfo->setTitleBarEnabled(true);
-    detailedInfo->setModal(true);
-    detailedInfo->setClosable(true);
-    detailedInfo->rejectWhenEscapePressed();
+    _detailedInfo = new Wt::WDialog();
 
-    detailedInfo->contents()->setId("result-detailbox");
-    detailedInfo->contents()->addWidget(newResDiv);
+    _detailedInfo->setWindowTitle(Wt::WString::LANG_RESULT_TITLE.arg(SearcherInternalPaths[_searcherUsed]).arg(_detailedName).arg(int64_t(entry)));
+    _detailedInfo->setTitleBarEnabled(true);
+    _detailedInfo->setModal(true);
+    _detailedInfo->setClosable(true);
+    _detailedInfo->rejectWhenEscapePressed();
+    _detailedInfo->finished().connect(this, &ResultDiv::detailedInfoFinished);
 
-    detailedInfo->exec(Wt::WAnimation(Wt::WAnimation::Fade, Wt::WAnimation::Linear, 1000));
+    _detailedInfo->contents()->setId("result-detailbox");
+    _detailedInfo->contents()->addWidget(newResDiv);
 
-    delete detailedInfo;
+    _detailedInfo->show();
+}
+
+void ResultDiv::detailedInfoFinished()
+{
+    if (_detailedInfo)
+        delete _detailedInfo;
+
+    _detailedInfo = NULL;
 }
