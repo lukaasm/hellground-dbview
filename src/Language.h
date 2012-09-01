@@ -44,6 +44,7 @@
 #define LANG_RESULT_TITLE       tr("result-detailtitle")
 
 #define LANG_ERROR_WRONG_SEARCHER       tr("error-wrongsearcher")
+#define LANG_ERROR_NOT_FOUND            tr("error-not-found")
 #define LANG_ERROR_SEARCH_VALIDATION    tr("error-search-validation")
 #define LANG_ERROR_DETAIL_VALIDATION    tr("error-detail-validation")
 

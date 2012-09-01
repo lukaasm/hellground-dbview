@@ -19,6 +19,7 @@
 #include <boost/lexical_cast.hpp>
 #include <Wt/Dbo/backend/MySQL.h>
 #include <Wt/WAnchor>
+#include <Wt/WBreak>
 #include <Wt/WDialog>
 #include <Wt/WMessageBox>
 #include <Wt/WPushButton>
@@ -100,15 +101,50 @@ void ResultDiv::CreateDetailedView(Wt::WString & entry, Searchers searcher)
     session.setConnection(db);
 
     session.mapClass<CreatureTemplateInfo>(SearcherTableNames[SEARCH_CREATURE]);
+    session.mapClass<GameObjectTemplateInfo>(SearcherTableNames[SEARCH_GAMEOBJECT]);
+    session.mapClass<QuestTemplateInfo>(SearcherTableNames[SEARCH_QUEST]);
+    session.mapClass<SpellTemplateInfo>(SearcherTableNames[SEARCH_SPELL]);
+    session.mapClass<ItemTemplateInfo>(SearcherTableNames[SEARCH_ITEM]);
 
     Wt::Dbo::Transaction transaction(session);
+
+    Wt::WContainerWidget * tmpCont = NULL;
 
     switch (searcher)
     {
         case SEARCH_CREATURE:
         {
             Wt::Dbo::ptr<CreatureTemplateInfo> result = session.find<CreatureTemplateInfo>().where("entry = ?").bind(entry.toUTF8().c_str());
-            addWidget(this, result->CreateContainer());
+            if (result)
+                tmpCont = result->CreateContainer();
+            break;
+        }
+        case SEARCH_GAMEOBJECT:
+        {
+            Wt::Dbo::ptr<GameObjectTemplateInfo> result = session.find<GameObjectTemplateInfo>().where("entry = ?").bind(entry.toUTF8().c_str());
+            if (result)
+                tmpCont = result->CreateContainer();
+            break;
+        }
+        case SEARCH_QUEST:
+        {
+            Wt::Dbo::ptr<QuestTemplateInfo> result = session.find<QuestTemplateInfo>().where("entry = ?").bind(entry.toUTF8().c_str());
+            if (result)
+                tmpCont = result->CreateContainer();
+            break;
+        }
+        case SEARCH_SPELL:
+        {
+            Wt::Dbo::ptr<SpellTemplateInfo> result = session.find<SpellTemplateInfo>().where("entry = ?").bind(entry.toUTF8().c_str());
+            if (result)
+                tmpCont = result->CreateContainer();
+            break;
+        }
+        case SEARCH_ITEM:
+        {
+            Wt::Dbo::ptr<ItemTemplateInfo> result = session.find<ItemTemplateInfo>().where("entry = ?").bind(entry.toUTF8().c_str());
+            if (result)
+                tmpCont = result->CreateContainer();
             break;
         }
         default:
@@ -116,6 +152,15 @@ void ResultDiv::CreateDetailedView(Wt::WString & entry, Searchers searcher)
     }
 
     transaction.commit();
+
+    if (tmpCont)
+        addWidget(this, tmpCont);
+    else
+    {
+        Wt::WContainerWidget::addWidget(new Wt::WBreak());
+        Wt::WContainerWidget::addWidget(new Wt::WBreak());
+        addWidget(this, new Wt::WText(Wt::WString::LANG_ERROR_NOT_FOUND));
+    }
 }
 
 void ResultDiv::CreateDetailedView(long entry, Searchers searcher)

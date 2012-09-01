@@ -283,6 +283,74 @@ class CreatureTemplateInfo : protected TemplateInfo
         std::string _scriptName;
 };
 
+class GameObjectTemplateInfo : protected TemplateInfo
+{
+    public:
+        GameObjectTemplateInfo();
+        GameObjectTemplateInfo(const GameObjectTemplateInfo & cti);
+
+        template<class Action>
+        void persist(Action& a)
+        {
+            TemplateInfo::persist(a);
+        }
+
+        virtual Wt::WContainerWidget * CreateContainer() const;
+
+    private:
+};
+
+class QuestTemplateInfo : protected TemplateInfo
+{
+    public:
+        QuestTemplateInfo();
+        QuestTemplateInfo(const QuestTemplateInfo & cti);
+
+        template<class Action>
+        void persist(Action& a)
+        {
+            TemplateInfo::persist(a);
+        }
+
+        virtual Wt::WContainerWidget * CreateContainer() const;
+
+    private:
+};
+
+class SpellTemplateInfo : protected TemplateInfo
+{
+    public:
+        SpellTemplateInfo();
+        SpellTemplateInfo(const SpellTemplateInfo & cti);
+
+        template<class Action>
+        void persist(Action& a)
+        {
+            TemplateInfo::persist(a);
+        }
+
+        virtual Wt::WContainerWidget * CreateContainer() const;
+
+    private:
+};
+
+class ItemTemplateInfo : protected TemplateInfo
+{
+    public:
+        ItemTemplateInfo();
+        ItemTemplateInfo(const ItemTemplateInfo & cti);
+
+        template<class Action>
+        void persist(Action& a)
+        {
+            TemplateInfo::persist(a);
+        }
+
+        virtual Wt::WContainerWidget * CreateContainer() const;
+
+    private:
+};
+
 // disable default version and id fields for SearchResult class
 namespace Wt
 {
@@ -291,39 +359,49 @@ namespace Wt
         template<>
         struct dbo_traits<TemplateInfo> : public dbo_default_traits
         {
-            static long invalidId()
-            {
-                return 0;
-            }
-
-            static const char *surrogateIdField()
-            {
-                return NULL;
-            }
-
-            static const char *versionField()
-            {
-                return NULL;
-            }
+            static long invalidId() { return 0; }
+            static const char *surrogateIdField() { return NULL; }
+            static const char *versionField() { return NULL; }
         };
 
         template<>
         struct dbo_traits<CreatureTemplateInfo> : public dbo_default_traits
         {
-            static long invalidId()
-            {
-                return 0;
-            }
+            static long invalidId() { return 0; }
+            static const char *surrogateIdField() { return NULL; }
+            static const char *versionField() { return NULL; }
+        };
 
-            static const char *surrogateIdField()
-            {
-                return NULL;
-            }
+        template<>
+        struct dbo_traits<GameObjectTemplateInfo> : public dbo_default_traits
+        {
+            static long invalidId() { return 0; }
+            static const char *surrogateIdField() { return NULL; }
+            static const char *versionField() { return NULL; }
+        };
 
-            static const char *versionField()
-            {
-                return NULL;
-            }
+        template<>
+        struct dbo_traits<QuestTemplateInfo> : public dbo_default_traits
+        {
+            static long invalidId() { return 0; }
+            static const char *surrogateIdField() { return NULL; }
+            static const char *versionField() { return NULL; }
+        };
+
+        template<>
+        struct dbo_traits<SpellTemplateInfo> : public dbo_default_traits
+        {
+            static long invalidId() { return 0; }
+            static const char *surrogateIdField() { return NULL; }
+            static const char *versionField() { return NULL; }
+        };
+
+        template<>
+        struct dbo_traits<ItemTemplateInfo> : public dbo_default_traits
+        {
+            static long invalidId() { return 0; }
+            static const char *surrogateIdField() { return NULL; }
+            static const char *versionField() { return NULL; }
         };
     }
 }

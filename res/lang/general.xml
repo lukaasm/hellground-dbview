@@ -81,6 +81,10 @@
      Detailed informations for {1} {2} (entry {3})
    </message>
 
+   <message id='error-not-found'>
+     Specified query was not found !
+   </message>
+
    <message id='error-wrongsearcher'>
      You tried to use not existing searcher !
    </message>
