@@ -264,15 +264,26 @@ Wt::WContainerWidget * CreatureTemplateInfo::CreateContainer() const
 // Gameobject Template Info
 
 GameObjectTemplateInfo::GameObjectTemplateInfo()
-    : TemplateInfo()
+    : TemplateInfo(), _type(0), _displayId(0), _castBarCaption(""), _faction(0), _flags(0), _size(0), _scriptName("")
 {
-
+    for (int i = 0; i < 24; ++i)
+        _data[i] = 0;
 }
 
 GameObjectTemplateInfo::GameObjectTemplateInfo(const GameObjectTemplateInfo & gti)
     : TemplateInfo(gti.GetEntry(), gti.GetName())
 {
+    _type = gti.GetType();
+    _displayId = gti.GetDisplayId();
+    _castBarCaption = gti.GetCastBarCaption();
+    _faction = gti.GetFaction();
+    _flags = gti.GetFlags();
+    _size = gti.GetSize();
 
+    for (int i = 0; i < 24; ++i)
+        _data[i] = gti.GetData(i);
+
+    _scriptName = gti.GetScriptName();
 }
 
 Wt::WContainerWidget * GameObjectTemplateInfo::CreateContainer() const
@@ -283,15 +294,123 @@ Wt::WContainerWidget * GameObjectTemplateInfo::CreateContainer() const
 // Quest Template Info
 
 QuestTemplateInfo::QuestTemplateInfo()
-    : TemplateInfo()
+    : TemplateInfo(), _method(0), _zoneOrSort(0), _skillOrClass(0), _minLevel(0), _questLevel(0), _type(0),
+    _requiredRaces(0), _requiredSkillValue(0), _repObjectiveFaction(0), _repObjectiveValue(0), _requiredMinRepFaction(0),
+    _requiredMinRepValue(0), _requiredMaxRepFaction(0), _requiredMaxRepValue(0), _suggestedPlayers(0),_limitTime(0),
+    _questFlags(0), _specialFlags(0), _charTitleId(0), _prevQuestId(0), _nextQuestId(0), _exclusiveGroup(0),
+    _nextQuestInChain(0), _srcItemId(0), _srcItemCount(0), _srcSpell(0), _details(""), _objectives(""),
+    _offerRewardText(""), _requestItemsText(""), _endText(""), _rewHonorableKills(0), _rewOrReqMoney(0),
+    _rewMoneyMaxLevel(0), _rewSpell(0), _rewSpellCast(0), _rewMailTemplateId(0), _rewMailDelaySecs(0), _pointMapId(0),
+    _pointX(0.0f), _pointY(0.0f), _pointOpt(0), _incompleteEmote(0), _completeEmote(0), _startScript(0), _completeScript(0)
 {
+    for (int i = 0; i < 4; ++i)
+    {
+        _objectiveText[i] = "";
+        _reqItemId[i] = 0;
+        _reqItemCount[i] = 0;
+        _reqSourceId[i] = 0;
+        _reqSourceCount[i] = 0;
+        _reqSourceRef[i] = 0;
+        _reqCreatureOrGOId[i] = 0;
+        _reqCreatureOrGOCount[i] = 0;
+        _reqSpellCast[i] = 0;
+        _rewItemId[i] = 0;
+        _rewItemCount[i] = 0;
+        _detailsEmote[i] = 0;
+        _offerRewardEmote[i] = 0;
 
+        _rewChoiceItemId[i] = 0;
+        _rewChoiceItemCount[i] = 0;
+        _rewRepFaction[i] = 0;
+        _rewRepValue[i] = 0;
+    }
+
+    _rewChoiceItemId[4] = 0;
+    _rewChoiceItemCount[4] = 0;
+    _rewChoiceItemId[5] = 0;
+    _rewChoiceItemCount[5] = 0;
+    _rewRepFaction[4] = 0;
+    _rewRepValue[4] = 0;
 }
 
 QuestTemplateInfo::QuestTemplateInfo(const QuestTemplateInfo & qti)
     : TemplateInfo(qti.GetEntry(), qti.GetName())
 {
+    _method = qti.GetMethod();
+    _zoneOrSort = qti.GetZoneOrSort();
+    _skillOrClass = qti.GetSkillOrClass();
+    _minLevel = qti.GetMinLevel();
+    _questLevel = qti.GetQuestLevel();
+    _type = qti.GetType();
+    _requiredRaces = qti.GetRequiredRaces();
+    _requiredSkillValue = qti.GetRequiredSkillValue();
+    _repObjectiveFaction = qti.GetRepObjectiveFaction();
+    _repObjectiveValue = qti.GetRepObjectiveValue();
+    _requiredMinRepFaction = qti.GetRequiredMinRepFaction();
+    _requiredMinRepValue = qti.GetRequiredMinRepValue();
+    _requiredMaxRepFaction = qti.GetRequiredMaxRepFaction();
+    _requiredMaxRepValue = qti.GetRequiredMaxRepValue();
+    _suggestedPlayers = qti.GetSuggestedPlayers();
+    _limitTime = qti.GetLimitTime();
+    _questFlags = qti.GetQuestFlags();
+    _specialFlags = qti.GetSpecialFlags();
+    _charTitleId = qti.GetCharTitleId();
+    _prevQuestId = qti.GetPrevQuestId();
+    _nextQuestId = qti.GetNextQuestId();
+    _exclusiveGroup = qti.GetExclusiveGroup();
+    _nextQuestInChain = qti.GetNextQuestInChain();
+    _srcItemId = qti.GetSrcItemId();
+    _srcItemCount = qti.GetSrcItemCount();
+    _srcSpell = qti.GetSrcSpell();
+    _details = qti.GetDetails();
+    _objectives = qti.GetObjectives();
+    _offerRewardText = qti.GetOfferRewardText();
+    _requestItemsText = qti.GetRequestItemsText();
+    _endText = qti.GetEndText();
+    _rewHonorableKills = qti.GetRewHonorableKills();
+    _rewOrReqMoney = qti.GetRewOrReqMoney();
+    _rewMoneyMaxLevel = qti.GetRewMoneyMaxLevel();
+    _rewSpell = qti.GetRewSpell();
+    _rewSpellCast = qti.GetRewSpellCast();
+    _rewMailTemplateId = qti.GetRewMailTemplateId();
+    _rewMailDelaySecs = qti.GetRewMailDelaySecs();
+    _pointMapId = qti.GetPointMapId();
+    _pointX = qti.GetPointX();
+    _pointY = qti.GetPointY();
+    _pointOpt = qti.GetPointOpt();
+    _incompleteEmote = qti.GetIncompleteEmote();
+    _completeEmote = qti.GetCompleteEmote();
+    _startScript = qti.GetStartScript();
+    _completeScript = qti.GetCompleteScript();
 
+    for (int i = 0; i < 4; ++i)
+    {
+        _objectiveText[i] = qti.GetObjectiveText(i);
+        _reqItemId[i] = qti.GetReqItemId(i);
+        _reqItemCount[i] = qti.GetReqItemCount(i);
+        _reqSourceId[i] = qti.GetReqSourceId(i);
+        _reqSourceCount[i] = qti.GetReqSourceCount(i);
+        _reqSourceRef[i] = qti.GetReqSourceRef(i);
+        _reqCreatureOrGOId[i] = qti.GetReqCreatureOrGOId(i);
+        _reqCreatureOrGOCount[i] = qti.GetReqCreatureOrGOCount(i);
+        _reqSpellCast[i] = qti.GetReqSpellCast(i);
+        _rewItemId[i] = qti.GetRewItemId(i);
+        _rewItemCount[i] = qti.GetRewItemCount(i);
+        _detailsEmote[i] = qti.GetDetailsEmote(i);
+        _offerRewardEmote[i] = qti.GetOfferRewardEmote(i);
+
+        _rewChoiceItemId[i] = qti.GetRewChoiceItemId(i);
+        _rewChoiceItemCount[i] = qti.GetRewChoiceItemCount(i);
+        _rewRepFaction[i] = qti.GetRewRepFaction(i);
+        _rewRepValue[i] = qti.GetRewRepValue(i);
+    }
+
+    _rewChoiceItemId[4] = qti.GetRewChoiceItemId(4);
+    _rewChoiceItemCount[4] = qti.GetRewChoiceItemCount(4);
+    _rewChoiceItemId[5] = qti.GetRewChoiceItemId(5);
+    _rewChoiceItemCount[5] = qti.GetRewChoiceItemCount(5);
+    _rewRepFaction[4] = qti.GetRewRepFaction(4);
+    _rewRepValue[4] = qti.GetRewRepValue(4);
 }
 
 Wt::WContainerWidget * QuestTemplateInfo::CreateContainer() const
@@ -321,15 +440,139 @@ Wt::WContainerWidget * SpellTemplateInfo::CreateContainer() const
 // Item Template Info
 
 ItemTemplateInfo::ItemTemplateInfo()
-    : TemplateInfo()
+    : TemplateInfo(), _class(0), _subClass(0), _unk0(0), _displayId(0), _quality(0), _flags(0), _buyCount(0),
+    _buyPrice(0), _sellPrice(0), _inventoryType(0), _allowableClass(0), _allowableRace(0), _itemLevel(0),
+    _requiredLevel(0), _requiredSkill(0), _requiredSkillRank(0), _requiredSpell(0), _requiredHonorRank(0),
+    _requiredCityRank(0), _requiredReputationFaction(0), _requiredReputationRank(0), _maxCount(0), _stackable(0),
+    _containerSlots(0), _armor(0), _holyRes(0), _fireRes(0), _natureRes(0), _frostRes(0), _shadowRes(0),
+    _arcaneRes(0), _delay(0), _ammoType(0), _rangedModRange(0), _bonding(0), _description(""), _pageText(0),
+    _languageId(0), _pageMaterial(0), _startQuest(0), _lockId(0), _material(0), _sheath(0), _randomProperty(0),
+    _randomSuffix(0), _block(0), _itemSet(0), _maxDurability(0),_area(0), _map(0), _bagFamily(0), _totemCategory(0),
+    _socketBonus(0), _gemProperties(0), _requiredDisenchantSkill(0), _armorDamageModifier(0), _scriptName(""),
+    _disenchantId(0), _foodType(0), _minMoneyLoot(0), _maxMoneyLoot(0), _duration(0)
 {
+    for (int i = 0; i < 3; ++i)
+    {
+        _socketColor[i] = 0;
+        _socketContent[i] = 0;
+    }
 
+    for (int i = 0; i < 5; ++i)
+    {
+        _statType[i] = 0;
+        _statValue[i] = 0;
+        _dmgMin[i] = 0;
+        _dmgMax[i] = 0;
+        _dmgType[i] = 0;
+        _spellId[i] = 0;
+        _spellTrigger[i] = 0;
+        _spellCharges[i] = 0;
+        _spellPPMRate[i] = 0;
+        _spellCooldown[i] = 0;
+        _spellCategory[i] = 0;
+        _spellCategoryCooldown[i] = 0;
+    }
+
+    for (int i = 5; i < 10; ++i)
+    {
+        _statType[i] = 0;
+        _statValue[i] = 0;
+    }
 }
 
-ItemTemplateInfo::ItemTemplateInfo(const ItemTemplateInfo & gti)
-    : TemplateInfo(gti.GetEntry(), gti.GetName())
+ItemTemplateInfo::ItemTemplateInfo(const ItemTemplateInfo & iti)
+    : TemplateInfo(iti.GetEntry(), iti.GetName())
 {
+    _class = iti.GetClass();
+    _subClass = iti.GetSubClass();
+    _unk0 = iti.GetUnk0();
+    _displayId = iti.GetDisplayId();
+    _quality = iti.GetQuality();
+    _flags = iti.GetFlags();
+    _buyCount = iti.GetBuyCount();
+    _buyPrice = iti.GetBuyPrice();
+    _sellPrice = iti.GetSellPrice();
+    _inventoryType = iti.GetInventoryType();
+    _allowableClass = iti.GetAllowableClass();
+    _allowableRace = iti.GetAllowableRace();
+    _itemLevel = iti.GetItemLevel();
+    _requiredLevel = iti.GetRequiredLevel();
+    _requiredSkill = iti.GetRequiredSkill();
+    _requiredSkillRank = iti.GetRequiredSkillRank();
+    _requiredSpell = iti.GetRequiredSpell();
+    _requiredHonorRank = iti.GetRequiredHonorRank();
+    _requiredCityRank = iti.GetRequiredCityRank();
+    _requiredReputationFaction = iti.GetRequiredReputationFaction();
+    _requiredReputationRank = iti.GetRequiredReputationRank();
+    _maxCount = iti.GetMaxCount();
+    _stackable = iti.GetStackable();
+    _containerSlots = iti.GetContainerSlots();
+    _armor = iti.GetArmor();
+    _holyRes = iti.GetHolyRes();
+    _fireRes = iti.GetFireRes();
+    _natureRes = iti.GetNatureRes();
+    _frostRes = iti.GetFrostRes();
+    _shadowRes = iti.GetShadowRes();
+    _arcaneRes = iti.GetArcaneRes();
+    _delay = iti.GetDelay();
+    _ammoType = iti.GetAmmoType();
+    _rangedModRange = iti.GetRangedModRange();
+    _bonding = iti.GetBonding();
+    _description = iti.GetDescription();
+    _pageText = iti.GetPageText();
+    _languageId = iti.GetLanguageId();
+    _pageMaterial = iti.GetPageMaterial();
+    _startQuest = iti.GetStartQuest();
+    _lockId = iti.GetLockId();
+    _material = iti.GetMaterial();
+    _sheath = iti.GetSheath();
+    _randomProperty = iti.GetRandomProperty();
+    _randomSuffix = iti.GetRandomSuffix();
+    _block = iti.GetBlock();
+    _itemSet = iti.GetItemSet();
+    _maxDurability = iti.GetMaxDurability();
+    _area = iti.GetArea();
+    _map = iti.GetMap();
+    _bagFamily = iti.GetBagFamily();
+    _totemCategory = iti.GetTotemCategory();
+    _socketBonus = iti.GetSocketBonus();
+    _gemProperties = iti.GetGemProperties();
+    _requiredDisenchantSkill = iti.GetRequiredDisenchantSkill();
+    _armorDamageModifier = iti.GetArmorDamageModifier();
+    _scriptName = iti.GetScriptName();
+    _disenchantId = iti.GetDisenchantId();
+    _foodType = iti.GetFoodType();
+    _minMoneyLoot = iti.GetMinMoneyLoot();
+    _maxMoneyLoot = iti.GetMaxMoneyLoot();
+    _duration = iti.GetDuration();
 
+    for (int i = 0; i < 3; ++i)
+    {
+        _socketColor[i] = iti.GetSocketColor(i);
+        _socketContent[i] = iti.GetSocketContent(i);
+    }
+
+    for (int i = 0; i < 5; ++i)
+    {
+        _statType[i] = iti.GetStatType(i);
+        _statValue[i] = iti.GetStatValue(i);
+        _dmgMin[i] = iti.GetDmgMin(i);
+        _dmgMax[i] = iti.GetDmgMax(i);
+        _dmgType[i] = iti.GetDmgType(i);
+        _spellId[i] = iti.GetSpellId(i);
+        _spellTrigger[i] = iti.GetSpellTrigger(i);
+        _spellCharges[i] = iti.GetSpellCharges(i);
+        _spellPPMRate[i] = iti.GetSpellPPMRate(i);
+        _spellCooldown[i] = iti.GetSpellCooldown(i);
+        _spellCategory[i] = iti.GetSpellCategory(i);
+        _spellCategoryCooldown[i] = iti.GetSpellCategoryCooldown(i);
+    }
+
+    for (int i = 5; i < 10; ++i)
+    {
+        _statType[i] = iti.GetStatType(i);
+        _statValue[i] = iti.GetStatValue(i);
+    }
 }
 
 Wt::WContainerWidget * ItemTemplateInfo::CreateContainer() const
