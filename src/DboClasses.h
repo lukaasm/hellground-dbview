@@ -14,8 +14,8 @@
 *    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef H_DboClasses
-#define H_DboClasses
+#ifndef H_dboClasses
+#define H_dboClasses
 
 #include <string>
 
@@ -171,59 +171,59 @@ class CreatureTemplateInfo : protected TemplateInfo
 
         virtual Wt::WContainerWidget * CreateContainer() const;
 
-        long GetHeroicEntry() const { return _heroicEntry; }
-        long GetKillCredit() const { return _killCredit; }
-        long GetModelIdA(unsigned int i) const { return (i < 2) ? _modelIdA[i] : 0; }
-        long GetModelIdH(unsigned int i) const { return (i < 2) ? _modelIdH[i] : 0; }
+        const long & GetHeroicEntry() const { return _heroicEntry; }
+        const long & GetKillCredit() const { return _killCredit; }
+        const long & GetModelIdA(unsigned int i) const { return _modelIdA[i]; }
+        const long & GetModelIdH(unsigned int i) const { return _modelIdH[i]; }
         const std::string & GetSubName() const { return _subName; }
         const std::string & GetIconName() const { return _iconName; }
-        int GetMinLevel() const { return _minLevel; }
-        int GetMaxLevel() const { return _maxLevel; }
-        double GetMinHealth() const { return _minHealth; }
-        double GetMaxHealth() const { return _maxHealth; }
-        double GetMinMana() const { return _minMana; }
-        double GetMaxMana() const { return _maxMana; }
-        long GetArmor() const { return _armor; }
-        int GetFactionA() const { return _factionA; }
-        int GetFactionH() const { return _factionH; }
-        double GetNpcFlags() const { return _npcFlags; }
-        float GetSpeed() const { return _speed; }
-        float GetScale() const { return _scale; }
-        int GetRank() const { return _rank; }
-        float GetMinDmg() const { return _minDmg; }
-        float GetMaxDmg() const { return _maxDmg; }
-        int GetDmgSchool() const { return _dmgSchool; }
-        double GetAttackPower() const { return _attackPower; }
-        double GetBaseAttackTime() const { return _baseAttackTime; }
-        double GetRangeAttackTime() const { return _rangeAttackTime; }
-        double GetUnitFlags() const { return _unitFlags; }
-        double GetDynamicFlags() const { return _dynamicFlags; }
-        int GetFamily() const { return _family; }
-        int GetTrainerType() const { return _trainerType; }
-        int GetTrainerSpell() const { return _trainerSpell; }
-        int GetClass() const { return _class; }
-        int GetRace() const { return _race; }
-        float GetMinRangeDmg() const { return _minRangeDmg; }
-        float GetMaxRangeDmg() const { return _maxRangeDmg; }
-        long GetRangeAttackPower() const { return _rangeAttackPower; }
-        int GetType() const { return _type; }
-        double GetTypeFlags() const { return _typeFlags; }
-        int GetLootId() const { return _lootId; }
-        int GetPickPocketLoot() const { return _pickPocketLoot; }
-        int GetSkinLoot() const { return _skinLoot; }
-        int GetResistance(unsigned int i) const { return (i < 6) ? _resistance[i] : 0; }
-        int GetSpell(unsigned int i) const { return (i < 5 ) ? _spell[i] : 0; }
-        int GetPetSpellDataId() const { return _petSpellDataId; }
-        long GetMinGold() const { return _minGold; }
-        long GetMaxGold() const { return _maxGold; }
+        const int & GetMinLevel() const { return _minLevel; }
+        const int & GetMaxLevel() const { return _maxLevel; }
+        const double & GetMinHealth() const { return _minHealth; }
+        const double & GetMaxHealth() const { return _maxHealth; }
+        const double & GetMinMana() const { return _minMana; }
+        const double & GetMaxMana() const { return _maxMana; }
+        const long & GetArmor() const { return _armor; }
+        const int & GetFactionA() const { return _factionA; }
+        const int & GetFactionH() const { return _factionH; }
+        const double & GetNpcFlags() const { return _npcFlags; }
+        const float & GetSpeed() const { return _speed; }
+        const float & GetScale() const { return _scale; }
+        const int & GetRank() const { return _rank; }
+        const float & GetMinDmg() const { return _minDmg; }
+        const float & GetMaxDmg() const { return _maxDmg; }
+        const int & GetDmgSchool() const { return _dmgSchool; }
+        const double & GetAttackPower() const { return _attackPower; }
+        const double & GetBaseAttackTime() const { return _baseAttackTime; }
+        const double & GetRangeAttackTime() const { return _rangeAttackTime; }
+        const double & GetUnitFlags() const { return _unitFlags; }
+        const double & GetDynamicFlags() const { return _dynamicFlags; }
+        const int & GetFamily() const { return _family; }
+        const int & GetTrainerType() const { return _trainerType; }
+        const int & GetTrainerSpell() const { return _trainerSpell; }
+        const int & GetClass() const { return _class; }
+        const int & GetRace() const { return _race; }
+        const float & GetMinRangeDmg() const { return _minRangeDmg; }
+        const float & GetMaxRangeDmg() const { return _maxRangeDmg; }
+        const long & GetRangeAttackPower() const { return _rangeAttackPower; }
+        const int & GetType() const { return _type; }
+        const double & GetTypeFlags() const { return _typeFlags; }
+        const int & GetLootId() const { return _lootId; }
+        const int & GetPickPocketLoot() const { return _pickPocketLoot; }
+        const int & GetSkinLoot() const { return _skinLoot; }
+        const int & GetResistance(unsigned int i) const { return _resistance[i]; }
+        const int & GetSpell(unsigned int i) const { return _spell[i]; }
+        const int & GetPetSpellDataId() const { return _petSpellDataId; }
+        const long & GetMinGold() const { return _minGold; }
+        const long & GetMaxGold() const { return _maxGold; }
         const std::string & GetAiName() const { return _aiName; }
-        int GetMovementType() const { return _movementType; }
-        int GetInhabitType() const { return _inhabitType; }
-        int GetRacialLeader() const { return _racialLeader; }
-        int GetRegenHealth() const { return _regenHealth; }
-        int GetEquipmentId() const { return _equipmentId; }
-        double GetMechanicImmuneMask() const { return _mechanicImmuneMask; }
-        double GetFlagsExtra() const { return _flagsExtra; }
+        const int & GetMovementType() const { return _movementType; }
+        const int & GetInhabitType() const { return _inhabitType; }
+        const int & GetRacialLeader() const { return _racialLeader; }
+        const int & GetRegenHealth() const { return _regenHealth; }
+        const int & GetEquipmentId() const { return _equipmentId; }
+        const double & GetMechanicImmuneMask() const { return _mechanicImmuneMask; }
+        const double & GetFlagsExtra() const { return _flagsExtra; }
         const std::string & GetScriptName() const { return _scriptName; }
 
     private:
@@ -287,41 +287,338 @@ class GameObjectTemplateInfo : protected TemplateInfo
 {
     public:
         GameObjectTemplateInfo();
-        GameObjectTemplateInfo(const GameObjectTemplateInfo & cti);
+        GameObjectTemplateInfo(const GameObjectTemplateInfo & gti);
 
         template<class Action>
         void persist(Action& a)
         {
             TemplateInfo::persist(a);
+
+            Wt::Dbo::field(a, _type, "type");
+            Wt::Dbo::field(a, _displayId, "displayId");
+            Wt::Dbo::field(a, _castBarCaption, "castBarCaption");
+            Wt::Dbo::field(a, _faction, "faction");
+            Wt::Dbo::field(a, _flags, "flags");
+            Wt::Dbo::field(a, _size, "size");
+            Wt::Dbo::field(a, _data[0], "data0");
+            Wt::Dbo::field(a, _data[1], "data1");
+            Wt::Dbo::field(a, _data[2], "data2");
+            Wt::Dbo::field(a, _data[3], "data3");
+            Wt::Dbo::field(a, _data[4], "data4");
+            Wt::Dbo::field(a, _data[5], "data5");
+            Wt::Dbo::field(a, _data[6], "data6");
+            Wt::Dbo::field(a, _data[7], "data7");
+            Wt::Dbo::field(a, _data[8], "data8");
+            Wt::Dbo::field(a, _data[9], "data9");
+            Wt::Dbo::field(a, _data[10], "data10");
+            Wt::Dbo::field(a, _data[11], "data11");
+            Wt::Dbo::field(a, _data[12], "data12");
+            Wt::Dbo::field(a, _data[13], "data13");
+            Wt::Dbo::field(a, _data[14], "data14");
+            Wt::Dbo::field(a, _data[15], "data15");
+            Wt::Dbo::field(a, _data[16], "data16");
+            Wt::Dbo::field(a, _data[17], "data17");
+            Wt::Dbo::field(a, _data[18], "data18");
+            Wt::Dbo::field(a, _data[19], "data19");
+            Wt::Dbo::field(a, _data[10], "data20");
+            Wt::Dbo::field(a, _data[21], "data21");
+            Wt::Dbo::field(a, _data[22], "data22");
+            Wt::Dbo::field(a, _data[23], "data23");
+            Wt::Dbo::field(a, _scriptName, "ScriptName");
         }
 
         virtual Wt::WContainerWidget * CreateContainer() const;
 
+        const int & GetType() const { return _type; }
+        const int & GetDisplayId() const { return _displayId; }
+        const std::string & GetCastBarCaption() const { return _castBarCaption; }
+        const int & GetFaction() const { return _faction; }
+        const long & GetFlags() const { return _flags; }
+        const float & GetSize() const { return _size; }
+        const int & GetData(unsigned int i) const { return _data[i]; }
+        const std::string & GetScriptName() const { return _scriptName; }
+
     private:
+        int _type;
+        int _displayId;
+        std::string _castBarCaption;
+        int _faction;
+        long _flags;
+        float _size;
+        int _data[24];
+        std::string _scriptName;
 };
 
 class QuestTemplateInfo : protected TemplateInfo
 {
     public:
         QuestTemplateInfo();
-        QuestTemplateInfo(const QuestTemplateInfo & cti);
+        QuestTemplateInfo(const QuestTemplateInfo & qti);
 
         template<class Action>
         void persist(Action& a)
         {
             TemplateInfo::persist(a);
+
+            Wt::Dbo::field(a, _method, "Method");
+            Wt::Dbo::field(a, _zoneOrSort, "ZoneOrSort");
+            Wt::Dbo::field(a, _skillOrClass, "SkillOrClass");
+            Wt::Dbo::field(a, _minLevel, "MinLevel");
+            Wt::Dbo::field(a, _questLevel, "QuestLevel");
+            Wt::Dbo::field(a, _type, "Type");
+            Wt::Dbo::field(a, _requiredRaces, "RequiredRaces");
+            Wt::Dbo::field(a, _requiredSkillValue, "RequiredSkillValue");
+            Wt::Dbo::field(a, _repObjectiveFaction, "RepObjectiveFaction");
+            Wt::Dbo::field(a, _repObjectiveValue, "RepObjectiveValue");
+            Wt::Dbo::field(a, _requiredMinRepFaction, "RequiredMinRepFaction");
+            Wt::Dbo::field(a, _requiredMinRepValue, "RequiredMinRepValue");
+            Wt::Dbo::field(a, _requiredMaxRepFaction, "RequiredMaxRepFaction");
+            Wt::Dbo::field(a, _requiredMaxRepValue, "RequiredMaxRepValue");
+            Wt::Dbo::field(a, _suggestedPlayers, "SuggestedPlayers");
+            Wt::Dbo::field(a, _limitTime, "LimitTime");
+            Wt::Dbo::field(a, _questFlags, "QuestFlags");
+            Wt::Dbo::field(a, _specialFlags, "SpecialFlags");
+            Wt::Dbo::field(a, _charTitleId, "CharTitleId");
+            Wt::Dbo::field(a, _prevQuestId, "PrevQuestId");
+            Wt::Dbo::field(a, _nextQuestId, "NextQuestId");
+            Wt::Dbo::field(a, _exclusiveGroup, "ExclusiveGroup");
+            Wt::Dbo::field(a, _nextQuestInChain, "NextQuestInChain");
+            Wt::Dbo::field(a, _srcItemId, "SrcItemId");
+            Wt::Dbo::field(a, _srcItemCount, "SrcItemCount");
+            Wt::Dbo::field(a, _srcSpell, "SrcSpell");
+            Wt::Dbo::field(a, _details, "Details");
+            Wt::Dbo::field(a, _objectives, "Objectives");
+            Wt::Dbo::field(a, _offerRewardText, "OfferRewardText");
+            Wt::Dbo::field(a, _requestItemsText, "RequestItemsText");
+            Wt::Dbo::field(a, _endText, "EndText");
+            Wt::Dbo::field(a, _objectiveText[0], "ObjectiveText1");
+            Wt::Dbo::field(a, _objectiveText[1], "ObjectiveText2");
+            Wt::Dbo::field(a, _objectiveText[2], "ObjectiveText3");
+            Wt::Dbo::field(a, _objectiveText[3], "ObjectiveText4");
+            Wt::Dbo::field(a, _reqItemId[0], "ReqItemId1");
+            Wt::Dbo::field(a, _reqItemId[1], "ReqItemId2");
+            Wt::Dbo::field(a, _reqItemId[2], "ReqItemId3");
+            Wt::Dbo::field(a, _reqItemId[3], "ReqItemId4");
+            Wt::Dbo::field(a, _reqItemCount[0], "ReqItemCount1");
+            Wt::Dbo::field(a, _reqItemCount[1], "ReqItemCount2");
+            Wt::Dbo::field(a, _reqItemCount[2], "ReqItemCount3");
+            Wt::Dbo::field(a, _reqItemCount[3], "ReqItemCount4");
+            Wt::Dbo::field(a, _reqSourceId[0], "ReqSourceId1");
+            Wt::Dbo::field(a, _reqSourceId[1], "ReqSourceId2");
+            Wt::Dbo::field(a, _reqSourceId[2], "ReqSourceId3");
+            Wt::Dbo::field(a, _reqSourceId[3], "ReqSourceId4");
+            Wt::Dbo::field(a, _reqSourceCount[0], "ReqSourceCount1");
+            Wt::Dbo::field(a, _reqSourceCount[1], "ReqSourceCount2");
+            Wt::Dbo::field(a, _reqSourceCount[2], "ReqSourceCount3");
+            Wt::Dbo::field(a, _reqSourceCount[3], "ReqSourceCount4");
+            Wt::Dbo::field(a, _reqSourceRef[0], "ReqSourceRef1");
+            Wt::Dbo::field(a, _reqSourceRef[1], "ReqSourceRef2");
+            Wt::Dbo::field(a, _reqSourceRef[2], "ReqSourceRef3");
+            Wt::Dbo::field(a, _reqSourceRef[3], "ReqSourceRef4");
+            Wt::Dbo::field(a, _reqCreatureOrGOId[0], "ReqCreatureOrGOId1");
+            Wt::Dbo::field(a, _reqCreatureOrGOId[1], "ReqCreatureOrGOId2");
+            Wt::Dbo::field(a, _reqCreatureOrGOId[2], "ReqCreatureOrGOId3");
+            Wt::Dbo::field(a, _reqCreatureOrGOId[3], "ReqCreatureOrGOId4");
+            Wt::Dbo::field(a, _reqCreatureOrGOCount[0], "ReqCreatureOrGOCount1");
+            Wt::Dbo::field(a, _reqCreatureOrGOCount[1], "ReqCreatureOrGOCount2");
+            Wt::Dbo::field(a, _reqCreatureOrGOCount[2], "ReqCreatureOrGOCount3");
+            Wt::Dbo::field(a, _reqCreatureOrGOCount[3], "ReqCreatureOrGOCount4");
+            Wt::Dbo::field(a, _reqSpellCast[0], "ReqSpellCast1");
+            Wt::Dbo::field(a, _reqSpellCast[1], "ReqSpellCast2");
+            Wt::Dbo::field(a, _reqSpellCast[2], "ReqSpellCast3");
+            Wt::Dbo::field(a, _reqSpellCast[3], "ReqSpellCast4");
+            Wt::Dbo::field(a, _rewChoiceItemId[0], "RewChoiceItemId1");
+            Wt::Dbo::field(a, _rewChoiceItemId[1], "RewChoiceItemId2");
+            Wt::Dbo::field(a, _rewChoiceItemId[2], "RewChoiceItemId3");
+            Wt::Dbo::field(a, _rewChoiceItemId[3], "RewChoiceItemId4");
+            Wt::Dbo::field(a, _rewChoiceItemId[4], "RewChoiceItemId5");
+            Wt::Dbo::field(a, _rewChoiceItemId[5], "RewChoiceItemId6");
+            Wt::Dbo::field(a, _rewChoiceItemCount[0], "RewChoiceItemCount1");
+            Wt::Dbo::field(a, _rewChoiceItemCount[1], "RewChoiceItemCount2");
+            Wt::Dbo::field(a, _rewChoiceItemCount[2], "RewChoiceItemCount3");
+            Wt::Dbo::field(a, _rewChoiceItemCount[3], "RewChoiceItemCount4");
+            Wt::Dbo::field(a, _rewChoiceItemCount[4], "RewChoiceItemCount5");
+            Wt::Dbo::field(a, _rewChoiceItemCount[5], "RewChoiceItemCount6");
+            Wt::Dbo::field(a, _rewItemId[0], "RewItemId1");
+            Wt::Dbo::field(a, _rewItemId[1], "RewItemId2");
+            Wt::Dbo::field(a, _rewItemId[2], "RewItemId3");
+            Wt::Dbo::field(a, _rewItemId[3], "RewItemId4");
+            Wt::Dbo::field(a, _rewItemCount[0], "RewItemCount1");
+            Wt::Dbo::field(a, _rewItemCount[1], "RewItemCount2");
+            Wt::Dbo::field(a, _rewItemCount[2], "RewItemCount3");
+            Wt::Dbo::field(a, _rewItemCount[3], "RewItemCount4");
+            Wt::Dbo::field(a, _rewRepFaction[0], "RewRepFaction1");
+            Wt::Dbo::field(a, _rewRepFaction[1], "RewRepFaction2");
+            Wt::Dbo::field(a, _rewRepFaction[2], "RewRepFaction3");
+            Wt::Dbo::field(a, _rewRepFaction[3], "RewRepFaction4");
+            Wt::Dbo::field(a, _rewRepFaction[4], "RewRepFaction5");
+            Wt::Dbo::field(a, _rewRepValue[0], "RewRepValue1");
+            Wt::Dbo::field(a, _rewRepValue[1], "RewRepValue2");
+            Wt::Dbo::field(a, _rewRepValue[2], "RewRepValue3");
+            Wt::Dbo::field(a, _rewRepValue[3], "RewRepValue4");
+            Wt::Dbo::field(a, _rewRepValue[4], "RewRepValue5");
+            Wt::Dbo::field(a, _rewHonorableKills, "RewHonorableKills");
+            Wt::Dbo::field(a, _rewOrReqMoney, "RewOrReqMoney");
+            Wt::Dbo::field(a, _rewMoneyMaxLevel, "RewMoneyMaxLevel");
+            Wt::Dbo::field(a, _rewSpell, "RewSpell");
+            Wt::Dbo::field(a, _rewSpellCast, "RewSpellCast");
+            Wt::Dbo::field(a, _rewMailTemplateId, "RewMailTemplateId");
+            Wt::Dbo::field(a, _rewMailDelaySecs, "RewMailDelaySecs");
+            Wt::Dbo::field(a, _pointMapId, "PointMapId");
+            Wt::Dbo::field(a, _pointX, "PointX");
+            Wt::Dbo::field(a, _pointY, "PointY");
+            Wt::Dbo::field(a, _pointOpt, "PointOpt");
+            Wt::Dbo::field(a, _detailsEmote[0], "DetailsEmote1");
+            Wt::Dbo::field(a, _detailsEmote[1], "DetailsEmote2");
+            Wt::Dbo::field(a, _detailsEmote[2], "DetailsEmote3");
+            Wt::Dbo::field(a, _detailsEmote[3], "DetailsEmote4");
+            Wt::Dbo::field(a, _incompleteEmote, "IncompleteEmote");
+            Wt::Dbo::field(a, _completeEmote, "CompleteEmote");
+            Wt::Dbo::field(a, _offerRewardEmote[0], "OfferRewardEmote1");
+            Wt::Dbo::field(a, _offerRewardEmote[1], "OfferRewardEmote2");
+            Wt::Dbo::field(a, _offerRewardEmote[2], "OfferRewardEmote3");
+            Wt::Dbo::field(a, _offerRewardEmote[3], "OfferRewardEmote4");
+            Wt::Dbo::field(a, _startScript, "StartScript");
+            Wt::Dbo::field(a, _completeScript, "CompleteScript");
         }
 
         virtual Wt::WContainerWidget * CreateContainer() const;
 
+        const int & GetMethod() const { return _method; }
+        const int & GetZoneOrSort() const { return _zoneOrSort; }
+        const int & GetSkillOrClass() const { return _skillOrClass; }
+        const int & GetMinLevel() const { return _minLevel; }
+        const int & GetQuestLevel() const { return _questLevel; }
+        const int & GetType() const { return _type; }
+        const int & GetRequiredRaces() const { return _requiredRaces; }
+        const int & GetRequiredSkillValue() const { return _requiredSkillValue; }
+        const int & GetRepObjectiveFaction() const { return _repObjectiveFaction; }
+        const int & GetRepObjectiveValue() const { return _repObjectiveValue; }
+        const int & GetRequiredMinRepFaction() const { return _requiredMinRepFaction; }
+        const int & GetRequiredMinRepValue() const { return _requiredMinRepValue; }
+        const int & GetRequiredMaxRepFaction() const { return _requiredMaxRepFaction; }
+        const int & GetRequiredMaxRepValue() const { return _requiredMaxRepValue; }
+        const int & GetSuggestedPlayers() const { return _suggestedPlayers; }
+        const long & GetLimitTime() const { return _limitTime; }
+        const long & GetQuestFlags() const { return _questFlags; }
+        const long & GetSpecialFlags() const { return _specialFlags; }
+        const int & GetCharTitleId() const { return _charTitleId; }
+        const int & GetPrevQuestId() const { return _prevQuestId; }
+        const int & GetNextQuestId() const { return _nextQuestId; }
+        const int & GetExclusiveGroup() const { return _exclusiveGroup; }
+        const int & GetNextQuestInChain() const { return _nextQuestInChain; }
+        const int & GetSrcItemId() const { return _srcItemId; }
+        const int & GetSrcItemCount() const { return _srcItemCount; }
+        const int & GetSrcSpell() const { return _srcSpell; }
+        const std::string & GetDetails() const { return _details; }
+        const std::string & GetObjectives() const { return _objectives; }
+        const std::string & GetOfferRewardText() const { return _offerRewardText; }
+        const std::string & GetRequestItemsText() const { return _requestItemsText; }
+        const std::string & GetEndText() const { return _endText; }
+        const std::string & GetObjectiveText(unsigned int i) const { return _objectiveText[i]; }
+        const int & GetReqItemId(unsigned int i) const { return _reqItemId[i]; }
+        const int & GetReqItemCount(unsigned int i) const { return _reqItemCount[i]; }
+        const int & GetReqSourceId(unsigned int i) const { return _reqSourceId[i]; }
+        const int & GetReqSourceCount(unsigned int i) const { return _reqSourceCount[i]; }
+        const int & GetReqSourceRef(unsigned int i) const { return _reqSourceRef[i]; }
+        const int & GetReqCreatureOrGOId(unsigned int i) const { return _reqCreatureOrGOId[i]; }
+        const int & GetReqCreatureOrGOCount(unsigned int i) const { return _reqCreatureOrGOCount[i]; }
+        const int & GetReqSpellCast(unsigned int i) const { return _reqSpellCast[i]; }
+        const int & GetRewChoiceItemId(unsigned int i) const { return _rewChoiceItemId[i]; }
+        const int & GetRewChoiceItemCount(unsigned int i) const { return _rewChoiceItemCount[i]; }
+        const int & GetRewItemId(unsigned int i) const { return _rewItemId[i]; }
+        const int & GetRewItemCount(unsigned int i) const { return _rewItemCount[i]; }
+        const int & GetRewRepFaction(unsigned int i) const { return _rewRepFaction[i]; }
+        const int & GetRewRepValue(unsigned int i) const { return _rewRepValue[i]; }
+        const int & GetRewHonorableKills() const { return _rewHonorableKills; }
+        const long & GetRewOrReqMoney() const { return _rewOrReqMoney; }
+        const long & GetRewMoneyMaxLevel() const { return _rewMoneyMaxLevel; }
+        const int & GetRewSpell() const { return _rewSpell; }
+        const int & GetRewSpellCast() const { return _rewSpellCast; }
+        const int & GetRewMailTemplateId() const { return _rewMailTemplateId; }
+        const long & GetRewMailDelaySecs() const { return _rewMailDelaySecs; }
+        const int & GetPointMapId() const { return _pointMapId; }
+        const float & GetPointX() const { return _pointX; }
+        const float & GetPointY() const { return _pointY; }
+        const int & GetPointOpt() const { return _pointOpt; }
+        const int & GetDetailsEmote(unsigned int i) const { return _detailsEmote[0]; }
+        const int & GetIncompleteEmote() const { return _incompleteEmote; }
+        const int & GetCompleteEmote() const { return _completeEmote; }
+        const int & GetOfferRewardEmote(unsigned int i) const { return _offerRewardEmote[i]; }
+        const int & GetStartScript() const { return _startScript; }
+        const int & GetCompleteScript() const { return _completeScript; }
+
     private:
+        int _method;
+        int _zoneOrSort;
+        int _skillOrClass;
+        int _minLevel;
+        int _questLevel;
+        int _type;
+        int _requiredRaces;
+        int _requiredSkillValue;
+        int _repObjectiveFaction;
+        int _repObjectiveValue;
+        int _requiredMinRepFaction;
+        int _requiredMinRepValue;
+        int _requiredMaxRepFaction;
+        int _requiredMaxRepValue;
+        int _suggestedPlayers;
+        long _limitTime;
+        long _questFlags;
+        long _specialFlags;
+        int _charTitleId;
+        int _prevQuestId;
+        int _nextQuestId;
+        int _exclusiveGroup;
+        int _nextQuestInChain;
+        int _srcItemId;
+        int _srcItemCount;
+        int _srcSpell;
+        std::string _details;
+        std::string _objectives;
+        std::string _offerRewardText;
+        std::string _requestItemsText;
+        std::string _endText;
+        std::string _objectiveText[4];
+        int _reqItemId[4];
+        int _reqItemCount[4];
+        int _reqSourceId[4];
+        int _reqSourceCount[4];
+        int _reqSourceRef[4];
+        int _reqCreatureOrGOId[4];
+        int _reqCreatureOrGOCount[4];
+        int _reqSpellCast[4];
+        int _rewChoiceItemId[6];
+        int _rewChoiceItemCount[6];
+        int _rewItemId[4];
+        int _rewItemCount[4];
+        int _rewRepFaction[5];
+        int _rewRepValue[5];
+        int _rewHonorableKills;
+        long _rewOrReqMoney;
+        long _rewMoneyMaxLevel;
+        int _rewSpell;
+        int _rewSpellCast;
+        int _rewMailTemplateId;
+        long _rewMailDelaySecs;
+        int _pointMapId;
+        float _pointX;
+        float _pointY;
+        int _pointOpt;
+        int _detailsEmote[4];
+        int _incompleteEmote;
+        int _completeEmote;
+        int _offerRewardEmote[4];
+        int _startScript;
+        int _completeScript;
 };
 
 class SpellTemplateInfo : protected TemplateInfo
 {
     public:
         SpellTemplateInfo();
-        SpellTemplateInfo(const SpellTemplateInfo & cti);
+        SpellTemplateInfo(const SpellTemplateInfo & sti);
 
         template<class Action>
         void persist(Action& a)
@@ -338,17 +635,309 @@ class ItemTemplateInfo : protected TemplateInfo
 {
     public:
         ItemTemplateInfo();
-        ItemTemplateInfo(const ItemTemplateInfo & cti);
+        ItemTemplateInfo(const ItemTemplateInfo & iti);
 
         template<class Action>
         void persist(Action& a)
         {
             TemplateInfo::persist(a);
+
+            Wt::Dbo::field(a, _class, "class");
+            Wt::Dbo::field(a, _subClass, "subclass");
+            Wt::Dbo::field(a, _unk0, "unk0");
+            Wt::Dbo::field(a, _displayId, "displayid");
+            Wt::Dbo::field(a, _quality, "Quality");
+            Wt::Dbo::field(a, _flags, "Flags");
+            Wt::Dbo::field(a, _buyCount, "BuyCount");
+            Wt::Dbo::field(a, _buyPrice, "BuyPrice");
+            Wt::Dbo::field(a, _sellPrice, "SellPrice");
+            Wt::Dbo::field(a, _inventoryType, "InventoryType");
+            Wt::Dbo::field(a, _allowableClass, "AllowableClass");
+            Wt::Dbo::field(a, _allowableRace, "AllowableRace");
+            Wt::Dbo::field(a, _itemLevel, "ItemLevel");
+            Wt::Dbo::field(a, _requiredLevel, "RequiredLevel");
+            Wt::Dbo::field(a, _requiredSkill, "RequiredSkill");
+            Wt::Dbo::field(a, _requiredSkillRank, "RequiredSkillRank");
+            Wt::Dbo::field(a, _requiredSpell, "requiredspell");
+            Wt::Dbo::field(a, _requiredHonorRank, "requiredhonorrank");
+            Wt::Dbo::field(a, _requiredCityRank, "RequiredCityRank");
+            Wt::Dbo::field(a, _requiredReputationFaction, "RequiredReputationFaction");
+            Wt::Dbo::field(a, _requiredReputationRank, "RequiredReputationRank");
+            Wt::Dbo::field(a, _maxCount, "maxcount");
+            Wt::Dbo::field(a, _stackable, "stackable");
+            Wt::Dbo::field(a, _containerSlots, "ContainerSlots");
+            Wt::Dbo::field(a, _statType[0], "stat_type1");
+            Wt::Dbo::field(a, _statValue[1], "stat_value1");
+            Wt::Dbo::field(a, _statType[1], "stat_type2");
+            Wt::Dbo::field(a, _statValue[2], "stat_value2");
+            Wt::Dbo::field(a, _statType[2], "stat_type3");
+            Wt::Dbo::field(a, _statValue[3], "stat_value3");
+            Wt::Dbo::field(a, _statType[3], "stat_type4");
+            Wt::Dbo::field(a, _statValue[4], "stat_value4");
+            Wt::Dbo::field(a, _statType[4], "stat_type5");
+            Wt::Dbo::field(a, _statValue[4], "stat_value5");
+            Wt::Dbo::field(a, _statType[5], "stat_type6");
+            Wt::Dbo::field(a, _statValue[5], "stat_value6");
+            Wt::Dbo::field(a, _statType[6], "stat_type7");
+            Wt::Dbo::field(a, _statValue[6], "stat_value7");
+            Wt::Dbo::field(a, _statType[7], "stat_type8");
+            Wt::Dbo::field(a, _statValue[7], "stat_value8");
+            Wt::Dbo::field(a, _statType[8], "stat_type9");
+            Wt::Dbo::field(a, _statValue[8], "stat_value9");
+            Wt::Dbo::field(a, _statType[9], "stat_type10");
+            Wt::Dbo::field(a, _statValue[9], "stat_value10");
+            Wt::Dbo::field(a, _dmgMin[0], "dmg_min1");
+            Wt::Dbo::field(a, _dmgMax[0], "dmg_max1");
+            Wt::Dbo::field(a, _dmgType[0], "dmg_type1");
+            Wt::Dbo::field(a, _dmgMin[1], "dmg_min2");
+            Wt::Dbo::field(a, _dmgMax[1], "dmg_max2");
+            Wt::Dbo::field(a, _dmgType[1], "dmg_type2");
+            Wt::Dbo::field(a, _dmgMin[2], "dmg_min3");
+            Wt::Dbo::field(a, _dmgMax[2], "dmg_max3");
+            Wt::Dbo::field(a, _dmgType[2], "dmg_type3");
+            Wt::Dbo::field(a, _dmgMin[3], "dmg_min4");
+            Wt::Dbo::field(a, _dmgMax[3], "dmg_max4");
+            Wt::Dbo::field(a, _dmgType[3], "dmg_type4");
+            Wt::Dbo::field(a, _dmgMin[4], "dmg_min5");
+            Wt::Dbo::field(a, _dmgMax[4], "dmg_max5");
+            Wt::Dbo::field(a, _dmgType[4], "dmg_type5");
+            Wt::Dbo::field(a, _armor, "armor");
+            Wt::Dbo::field(a, _holyRes, "holy_res");
+            Wt::Dbo::field(a, _fireRes, "fire_res");
+            Wt::Dbo::field(a, _natureRes, "nature_res");
+            Wt::Dbo::field(a, _frostRes, "frost_res");
+            Wt::Dbo::field(a, _shadowRes, "shadow_res");
+            Wt::Dbo::field(a, _arcaneRes, "arcane_res");
+            Wt::Dbo::field(a, _delay, "delay");
+            Wt::Dbo::field(a, _ammoType, "ammo_type");
+            Wt::Dbo::field(a, _rangedModRange, "RangedModRange");
+            Wt::Dbo::field(a, _spellId[0], "spellid_1");
+            Wt::Dbo::field(a, _spellTrigger[0], "spelltrigger_1");
+            Wt::Dbo::field(a, _spellCharges[0], "spellcharges_1");
+            Wt::Dbo::field(a, _spellPPMRate[0], "spellppmRate_1");
+            Wt::Dbo::field(a, _spellCooldown[0], "spellcooldown_1");
+            Wt::Dbo::field(a, _spellCategory[0], "spellcategory_1");
+            Wt::Dbo::field(a, _spellCategoryCooldown[0], "spellcategorycooldown_1");
+            Wt::Dbo::field(a, _spellId[1], "spellid_2");
+            Wt::Dbo::field(a, _spellTrigger[1], "spelltrigger_2");
+            Wt::Dbo::field(a, _spellCharges[1], "spellcharges_2");
+            Wt::Dbo::field(a, _spellPPMRate[1], "spellppmRate_2");
+            Wt::Dbo::field(a, _spellCooldown[1], "spellcooldown_2");
+            Wt::Dbo::field(a, _spellCategory[1], "spellcategory_2");
+            Wt::Dbo::field(a, _spellCategoryCooldown[1], "spellcategorycooldown_2");
+            Wt::Dbo::field(a, _spellId[2], "spellid_3");
+            Wt::Dbo::field(a, _spellTrigger[2], "spelltrigger_3");
+            Wt::Dbo::field(a, _spellCharges[2], "spellcharges_3");
+            Wt::Dbo::field(a, _spellPPMRate[2], "spellppmRate_3");
+            Wt::Dbo::field(a, _spellCooldown[2], "spellcooldown_3");
+            Wt::Dbo::field(a, _spellCategory[2], "spellcategory_3");
+            Wt::Dbo::field(a, _spellCategoryCooldown[2], "spellcategorycooldown_3");
+            Wt::Dbo::field(a, _spellId[3], "spellid_4");
+            Wt::Dbo::field(a, _spellTrigger[3], "spelltrigger_4");
+            Wt::Dbo::field(a, _spellCharges[3], "spellcharges_4");
+            Wt::Dbo::field(a, _spellPPMRate[3], "spellppmRate_4");
+            Wt::Dbo::field(a, _spellCooldown[3], "spellcooldown_4");
+            Wt::Dbo::field(a, _spellCategory[3], "spellcategory_4");
+            Wt::Dbo::field(a, _spellCategoryCooldown[3], "spellcategorycooldown_4");
+            Wt::Dbo::field(a, _spellId[4], "spellid_5");
+            Wt::Dbo::field(a, _spellTrigger[4], "spelltrigger_5");
+            Wt::Dbo::field(a, _spellCharges[4], "spellcharges_5");
+            Wt::Dbo::field(a, _spellPPMRate[4], "spellppmRate_5");
+            Wt::Dbo::field(a, _spellCooldown[4], "spellcooldown_5");
+            Wt::Dbo::field(a, _spellCategory[4], "spellcategory_5");
+            Wt::Dbo::field(a, _spellCategoryCooldown[4], "spellcategorycooldown_5");
+            Wt::Dbo::field(a, _bonding, "bonding");
+            Wt::Dbo::field(a, _description, "description");
+            Wt::Dbo::field(a, _pageText, "PageText");
+            Wt::Dbo::field(a, _languageId, "LanguageID");
+            Wt::Dbo::field(a, _pageMaterial, "PageMaterial");
+            Wt::Dbo::field(a, _startQuest, "startquest");
+            Wt::Dbo::field(a, _lockId, "lockid");
+            Wt::Dbo::field(a, _material, "Material");
+            Wt::Dbo::field(a, _sheath, "sheath");
+            Wt::Dbo::field(a, _randomProperty, "RandomProperty");
+            Wt::Dbo::field(a, _randomSuffix, "RandomSuffix");
+            Wt::Dbo::field(a, _block, "block");
+            Wt::Dbo::field(a, _itemSet, "itemset");
+            Wt::Dbo::field(a, _maxDurability, "MaxDurability");
+            Wt::Dbo::field(a, _area, "area");
+            Wt::Dbo::field(a, _map, "Map");
+            Wt::Dbo::field(a, _bagFamily, "BagFamily");
+            Wt::Dbo::field(a, _totemCategory, "TotemCategory");
+            Wt::Dbo::field(a, _socketColor[0], "socketColor_1");
+            Wt::Dbo::field(a, _socketContent[0], "socketContent_1");
+            Wt::Dbo::field(a, _socketColor[1], "socketColor_2");
+            Wt::Dbo::field(a, _socketContent[1], "socketContent_2");
+            Wt::Dbo::field(a, _socketColor[2], "socketColor_3");
+            Wt::Dbo::field(a, _socketContent[2], "socketContent_3");
+            Wt::Dbo::field(a, _socketBonus, "socketBonus");
+            Wt::Dbo::field(a, _gemProperties, "GemProperties");
+            Wt::Dbo::field(a, _requiredDisenchantSkill, "RequiredDisenchantSkill");
+            Wt::Dbo::field(a, _armorDamageModifier, "ArmorDamageModifier");
+            Wt::Dbo::field(a, _scriptName, "ScriptName");
+            Wt::Dbo::field(a, _disenchantId, "DisenchantID");
+            Wt::Dbo::field(a, _foodType, "FoodType");
+            Wt::Dbo::field(a, _minMoneyLoot, "minMoneyLoot");
+            Wt::Dbo::field(a, _maxMoneyLoot, "maxMoneyLoot");
+            Wt::Dbo::field(a, _duration, "Duration");
         }
 
         virtual Wt::WContainerWidget * CreateContainer() const;
 
+        const int & GetClass() const { return _class; }
+        const int & GetSubClass() const { return _subClass; }
+        const int & GetUnk0() const { return _unk0; }
+        const int & GetDisplayId() const { return _displayId; }
+        const int & GetQuality() const { return _quality; }
+        const long & GetFlags() const { return _flags; }
+        const int & GetBuyCount() const { return _buyCount; }
+        const long & GetBuyPrice() const { return _buyPrice; }
+        const long & GetSellPrice() const { return _sellPrice; }
+        const int & GetInventoryType() const { return _inventoryType; }
+        const int & GetAllowableClass() const { return _allowableClass; }
+        const int & GetAllowableRace() const { return _allowableRace; }
+        const int & GetItemLevel() const { return _itemLevel; }
+        const int & GetRequiredLevel() const { return _requiredLevel; }
+        const int & GetRequiredSkill() const { return _requiredSkill; }
+        const int & GetRequiredSkillRank() const { return _requiredSkillRank; }
+        const int & GetRequiredSpell() const { return _requiredSpell; }
+        const int & GetRequiredHonorRank() const { return _requiredHonorRank; }
+        const int & GetRequiredCityRank() const { return _requiredCityRank; }
+        const int & GetRequiredReputationFaction() const { return _requiredReputationFaction; }
+        const int & GetRequiredReputationRank() const { return _requiredReputationRank; }
+        const int & GetMaxCount() const { return _maxCount; }
+        const int & GetStackable() const { return _stackable; }
+        const int & GetContainerSlots() const { return _containerSlots; }
+        const int & GetStatType(unsigned int i) const { return _statType[i]; }
+        const int & GetStatValue(unsigned int i) const { return _statValue[i]; }
+        const float & GetDmgMin(unsigned int i) const { return _dmgMin[i]; }
+        const float & GetDmgMax(unsigned int i) const { return _dmgMax[i]; }
+        const int & GetDmgType(unsigned int i) const { return _dmgType[i]; }
+        const int & GetArmor() const { return _armor; }
+        const int & GetHolyRes() const { return _holyRes; }
+        const int & GetFireRes() const { return _fireRes; }
+        const int & GetNatureRes() const { return _natureRes; }
+        const int & GetFrostRes() const { return _frostRes; }
+        const int & GetShadowRes() const { return _shadowRes; }
+        const int & GetArcaneRes() const { return _arcaneRes; }
+        const int & GetDelay() const { return _delay; }
+        const int & GetAmmoType() const { return _ammoType; }
+        const float & GetRangedModRange() const { return _rangedModRange; }
+        const int & GetSpellId(unsigned int i) const { return _spellId[i]; }
+        const int & GetSpellTrigger(unsigned int i) const { return _spellTrigger[i]; }
+        const int & GetSpellCharges(unsigned int i) const { return _spellCharges[i]; }
+        const float & GetSpellPPMRate(unsigned int i) const { return _spellPPMRate[i]; }
+        const int & GetSpellCooldown(unsigned int i) const { return _spellCooldown[i]; }
+        const int & GetSpellCategory(unsigned int i) const { return _spellCategory[i]; }
+        const int & GetSpellCategoryCooldown(unsigned int i) const { return _spellCategoryCooldown[i]; }
+        const int & GetBonding() const { return _bonding; }
+        const std::string & GetDescription() const { return _description; }
+        const int & GetPageText() const { return _pageText; }
+        const int & GetLanguageId() const { return _languageId; }
+        const int & GetPageMaterial() const { return _pageMaterial; }
+        const int & GetStartQuest() const { return _startQuest; }
+        const int & GetLockId() const { return _lockId; }
+        const int & GetMaterial() const { return _material; }
+        const int & GetSheath() const { return _sheath; }
+        const int & GetRandomProperty() const { return _randomProperty; }
+        const int & GetRandomSuffix() const { return _randomSuffix; }
+        const int & GetBlock() const { return _block; }
+        const int & GetItemSet() const { return _itemSet; }
+        const int & GetMaxDurability() const { return _maxDurability; }
+        const int & GetArea() const { return _area; }
+        const int & GetMap() const { return _map; }
+        const int & GetBagFamily() const { return _bagFamily; }
+        const int & GetTotemCategory() const { return _totemCategory; }
+        const int & GetSocketColor(unsigned int i) const { return _socketColor[i]; }
+        const int & GetSocketContent(unsigned int i) const { return _socketContent[i]; }
+        const int & GetSocketBonus() const { return _socketBonus; }
+        const int & GetGemProperties() const { return _gemProperties; }
+        const int & GetRequiredDisenchantSkill() const { return _requiredDisenchantSkill; }
+        const float & GetArmorDamageModifier() const { return _armorDamageModifier; }
+        const std::string & GetScriptName() const { return _scriptName; }
+        const int & GetDisenchantId() const { return _disenchantId; }
+        const int & GetFoodType() const { return _foodType; }
+        const long & GetMinMoneyLoot() const { return _minMoneyLoot; }
+        const long & GetMaxMoneyLoot() const { return _maxMoneyLoot; }
+        const long & GetDuration() const { return _duration; }
+
     private:
+        int _class;
+        int _subClass;
+        int _unk0;
+        int _displayId;
+        int _quality;
+        long _flags;
+        int _buyCount;
+        long _buyPrice;
+        long _sellPrice;
+        int _inventoryType;
+        int _allowableClass;
+        int _allowableRace;
+        int _itemLevel;
+        int _requiredLevel;
+        int _requiredSkill;
+        int _requiredSkillRank;
+        int _requiredSpell;
+        int _requiredHonorRank;
+        int _requiredCityRank;
+        int _requiredReputationFaction;
+        int _requiredReputationRank;
+        int _maxCount;
+        int _stackable;
+        int _containerSlots;
+        int _statType[10];
+        int _statValue[10];
+        float _dmgMin[5];
+        float _dmgMax[5];
+        int _dmgType[5];
+        int _armor;
+        int _holyRes;
+        int _fireRes;
+        int _natureRes;
+        int _frostRes;
+        int _shadowRes;
+        int _arcaneRes;
+        int _delay;
+        int _ammoType;
+        float _rangedModRange;
+        int _spellId[5];
+        int _spellTrigger[5];
+        int _spellCharges[5];
+        float _spellPPMRate[5];
+        int _spellCooldown[5];
+        int _spellCategory[5];
+        int _spellCategoryCooldown[5];
+        int _bonding;
+        std::string _description;
+        int _pageText;
+        int _languageId;
+        int _pageMaterial;
+        int _startQuest;
+        int _lockId;
+        int _material;
+        int _sheath;
+        int _randomProperty;
+        int _randomSuffix;
+        int _block;
+        int _itemSet;
+        int _maxDurability;
+        int _area;
+        int _map;
+        int _bagFamily;
+        int _totemCategory;
+        int _socketColor[3];
+        int _socketContent[3];
+        int _socketBonus;
+        int _gemProperties;
+        int _requiredDisenchantSkill;
+        float _armorDamageModifier;
+        std::string _scriptName;
+        int _disenchantId;
+        int _foodType;
+        long _minMoneyLoot;
+        long _maxMoneyLoot;
+        long _duration;
 };
 
 // disable default version and id fields for SearchResult class
@@ -406,4 +995,4 @@ namespace Wt
     }
 }
 
-#endif // H_DboClasses
+#endif // H_dboClasses
