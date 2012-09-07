@@ -43,7 +43,8 @@ MainSite::MainSite(const Wt::WEnvironment& e) : Wt::WApplication(e)
     useStyleSheet("res/style.css");
 
     setTitle(Wt::WWidget::LANG_SITE_TITLE);
-    setLoadingIndicator(new Wt::WOverlayLoadingIndicator(Wt::WString::LANG_LOADING));
+    setLoadingIndicator(new Wt::WOverlayLoadingIndicator());
+    loadingIndicator()->setMessage(Wt::WString::LANG_LOADING);
 
     root()->addWidget(new HeaderDiv());
 
