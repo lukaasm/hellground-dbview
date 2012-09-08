@@ -624,11 +624,355 @@ class SpellTemplateInfo : protected TemplateInfo
         void persist(Action& a)
         {
             TemplateInfo::persist(a);
+
+            Wt::Dbo::field(a, _category, "category");
+            Wt::Dbo::field(a, _castUI, "castUI");
+            Wt::Dbo::field(a, _dispel, "dispel");
+            Wt::Dbo::field(a, _mechanic, "mechanic");
+            Wt::Dbo::field(a, _attributes, "attributes");
+            Wt::Dbo::field(a, _attributesEx[0], "attributesEx");
+            Wt::Dbo::field(a, _attributesEx[1], "attributesEx2");
+            Wt::Dbo::field(a, _attributesEx[2], "attributesEx3");
+            Wt::Dbo::field(a, _attributesEx[3], "attributesEx4");
+            Wt::Dbo::field(a, _attributesEx[4], "attributesEx5");
+            Wt::Dbo::field(a, _attributesEx[5], "attributesEx6");
+            Wt::Dbo::field(a, _stances, "stances");
+            Wt::Dbo::field(a, _stancesNot, "stancesNot");
+            Wt::Dbo::field(a, _targets, "targets");
+            Wt::Dbo::field(a, _targetCreatureType, "targetCreatureType");
+            Wt::Dbo::field(a, _requiresSpellFocus, "requiresSpellFocus");
+            Wt::Dbo::field(a, _facingCasterFlags, "facingCasterFlags");
+            Wt::Dbo::field(a, _casterAuraState, "casterAuraState");
+            Wt::Dbo::field(a, _targetAuraState, "targetAuraState");
+            Wt::Dbo::field(a, _casterAuraStateNot, "casterAuraStateNot");
+            Wt::Dbo::field(a, _targetAuraStateNot, "targetAuraStateNot");
+            Wt::Dbo::field(a, _castingTimeIndex, "castingTimeIndex");
+            Wt::Dbo::field(a, _recoveryTime, "recoveryTime");
+            Wt::Dbo::field(a, _categoryRecoveryTime, "categoryRecoveryTime");
+            Wt::Dbo::field(a, _interruptFlags, "interruptFlags");
+            Wt::Dbo::field(a, _auraInterruptFlags, "auraInterruptFlags");
+            Wt::Dbo::field(a, _channelInterruptFlags, "channelInterruptFlags");
+            Wt::Dbo::field(a, _procFlags, "procFlags");
+            Wt::Dbo::field(a, _procChance, "procChance");
+            Wt::Dbo::field(a, _procCharges, "procCharges");
+            Wt::Dbo::field(a, _maxLevel, "maxLevel");
+            Wt::Dbo::field(a, _baseLevel, "baseLevel");
+            Wt::Dbo::field(a, _spellLevel, "spellLevel");
+            Wt::Dbo::field(a, _durationIndex, "durationIndex");
+            Wt::Dbo::field(a, _powerType, "powerType");
+            Wt::Dbo::field(a, _manaCost, "manaCost");
+            Wt::Dbo::field(a, _manaCostPerLevel, "manaCostPerLevel");
+            Wt::Dbo::field(a, _manaPerSecond, "manaPerSecond");
+            Wt::Dbo::field(a, _manaPerSecondPerLevel, "manaPerSecondPerLevel");
+            Wt::Dbo::field(a, _rangeIndex, "rangeIndex");
+            Wt::Dbo::field(a, _speed, "speed");
+            Wt::Dbo::field(a, _modalNextSpell, "modalNextSpell");
+            Wt::Dbo::field(a, _stackAmount, "stackAmount");
+            Wt::Dbo::field(a, _totem[0], "totem1");
+            Wt::Dbo::field(a, _totem[1], "totem2");
+            Wt::Dbo::field(a, _reagent[0], "reagent1");
+            Wt::Dbo::field(a, _reagent[1], "reagent2");
+            Wt::Dbo::field(a, _reagent[2], "reagent3");
+            Wt::Dbo::field(a, _reagent[3], "reagent4");
+            Wt::Dbo::field(a, _reagent[4], "reagent5");
+            Wt::Dbo::field(a, _reagent[5], "reagent6");
+            Wt::Dbo::field(a, _reagent[6], "reagent7");
+            Wt::Dbo::field(a, _reagent[7], "reagent8");
+            Wt::Dbo::field(a, _reagentCount[0], "reagentCount1");
+            Wt::Dbo::field(a, _reagentCount[1], "reagentCount2");
+            Wt::Dbo::field(a, _reagentCount[2], "reagentCount3");
+            Wt::Dbo::field(a, _reagentCount[3], "reagentCount4");
+            Wt::Dbo::field(a, _reagentCount[4], "reagentCount5");
+            Wt::Dbo::field(a, _reagentCount[5], "reagentCount6");
+            Wt::Dbo::field(a, _reagentCount[6], "reagentCount7");
+            Wt::Dbo::field(a, _reagentCount[7], "reagentCount8");
+            Wt::Dbo::field(a, _equippedItemClass, "equippedItemClass");
+            Wt::Dbo::field(a, _equippedItemSubClassMask, "equippedItemSubClassMask");
+            Wt::Dbo::field(a, _equippedItemInventoryTypeMask, "equippedItemInventoryTypeMask");
+            Wt::Dbo::field(a, _effect[0], "effect1");
+            Wt::Dbo::field(a, _effect[1], "effect2");
+            Wt::Dbo::field(a, _effect[2], "effect3");
+            Wt::Dbo::field(a, _effectDieSides[0], "effectDieSides1");
+            Wt::Dbo::field(a, _effectDieSides[1], "effectDieSides2");
+            Wt::Dbo::field(a, _effectDieSides[2], "effectDieSides3");
+            Wt::Dbo::field(a, _effectBaseDice[0], "effectBaseDice1");
+            Wt::Dbo::field(a, _effectBaseDice[1], "effectBaseDice2");
+            Wt::Dbo::field(a, _effectBaseDice[2], "effectBaseDice3");
+            Wt::Dbo::field(a, _effectDicePerLevel[0], "effectDicePerLevel1");
+            Wt::Dbo::field(a, _effectDicePerLevel[1], "effectDicePerLevel2");
+            Wt::Dbo::field(a, _effectDicePerLevel[2], "effectDicePerLevel3");
+            Wt::Dbo::field(a, _effectRealPointsPerLevel[0], "effectRealPointsPerLevel1");
+            Wt::Dbo::field(a, _effectRealPointsPerLevel[1], "effectRealPointsPerLevel2");
+            Wt::Dbo::field(a, _effectRealPointsPerLevel[2], "effectRealPointsPerLevel3");
+            Wt::Dbo::field(a, _effectBasePoints[0], "effectBasePoints1");
+            Wt::Dbo::field(a, _effectBasePoints[1], "effectBasePoints2");
+            Wt::Dbo::field(a, _effectBasePoints[2], "effectBasePoints3");
+            Wt::Dbo::field(a, _effectMechanic[0], "effectMechanic1");
+            Wt::Dbo::field(a, _effectMechanic[1], "effectMechanic2");
+            Wt::Dbo::field(a, _effectMechanic[2], "effectMechanic3");
+            Wt::Dbo::field(a, _effectImplicitTargetA[0], "effectImplicitTargetA1");
+            Wt::Dbo::field(a, _effectImplicitTargetA[1], "effectImplicitTargetA2");
+            Wt::Dbo::field(a, _effectImplicitTargetA[2], "effectImplicitTargetA3");
+            Wt::Dbo::field(a, _effectImplicitTargetB[0], "effectImplicitTargetB1");
+            Wt::Dbo::field(a, _effectImplicitTargetB[1], "effectImplicitTargetB2");
+            Wt::Dbo::field(a, _effectImplicitTargetB[2], "effectImplicitTargetB3");
+            Wt::Dbo::field(a, _effectRadiusIndex[0], "effectRadiusIndex1");
+            Wt::Dbo::field(a, _effectRadiusIndex[1], "effectRadiusIndex2");
+            Wt::Dbo::field(a, _effectRadiusIndex[2], "effectRadiusIndex3");
+            Wt::Dbo::field(a, _effectApplyAuraName[0], "effectApplyAuraName1");
+            Wt::Dbo::field(a, _effectApplyAuraName[1], "effectApplyAuraName2");
+            Wt::Dbo::field(a, _effectApplyAuraName[2], "effectApplyAuraName3");
+            Wt::Dbo::field(a, _effectAmplitude[0], "effectAmplitude1");
+            Wt::Dbo::field(a, _effectAmplitude[1], "effectAmplitude2");
+            Wt::Dbo::field(a, _effectAmplitude[2], "effectAmplitude3");
+            Wt::Dbo::field(a, _effectMultipleValue[0], "effectMultipleValue1");
+            Wt::Dbo::field(a, _effectMultipleValue[1], "effectMultipleValue2");
+            Wt::Dbo::field(a, _effectMultipleValue[2], "effectMultipleValue3");
+            Wt::Dbo::field(a, _effectChainTarget[0], "effectChainTarget1");
+            Wt::Dbo::field(a, _effectChainTarget[1], "effectChainTarget2");
+            Wt::Dbo::field(a, _effectChainTarget[2], "effectChainTarget3");
+            Wt::Dbo::field(a, _effectItemType[0], "effectItemType1");
+            Wt::Dbo::field(a, _effectItemType[1], "effectItemType2");
+            Wt::Dbo::field(a, _effectItemType[2], "effectItemType3");
+            Wt::Dbo::field(a, _effectMiscValue[0], "effectMiscValue1");
+            Wt::Dbo::field(a, _effectMiscValue[1], "effectMiscValue2");
+            Wt::Dbo::field(a, _effectMiscValue[2], "effectMiscValue3");
+            Wt::Dbo::field(a, _effectMiscValueB[0], "effectMiscValueB1");
+            Wt::Dbo::field(a, _effectMiscValueB[1], "effectMiscValueB2");
+            Wt::Dbo::field(a, _effectMiscValueB[2], "effectMiscValueB3");
+            Wt::Dbo::field(a, _effectTriggerSpell[0], "effectTriggerSpell1");
+            Wt::Dbo::field(a, _effectTriggerSpell[1], "effectTriggerSpell2");
+            Wt::Dbo::field(a, _effectTriggerSpell[2], "effectTriggerSpell3");
+            Wt::Dbo::field(a, _effectPointsPerComboPoint[0], "effectPointsPerComboPoint1");
+            Wt::Dbo::field(a, _effectPointsPerComboPoint[1], "effectPointsPerComboPoint2");
+            Wt::Dbo::field(a, _effectPointsPerComboPoint[2], "effectPointsPerComboPoint3");
+            Wt::Dbo::field(a, _spellVisual, "spellVisual");
+            Wt::Dbo::field(a, _unknown1, "unknown1");
+            Wt::Dbo::field(a, _spellIconID, "spellIconID");
+            Wt::Dbo::field(a, _activeIconID, "activeIconID");
+            Wt::Dbo::field(a, _spellPriority, "spellPriority");
+            Wt::Dbo::field(a, _nameFlag, "nameFlag");
+            Wt::Dbo::field(a, _rank, "rank");
+            Wt::Dbo::field(a, _rankFlags, "rankFlags");
+            Wt::Dbo::field(a, _description, "description");
+            Wt::Dbo::field(a, _descriptionFlags, "descriptionFlags");
+            Wt::Dbo::field(a, _toolTip, "toolTip");
+            Wt::Dbo::field(a, _toolTipFlags, "toolTipFlags");
+            Wt::Dbo::field(a, _manaCostPercentage, "manaCostPercentage");
+            Wt::Dbo::field(a, _startRecoveryCategory, "startRecoveryCategory");
+            Wt::Dbo::field(a, _startRecoveryTime, "startRecoveryTime");
+            Wt::Dbo::field(a, _maxTargetLevel, "maxTargetLevel");
+            Wt::Dbo::field(a, _spellFamilyName, "spellFamilyName");
+            Wt::Dbo::field(a, _spellFamilyFlags, "spellFamilyFlags");
+            Wt::Dbo::field(a, _spellFamilyFlags2, "spellFamilyFlags2");
+            Wt::Dbo::field(a, _maxAffectedTargets, "maxAffectedTargets");
+            Wt::Dbo::field(a, _dmgClass, "dmgClass");
+            Wt::Dbo::field(a, _preventionType, "preventionType");
+            Wt::Dbo::field(a, _stanceBarOrder, "stanceBarOrder");
+            Wt::Dbo::field(a, _dmgMultiplier[0], "dmgMultiplier1");
+            Wt::Dbo::field(a, _dmgMultiplier[1], "dmgMultiplier2");
+            Wt::Dbo::field(a, _dmgMultiplier[2], "dmgMultiplier3");
+            Wt::Dbo::field(a, _attributesCu, "attributesCu");
+            Wt::Dbo::field(a, _minReputation, "minReputation");
+            Wt::Dbo::field(a, _requiredAuraVision, "requiredAuraVision");
+            Wt::Dbo::field(a, _totemCategory[0], "totemCategory1");
+            Wt::Dbo::field(a, _totemCategory[1], "totemCategory2");
+            Wt::Dbo::field(a, _areaId, "areaId");
+            Wt::Dbo::field(a, _schoolMask, "schoolMask");
         }
 
         virtual Wt::WContainerWidget * CreateContainer() const;
 
+        const long & GetCategory() const { return _category; }
+        const long & GetCastUI() const { return _castUI; }
+        const long & GetDispel() const { return _dispel; }
+        const long & GetMechanic() const { return _mechanic; }
+        const long & GetAttributes() const { return _attributes; }
+        const long & GetAttributesEx(unsigned int i) const { return _attributesEx[i]; }
+        const long & GetStances() const { return _stances; }
+        const long & GetStancesNot() const { return _stancesNot; }
+        const long & GetTargets() const { return _targets; }
+        const long & GetTargetCreatureType() const { return _targetCreatureType; }
+        const long & GetRequiresSpellFocus() const { return _requiresSpellFocus; }
+        const long & GetFacingCasterFlags() const { return _facingCasterFlags; }
+        const long & GetCasterAuraState() const { return _casterAuraState; }
+        const long & GetTargetAuraState() const { return _targetAuraState; }
+        const long & GetCasterAuraStateNot() const { return _casterAuraStateNot; }
+        const long & GetTargetAuraStateNot() const { return _targetAuraStateNot; }
+        const long & GetCastingTimeIndex() const { return _castingTimeIndex; }
+        const long & GetRecoveryTime() const { return _recoveryTime; }
+        const long & GetCategoryRecoveryTime() const { return _categoryRecoveryTime; }
+        const long & GetInterruptFlags() const { return _interruptFlags; }
+        const long & GetAuraInterruptFlags() const { return _auraInterruptFlags; }
+        const long & GetChannelInterruptFlags() const { return _channelInterruptFlags; }
+        const long & GetProcFlags() const { return _procFlags; }
+        const long & GetProcChance() const { return _procChance; }
+        const long & GetProcCharges() const { return _procCharges; }
+        const long & GetMaxLevel() const { return _maxLevel; }
+        const long & GetBaseLevel() const { return _baseLevel; }
+        const long & GetSpellLevel() const { return _spellLevel; }
+        const long & GetDurationIndex() const { return _durationIndex; }
+        const long & GetPowerType() const { return _powerType; }
+        const long & GetManaCost() const { return _manaCost; }
+        const long & GetManaCostPerLevel() const { return _manaCostPerLevel; }
+        const long & GetManaPerSecond() const { return _manaPerSecond; }
+        const long & GetManaPerSecondPerLevel() const { return _manaCostPerLevel; }
+        const long & GetRangeIndex() const { return _rangeIndex; }
+        const float & GetSpeed() const { return _speed; }
+        const long & GetModalNextSpell() const { return _modalNextSpell; }
+        const long & GetStackAmount() const { return _stackAmount; }
+        const long & GetTotem(unsigned int i) const { return _totem[i]; }
+        const int & GetReagent(unsigned int i) const { return _reagent[i]; }
+        const long & GetReagentCount(unsigned int i) const { return _reagentCount[i]; }
+        const int & GetEquippedItemClass() const { return _equippedItemClass; }
+        const int & GetEquippedItemSubClassMask() const { return _equippedItemSubClassMask; }
+        const int & GetEquippedItemInventoryTypeMask() const { return _equippedItemInventoryTypeMask; }
+        const long & GetEffect(unsigned int i) const { return _effect[i]; }
+        const int & GetEffectDieSides(unsigned int i) const { return _effectDieSides[i]; }
+        const long & GetEffectBaseDice(unsigned int i) const { return _effectBaseDice[i]; }
+        const float & GetEffectDicePerLevel(unsigned int i) const { return _effectDicePerLevel[i]; }
+        const float & GetEffectRealPointsPerLevel(unsigned int i) const { return _effectRealPointsPerLevel[i]; }
+        const int & GetEffectBasePoints(unsigned int i) const { return _effectBasePoints[i]; }
+        const long & GetEffectMechanic(unsigned int i) const { return _effectMechanic[i]; }
+        const long & GetEffectImplicitTargetA(unsigned int i) const { return _effectImplicitTargetA[i]; }
+        const long & GetEffectImplicitTargetB(unsigned int i) const { return _effectImplicitTargetB[i]; }
+        const long & GetEffectRadiusIndex(unsigned int i) const { return _effectRadiusIndex[i]; }
+        const long & GetEffectApplyAuraName(unsigned int i) const { return _effectApplyAuraName[i]; }
+        const long & GetEffectAmplitude(unsigned int i) const { return _effectAmplitude[i]; }
+        const float & GetEffectMultipleValue(unsigned int i) const { return _effectMultipleValue[i]; }
+        const long & GetEffectChainTarget(unsigned int i) const { return _effectChainTarget[i]; }
+        const long & GetEffectItemType(unsigned int i) const { return _effectItemType[i]; }
+        const int & GetEffectMiscValue(unsigned int i) const { return _effectMiscValue[i]; }
+        const int & GetEffectMiscValueB(unsigned int i) const { return _effectMiscValueB[i]; }
+        const long & GetEffectTriggerSpell(unsigned int i) const { return _effectTriggerSpell[i]; }
+        const float & GetEffectPointsPerComboPoint(unsigned int i) const { return _effectPointsPerComboPoint[i]; }
+        const long & GetSpellVisual() const { return _spellVisual; }
+        const long & GetUnknown1() const { return _unknown1; }
+        const long & GetSpellIconID() const { return _spellIconID; }
+        const long & GetActiveIconID() const { return _activeIconID; }
+        const long & GetSpellPriority() const { return _spellPriority; }
+        const long & GetNameFlag() const { return _nameFlag; }
+        const std::string & GetRank() const { return _rank; }
+        const long & GetRankFlags() const { return _rankFlags; }
+        const std::string & GetDescription() const { return _description; }
+        const long & GetDescriptionFlags() const { return _descriptionFlags; }
+        const std::string & GetToolTip() const { return _toolTip; }
+        const long & GetToolTipFlags() const { return _toolTipFlags; }
+        const long & GetManaCostPercentage() const { return _manaCostPercentage; }
+        const long & GetStartRecoveryCategory() const { return _startRecoveryCategory; }
+        const long & GetStartRecoveryTime() const { return _startRecoveryTime; }
+        const long & GetMaxTargetLevel() const { return _maxTargetLevel; }
+        const long & GetSpellFamilyName() const { return _spellFamilyName; }
+        long long GetSpellFamilyFlags() const { return _spellFamilyFlags + (_spellFamilyFlags2 << 32); }    // guessed
+        const long & GetSpellFamilyFlags1() const { return _spellFamilyFlags; }
+        const long & GetSpellFamilyFlags2() const { return _spellFamilyFlags2; }
+        const long & GetMaxAffectedTargets() const { return _maxAffectedTargets; }
+        const long & GetDmgClass() const { return _dmgClass; }
+        const long & GetPreventionType() const { return _preventionType; }
+        const long & GetStanceBarOrder() const { return _stanceBarOrder; }
+        const float & GetDmgMultiplier(unsigned int i) const { return _dmgMultiplier[i]; }
+        const long & GetAttributesCu() const { return _attributesCu; }
+        const long & GetMinReputation() const { return _minReputation; }
+        const long & GetRequiredAuraVision() const { return _requiredAuraVision; }
+        const long & GetTotemCategory(unsigned int i) const { return _totemCategory[i]; }
+        const long & GetAreaId() const { return _areaId; }
+        const long & GetSchoolMask() const { return _schoolMask; }
+
     private:
+        long _category;
+        long _castUI;
+        long _dispel;
+        long _mechanic;
+        long _attributes;
+        long _attributesEx[6];
+        long _stances;
+        long _stancesNot;
+        long _targets;
+        long _targetCreatureType;
+        long _requiresSpellFocus;
+        long _facingCasterFlags;
+        long _casterAuraState;
+        long _targetAuraState;
+        long _casterAuraStateNot;
+        long _targetAuraStateNot;
+        long _castingTimeIndex;
+        long _recoveryTime;
+        long _categoryRecoveryTime;
+        long _interruptFlags;
+        long _auraInterruptFlags;
+        long _channelInterruptFlags;
+        long _procFlags;
+        long _procChance;
+        long _procCharges;
+        long _maxLevel;
+        long _baseLevel;
+        long _spellLevel;
+        long _durationIndex;
+        long _powerType;
+        long _manaCost;
+        long _manaCostPerLevel;
+        long _manaPerSecond;
+        long _manaPerSecondPerLevel;
+        long _rangeIndex;
+        float _speed;
+        long _modalNextSpell;
+        long _stackAmount;
+        long _totem[2];
+        int _reagent[8];
+        long _reagentCount[8];
+        int _equippedItemClass;
+        int _equippedItemSubClassMask;
+        int _equippedItemInventoryTypeMask;
+        long _effect[3];
+        int _effectDieSides[3];
+        long _effectBaseDice[3];
+        float _effectDicePerLevel[3];
+        float _effectRealPointsPerLevel[3];
+        int _effectBasePoints[3];
+        long _effectMechanic[3];
+        long _effectImplicitTargetA[3];
+        long _effectImplicitTargetB[3];
+        long _effectRadiusIndex[3];
+        long _effectApplyAuraName[3];
+        long _effectAmplitude[3];
+        float _effectMultipleValue[3];
+        long _effectChainTarget[3];
+        long _effectItemType[3];
+        int _effectMiscValue[3];
+        int _effectMiscValueB[3];
+        long _effectTriggerSpell[3];
+        float _effectPointsPerComboPoint[3];
+        long _spellVisual;
+        long _unknown1;
+        long _spellIconID;
+        long _activeIconID;
+        long _spellPriority;
+        //std::string _name[16];
+        long _nameFlag;
+        std::string _rank;//[16];
+        long _rankFlags;
+        std::string _description;//[16];
+        long _descriptionFlags;
+        std::string _toolTip;//[16];
+        long _toolTipFlags;
+        long _manaCostPercentage;
+        long _startRecoveryCategory;
+        long _startRecoveryTime;
+        long _maxTargetLevel;
+        long _spellFamilyName;
+        long _spellFamilyFlags;
+        long _spellFamilyFlags2;
+        long _maxAffectedTargets;
+        long _dmgClass;
+        long _preventionType;
+        long _stanceBarOrder;
+        float _dmgMultiplier[3];
+        long _attributesCu;
+        long _minReputation;
+        long _requiredAuraVision;
+        long _totemCategory[2];
+        long _areaId;
+        long _schoolMask;
 };
 
 class ItemTemplateInfo : protected TemplateInfo

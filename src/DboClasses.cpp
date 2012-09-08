@@ -421,15 +421,175 @@ Wt::WContainerWidget * QuestTemplateInfo::CreateContainer() const
 // Spell Template Info
 
 SpellTemplateInfo::SpellTemplateInfo()
-    : TemplateInfo()
+    : TemplateInfo(), _category(0), _castUI(0), _dispel(0), _mechanic(0), _attributes(0), _stances(0), _stancesNot(0),
+    _targets(0), _targetCreatureType(0), _requiresSpellFocus(0), _facingCasterFlags(0), _casterAuraState(0),
+    _targetAuraState(0), _casterAuraStateNot(0), _targetAuraStateNot(0), _castingTimeIndex(0), _recoveryTime(0),
+    _categoryRecoveryTime(0), _interruptFlags(0), _auraInterruptFlags(0), _channelInterruptFlags(0), _procFlags(0),
+    _procChance(0), _procCharges(0), _maxLevel(0), _baseLevel(0), _spellLevel(0), _durationIndex(0), _powerType(0),
+    _manaCost(0), _manaCostPerLevel(0), _manaPerSecond(0), _manaPerSecondPerLevel(0), _rangeIndex(0), _speed(0.0f),
+    _modalNextSpell(0), _stackAmount(0), _equippedItemClass(0), _equippedItemSubClassMask(0), _equippedItemInventoryTypeMask(0),
+    _spellVisual(0), _unknown1(0), _spellIconID(0), _activeIconID(0), _spellPriority(0), _nameFlag(0), _rank(""),
+    _rankFlags(0), _description(""), _descriptionFlags(0), _toolTip(""), _toolTipFlags(0), _manaCostPercentage(0),
+    _startRecoveryCategory(0), _startRecoveryTime(0), _maxTargetLevel(0), _spellFamilyName(0), _spellFamilyFlags(0),
+    _spellFamilyFlags2(0), _maxAffectedTargets(0), _dmgClass(0), _preventionType(0), _stanceBarOrder(0), _attributesCu(0),
+    _minReputation(0), _requiredAuraVision(0), _areaId(0), _schoolMask(0)
 {
+    for (int i = 0; i < 2; ++i)
+    {
+        _totem[i] = 0;
+        _totemCategory[i] = 0;
+    }
 
+    for (int i = 0; i < 3; ++i)
+    {
+        _effect[i] = 0;
+        _effectDieSides[i] = 0;
+        _effectBaseDice[i] = 0;
+        _effectDicePerLevel[i] = 0.0f;
+        _effectRealPointsPerLevel[i] = 0.0f;
+        _effectBasePoints[i] = 0;
+        _effectMechanic[i] = 0;
+        _effectImplicitTargetA[i] = 0;
+        _effectImplicitTargetB[i] = 0;
+        _effectRadiusIndex[i] = 0;
+        _effectApplyAuraName[i] = 0;
+        _effectAmplitude[i] = 0;
+        _effectMultipleValue[i] = 0.0f;
+        _effectChainTarget[i] = 0;
+        _effectItemType[i] = 0;
+        _effectMiscValue[i] = 0;
+        _effectMiscValueB[i] = 0;
+        _effectTriggerSpell[i] = 0;
+        _effectPointsPerComboPoint[i] = 0.0f;
+        _dmgMultiplier[i] = 0.0f;
+        _attributesEx[i] = 0;
+        _reagent[i] = 0;
+        _reagentCount[i] = 0;
+    }
+
+    for (int i = 3; i < 6; ++i)
+        _attributesEx[i] = 0;
+
+    for (int i = 3; i < 8; ++i)
+    {
+        _reagent[i] = 0;
+        _reagentCount[i] = 0;
+    }
 }
 
 SpellTemplateInfo::SpellTemplateInfo(const SpellTemplateInfo & sti)
     : TemplateInfo(sti.GetEntry(), sti.GetName())
 {
+    _category = sti.GetCategory();
+    _castUI = sti.GetCastUI();
+    _dispel = sti.GetDispel();
+    _mechanic = sti.GetMechanic();
+    _attributes = sti.GetAttributes();
+    _stances = sti.GetStances();
+    _stancesNot = sti.GetStancesNot();
+    _targets = sti.GetTargets();
+    _targetCreatureType = sti.GetTargetCreatureType();
+    _requiresSpellFocus = sti.GetRequiresSpellFocus();
+    _facingCasterFlags = sti.GetFacingCasterFlags();
+    _casterAuraState = sti.GetCasterAuraState();
+    _targetAuraState = sti.GetTargetAuraState();
+    _casterAuraStateNot = sti.GetCasterAuraStateNot();
+    _targetAuraStateNot = sti.GetTargetAuraStateNot();
+    _castingTimeIndex = sti.GetCastingTimeIndex();
+    _recoveryTime = sti.GetRecoveryTime();
+    _categoryRecoveryTime = sti.GetCategoryRecoveryTime();
+    _interruptFlags = sti.GetInterruptFlags();
+    _auraInterruptFlags = sti.GetAuraInterruptFlags();
+    _channelInterruptFlags = sti.GetChannelInterruptFlags();
+    _procFlags = sti.GetProcFlags();
+    _procChance = sti.GetProcChance();
+    _procCharges = sti.GetProcCharges();
+    _maxLevel = sti.GetMaxLevel();
+    _baseLevel = sti.GetBaseLevel();
+    _spellLevel = sti.GetSpellLevel();
+    _durationIndex = sti.GetDurationIndex();
+    _powerType = sti.GetPowerType();
+    _manaCost = sti.GetManaCost();
+    _manaCostPerLevel = sti.GetManaCostPerLevel();
+    _manaPerSecond = sti.GetManaPerSecond();
+    _manaPerSecondPerLevel = sti.GetManaPerSecondPerLevel();
+    _rangeIndex = sti.GetRangeIndex();
+    _speed = sti.GetSpeed();
+    _modalNextSpell = sti.GetModalNextSpell();
+    _stackAmount = sti.GetStackAmount();
+    _equippedItemClass = sti.GetEquippedItemClass();
+    _equippedItemSubClassMask = sti.GetEquippedItemSubClassMask();
+    _equippedItemInventoryTypeMask = sti.GetEquippedItemInventoryTypeMask();
+    _spellVisual = sti.GetSpellVisual();
+    _unknown1 = sti.GetUnknown1();
+    _spellIconID = sti.GetSpellIconID();
+    _activeIconID = sti.GetActiveIconID();
+    _spellPriority = sti.GetSpellPriority();
+    _nameFlag = sti.GetNameFlag();
+    _rank = sti.GetRank();
+    _rankFlags = sti.GetRankFlags();
+    _description = sti.GetDescription();
+    _descriptionFlags = sti.GetDescriptionFlags();
+    _toolTip = sti.GetToolTip();
+    _toolTipFlags = sti.GetToolTipFlags();
+    _manaCostPercentage = sti.GetManaCostPercentage();
+    _startRecoveryCategory = sti.GetStartRecoveryCategory();
+    _startRecoveryTime = sti.GetStartRecoveryTime();
+    _maxTargetLevel = sti.GetMaxTargetLevel();
+    _spellFamilyName = sti.GetSpellFamilyName();
+    _spellFamilyFlags = sti.GetSpellFamilyFlags1();
+    _spellFamilyFlags2 = sti.GetSpellFamilyFlags2();
+    _maxAffectedTargets = sti.GetMaxAffectedTargets();
+    _dmgClass = sti.GetDmgClass();
+    _preventionType = sti.GetPreventionType();
+    _stanceBarOrder = sti.GetStanceBarOrder();
+    _attributesCu = sti.GetAttributesCu();
+    _minReputation = sti.GetMinReputation();
+    _requiredAuraVision = sti.GetRequiredAuraVision();
+    _areaId = sti.GetAreaId();
+    _schoolMask = sti.GetSchoolMask();
 
+    for (int i = 0; i < 2; ++i)
+    {
+        _totem[i] = sti.GetTotem(i);
+        _totemCategory[i] = sti.GetTotemCategory(i);
+    }
+
+    for (int i = 0; i < 3; ++i)
+    {
+        _effect[i] = sti.GetEffect(i);
+        _effectDieSides[i] = sti.GetEffectDieSides(i);
+        _effectBaseDice[i] = sti.GetEffectBaseDice(i);
+        _effectDicePerLevel[i] = sti.GetEffectDicePerLevel(i);
+        _effectRealPointsPerLevel[i] = sti.GetEffectRealPointsPerLevel(i);
+        _effectBasePoints[i] = sti.GetEffectBasePoints(i);
+        _effectMechanic[i] = sti.GetEffectMechanic(i);
+        _effectImplicitTargetA[i] = sti.GetEffectImplicitTargetA(i);
+        _effectImplicitTargetB[i] = sti.GetEffectImplicitTargetB(i);
+        _effectRadiusIndex[i] = sti.GetEffectRadiusIndex(i);
+        _effectApplyAuraName[i] = sti.GetEffectApplyAuraName(i);
+        _effectAmplitude[i] = sti.GetEffectAmplitude(i);
+        _effectMultipleValue[i] = sti.GetEffectMultipleValue(i);
+        _effectChainTarget[i] = sti.GetEffectChainTarget(i);
+        _effectItemType[i] = sti.GetEffectItemType(i);
+        _effectMiscValue[i] = sti.GetEffectMiscValue(i);
+        _effectMiscValueB[i] = sti.GetEffectMiscValueB(i);
+        _effectTriggerSpell[i] = sti.GetEffectTriggerSpell(i);
+        _effectPointsPerComboPoint[i] = sti.GetEffectPointsPerComboPoint(i);
+        _dmgMultiplier[i] = sti.GetDmgMultiplier(i);
+        _attributesEx[i] = sti.GetAttributesEx(i);
+        _reagent[i] = sti.GetReagent(i);
+        _reagentCount[i] = sti.GetReagentCount(i);
+    }
+
+    for (int i = 3; i < 6; ++i)
+        _attributesEx[i] = sti.GetAttributesEx(i);
+
+    for (int i = 3; i < 8; ++i)
+    {
+        _reagent[i] = sti.GetReagent(i);
+        _reagentCount[i] = sti.GetReagentCount(i);
+    }
 }
 
 Wt::WContainerWidget * SpellTemplateInfo::CreateContainer() const
